@@ -130,8 +130,8 @@
 
     .hero p {
       margin: 0 0 28px;
-      font-size: 1.1rem;
-      color: #4A4035;
+      font-size: 1.2rem;
+      color: #3D3027;
     }
 
     .hero .hero-actions {
@@ -278,7 +278,7 @@
 
     .social-proof-quote {
       background: #fff;
-      border-left: 3px solid #C17A3A;
+      border-left: 3px solid #C17B2F;
       padding: 20px;
       border-radius: 12px;
       font-size: 0.95rem;
@@ -294,7 +294,7 @@
     .social-proof-quote .name {
       margin: 0;
       font-weight: 600;
-      color: #4A7C6F;
+      color: #C17B2F;
       font-size: 0.9rem;
     }
 
@@ -608,7 +608,7 @@
     }
 
     .for-column.no h3 {
-      color: #4A7C6F;
+      color: #4A4A4A;
     }
 
     .for-list {
@@ -639,7 +639,7 @@
 
     /* --- Guarantee Section --- */
     .guarantee {
-      background: linear-gradient(135deg, #F0EBE1 0%, #E8DED2 100%);
+      background: #D4DDD0;
       border-radius: 24px;
       padding: 42px 28px;
       text-align: center;
@@ -722,7 +722,7 @@
       }
 
       .about-content {
-        grid-template-columns: 1.5fr auto;
+        grid-template-columns: auto 1.5fr;
         align-items: start;
       }
 
@@ -1599,6 +1599,250 @@
         min-height: 260px;
       }
     }
+    /* === TARGETED IMPROVEMENTS === */
+
+    /* Change 1: Program descriptor */
+    .program-descriptor {
+      font-family: 'Lora', Georgia, serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #6B7B5E;
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    /* Change 2: Trust strip */
+    .trust-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #EDE8DF;
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      margin-top: 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .trust-stat {
+      flex: 1;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .trust-stat-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: #2C2416;
+      display: block;
+    }
+
+    .trust-stat-label {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.9rem;
+      color: #6B5E4E;
+      display: block;
+    }
+
+    .trust-divider {
+      width: 1px;
+      height: 2.5rem;
+      background: rgba(193, 123, 47, 0.6);
+      flex-shrink: 0;
+    }
+
+    /* Change 6: Science blocks single column with image between */
+    .science-blocks {
+      grid-template-columns: 1fr !important;
+    }
+
+    .science-blocks .science-image {
+      max-width: 460px;
+      margin: 0 auto;
+      width: 100%;
+      border-radius: 24px;
+      display: block;
+    }
+
+    /* Change 7: Module card image at top via flexbox ordering */
+    .module-card-new {
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem !important;
+    }
+
+    .module-card-new .module-image {
+      order: -1;
+      max-height: 180px;
+      width: 100%;
+      max-width: 100%;
+      object-fit: cover;
+      margin: 0 0 1rem 0 !important;
+      border-radius: 12px;
+    }
+
+    .module-outcome {
+      font-family: 'Lora', Georgia, serif;
+      font-style: italic;
+      color: #6B5E4E !important;
+      font-size: 0.9rem !important;
+      margin-top: 0.75rem !important;
+    }
+
+    /* Change 8: Value section subheading */
+    .value-section-subheading {
+      font-family: 'Lora', Georgia, serif;
+      font-style: italic;
+      color: #6B5E4E;
+      text-align: center;
+      margin: 0 0 1.5rem;
+      font-size: 1.05rem;
+    }
+
+    /* Change 9: Payment plan line */
+    .payment-plan-line {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1rem;
+      color: #6B5E4E;
+      text-align: center;
+      background: #EDE8DF;
+      border-radius: 6px;
+      padding: 0.6rem 1.2rem;
+      display: inline-block;
+    }
+
+    /* Change 10: About Michael photo */
+    .about-photo {
+      width: 280px;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+      display: block;
+      box-shadow:
+        0 8px 32px rgba(193, 122, 58, 0.22),
+        0 2px 8px rgba(44, 36, 22, 0.10);
+      flex-shrink: 0;
+    }
+
+    /* Change 11: Testimonials single column */
+    .testimonials-full-grid {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center;
+      gap: 0;
+    }
+
+    .testimonial-full {
+      width: 100%;
+      max-width: 780px;
+      background: #FDFAF6 !important;
+      border-left: 4px solid #C17B2F !important;
+      border-right: 1px solid rgba(44,36,22,0.08);
+      border-top: 1px solid rgba(44,36,22,0.08);
+      border-bottom: 1px solid rgba(44,36,22,0.08);
+      padding: 2rem !important;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-full h4 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: bold;
+      color: #2C2416;
+      margin: 0 0 4px;
+      font-size: 1.1rem;
+    }
+
+    .testimonial-full .meta {
+      color: #C17B2F !important;
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+
+    .testimonial-full p {
+      color: #3D3027 !important;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* Change 13: Guarantee heading size */
+    .guarantee h2 {
+      font-size: 2rem;
+      margin: 0 0 20px;
+    }
+
+    .guarantee-shield {
+      display: block;
+      margin: 0 auto 1rem;
+    }
+
+    /* Change 14: Final CTA */
+    .final-cta-section {
+      padding-top: 5rem !important;
+    }
+
+    .final-cta-rule {
+      border: none;
+      border-top: 1px solid rgba(193, 123, 47, 0.3);
+      max-width: 120px;
+      margin: 0 auto 3rem;
+    }
+
+    .scarcity-line {
+      font-family: 'Lora', Georgia, serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #6B5E4E;
+      text-align: center;
+      margin-top: 1rem;
+      display: block;
+    }
+
+    /* Reframe SVG */
+    .reframe-svg {
+      max-width: 420px;
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 720px) {
+      .reframe-svg {
+        margin: 0;
+      }
+    }
+
+    /* Mobile responsive overrides */
+    @media (max-width: 768px) {
+      .trust-strip {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem 1rem;
+      }
+
+      .trust-divider {
+        width: 2.5rem;
+        height: 1px;
+      }
+
+      .about-photo {
+        width: 100% !important;
+        max-width: 100%;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr !important;
+      }
+
+      .guarantee h2 {
+        font-size: 1.5rem;
+      }
+
+      .testimonials-full-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1616,25 +1860,25 @@
         <div class="hero-text">
           <h1>You've Changed Your Diet. Tried the Elimination Plans. Your Gut Still Isn't Right.</h1>
           <p>What most gut health advice misses is the emotional root cause. This 30-day program uses EFT Tapping, backed by Chinese medicine and nervous system science, to address what diet alone never could.</p>
+          <p class="program-descriptor">The 30-Day EFT Tapping Program for Gut and Digestive Health</p>
           <div class="hero-actions">
             <a class="button hero-btn" href="https://sendfox.com/lp/3q45xj" target="_blank" rel="noopener noreferrer">Join the Waiting List</a>
             <p class="hero-guarantee">✓ 14-day money-back guarantee, no questions asked</p>
           </div>
-          <div class="trust-row">
-            <div class="trust-badge">
-              <i data-lucide="users"></i>
-              <p>1,000+ Students</p>
-              <p>from around the world</p>
+          <div class="trust-strip">
+            <div class="trust-stat">
+              <span class="trust-stat-number">1,000+ Students</span>
+              <span class="trust-stat-label">from around the world</span>
             </div>
-            <div class="trust-badge">
-              <i data-lucide="play-circle"></i>
-              <p>40,000 Subscribers</p>
-              <p>on YouTube</p>
+            <div class="trust-divider"></div>
+            <div class="trust-stat">
+              <span class="trust-stat-number">40,000 Subscribers</span>
+              <span class="trust-stat-label">on YouTube</span>
             </div>
-            <div class="trust-badge">
-              <i data-lucide="award"></i>
-              <p>IICT Accredited</p>
-              <p>Certified Practitioner</p>
+            <div class="trust-divider"></div>
+            <div class="trust-stat">
+              <span class="trust-stat-number">IICT Accredited</span>
+              <span class="trust-stat-label">Certified Practitioner</span>
             </div>
           </div>
         </div>
@@ -1648,15 +1892,15 @@
     <section class="social-proof reveal">
       <div class="social-proof-grid">
         <div class="social-proof-quote">
-          <p>"Week 3 changed everything. I used to dread going out to dinner. Now I actually enjoy it."</p>
+          <p>Week 3 changed everything. I used to dread going out to dinner. Now I actually enjoy it.</p>
           <p class="name">Grace, 47, Canada</p>
         </div>
         <div class="social-proof-quote">
-          <p>"My digestive problems have lessened. Thank you Michael for helping my quality of life."</p>
+          <p>My digestive problems have lessened. Thank you Michael for helping my quality of life.</p>
           <p class="name">Paula West M.D.</p>
         </div>
         <div class="social-proof-quote">
-          <p>"I am an EFT practitioner myself and this is the most helpful sequence to date."</p>
+          <p>I am an EFT practitioner myself and this is the most helpful sequence to date.</p>
           <p class="name">Catherine Westburg</p>
         </div>
       </div>
@@ -1674,7 +1918,7 @@
             <p>The constant bloating. The cramping after meals. The anxiety around food. The exhaustion of never knowing what your body will do next.</p>
             <p>What nobody has told you is this: stress, anxiety, and unprocessed emotion physically change how your digestive system functions. Your gut has its own nervous system. And when your nervous system is stuck in stress mode, no diet in the world will fully fix what's happening.</p>
           </div>
-          <img class="deepener-image" src="assets/digestive pain.png" alt="Person experiencing digestive pain" />
+          <img class="deepener-image" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800" alt="Woman experiencing digestive discomfort" />
         </div>
       </div>
       <div class="problem-list">
@@ -1701,7 +1945,33 @@
           <p>This is what the Backlog and Flow method addresses. Over a lifetime, most people suppress far more emotion than they release. That unprocessed emotional material sits in the nervous system and the body, driving physical symptoms that no diet can reach.</p>
           <p>EFT Tapping works by clearing that backlog. Not managing it. Clearing it.</p>
         </div>
-        <img class="reframe-image" src="assets/5 element image.png" alt="Five element illustration" />
+        <svg class="reframe-svg" width="420" height="220" viewBox="0 0 420 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Left panel: Blocked stream -->
+          <rect x="4" y="4" width="182" height="182" rx="16" fill="#F5F0E8"/>
+          <!-- Water pooling — wavy lines, amber -->
+          <path d="M14 78 C34 68 54 88 74 78" stroke="#C17B2F" stroke-width="2" fill="none"/>
+          <path d="M14 92 C34 82 54 102 70 92" stroke="#C17B2F" stroke-width="2" fill="none" opacity="0.7"/>
+          <path d="M14 106 C34 96 52 114 68 106" stroke="#C17B2F" stroke-width="2" fill="none" opacity="0.5"/>
+          <!-- Rocks blocking flow -->
+          <ellipse cx="102" cy="82" rx="17" ry="11" fill="#5C4A3A" opacity="0.72"/>
+          <ellipse cx="120" cy="98" rx="14" ry="10" fill="#4A3828" opacity="0.62"/>
+          <ellipse cx="100" cy="112" rx="12" ry="8" fill="#5C4A3A" opacity="0.58"/>
+          <!-- Feeble trickle after rocks -->
+          <path d="M140 94 C155 90 168 98 182 92" stroke="#C17B2F" stroke-width="1.5" fill="none" opacity="0.32" stroke-dasharray="4 3"/>
+          <!-- Left label -->
+          <text x="95" y="208" text-anchor="middle" font-family="Lora, Georgia, serif" font-style="italic" font-size="12" fill="#2C2418">Emotional Backlog</text>
+          <!-- Arrow -->
+          <line x1="200" y1="96" x2="220" y2="96" stroke="#C17B2F" stroke-width="2.5" stroke-linecap="round"/>
+          <polyline points="213,89 221,96 213,103" stroke="#C17B2F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <!-- Right panel: Flowing stream -->
+          <rect x="234" y="4" width="182" height="182" rx="16" fill="#F5F0E8"/>
+          <!-- Clean flowing wavy lines, sage -->
+          <path d="M244 78 C264 68 284 88 304 78 C324 68 344 88 412 78" stroke="#6B7B5E" stroke-width="2.5" fill="none"/>
+          <path d="M244 96 C264 86 284 106 304 96 C324 86 344 106 412 96" stroke="#6B7B5E" stroke-width="2" fill="none" opacity="0.75"/>
+          <path d="M244 114 C264 104 284 122 304 114 C324 104 344 122 412 114" stroke="#6B7B5E" stroke-width="1.5" fill="none" opacity="0.55"/>
+          <!-- Right label -->
+          <text x="325" y="208" text-anchor="middle" font-family="Lora, Georgia, serif" font-style="italic" font-size="12" fill="#2C2418">Emotional Flow</text>
+        </svg>
       </div>
     </section>
 
@@ -1710,22 +1980,20 @@
     <!-- SECTION 5: THE SCIENCE -->
     <section class="reveal">
       <h2 class="section-headline">This Is Not Just Tapping. It's Backed by Research.</h2>
-      <div class="science-layout">
-        <div class="science-blocks">
-          <div class="science-block">
-            <h3>Acupressure Meets Neuroscience</h3>
-            <p>EFT combines tapping on acupressure points with cognitive processing. Research shows it lowers cortisol levels measurably within a single session.</p>
-          </div>
-          <div class="science-block">
-            <h3>Clinically Researched</h3>
-            <p>Multiple peer-reviewed studies show EFT outperforms CBT for anxiety in certain conditions. It is recognized by the American Psychological Association as an evidence-based practice.</p>
-          </div>
-          <div class="science-block">
-            <h3>The Gut-Brain Connection</h3>
-            <p>Your gut contains over 100 million nerve cells. When your nervous system is dysregulated, your digestion suffers. EFT directly targets nervous system regulation at the source.</p>
-          </div>
+      <div class="science-blocks">
+        <div class="science-block" style="padding-top: 1rem;">
+          <h3>Acupressure Meets Neuroscience</h3>
+          <p>EFT combines tapping on acupressure points with cognitive processing. Research shows it lowers cortisol levels measurably within a single session.</p>
         </div>
         <img class="science-image" src="assets/woman tapping.png" alt="Woman tapping while calming her digestion" />
+        <div class="science-block">
+          <h3>Clinically Researched</h3>
+          <p>Multiple peer-reviewed studies show EFT outperforms CBT for anxiety in certain conditions. It is recognized by the American Psychological Association as an evidence-based practice.</p>
+        </div>
+        <div class="science-block">
+          <h3>The Gut-Brain Connection</h3>
+          <p>Your gut contains over 100 million nerve cells. When your nervous system is dysregulated, your digestion suffers. EFT directly targets nervous system regulation at the source.</p>
+        </div>
       </div>
     </section>
 
@@ -1767,7 +2035,7 @@
     <!-- SECTION 7: VALUE STACK -->
     <section class="reveal">
       <h2 class="section-headline">Everything Included in the Program</h2>
-      <img class="value-image" src="assets/product image.png" alt="Product image of the program" />
+      <p class="value-section-subheading">Everything you need to heal your digestion — in one program.</p>
       <div class="value-stack">
         <div class="value-row">
           <span class="value-item">4 x 90-minute Live Group EFT Tapping Calls with Michael</span>
@@ -1814,9 +2082,8 @@
             <strong>Your investment today:</strong>
             <span class="value-summary-price">$329 USD</span>
           </div>
-          <div class="value-summary-row">
-            <strong>Or 3 x</strong>
-            <span class="value-highlight">$130 USD</span>
+          <div class="value-summary-row" style="justify-content: center;">
+            <span class="payment-plan-line">Or split into 3 monthly payments of $130 USD — same guarantee applies.</span>
           </div>
         </div>
         <div class="final-price-box">
@@ -1833,13 +2100,13 @@
     <section class="about-section reveal">
       <h2 class="section-headline">Who Is This Program With?</h2>
       <div class="about-content">
+        <img class="about-photo" src="assets/bio pic 1.jpg" alt="Michael Hetherington" />
         <div class="about-text">
           <p>Michael Hetherington is a Chinese medicine acupuncturist, certified EFT Practitioner and Trainer, and online educator with over a decade of clinical experience.</p>
           <p>He has worked with more than 1,000 private clients across Australia, Thailand, Bali, the USA, and Europe, and teaches a YouTube audience of 40,000 people worldwide.</p>
           <p>His approach is the only program that fuses traditional Chinese medicine organ theory with EFT Tapping for digestive health specifically. Nobody else is doing this.</p>
           <p>He's not teaching theory. He developed this method from pattern recognition across hundreds of clients whose gut issues did not resolve until the emotional root cause was addressed.</p>
         </div>
-        <img class="photo-circle" src="assets/bio pic 1.jpg" alt="Michael Hetherington" />
       </div>
     </section>
 
@@ -1906,6 +2173,10 @@
 
     <!-- SECTION 11: GUARANTEE -->
     <section class="guarantee reveal">
+      <svg class="guarantee-shield" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 4L6 12V24C6 33.6 14.16 42.54 24 45C33.84 42.54 42 33.6 42 24V12L24 4Z" fill="#C17B2F" opacity="0.15" stroke="#C17B2F" stroke-width="2"/>
+        <path d="M18 24L22 28L30 20" stroke="#C17B2F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
       <h2>Try It For 14 Days. If You Don't Feel a Difference, You Pay Nothing.</h2>
       <p>I am confident enough in this program to offer you a full 14-day money-back guarantee with no questions asked. If you go through the first two modules, do the tapping, and feel no difference at all, simply email me and I will refund your full payment within 48 hours. The risk is entirely mine.</p>
     </section>
@@ -1913,11 +2184,13 @@
     <hr class="section-rule" />
 
     <!-- SECTION 12: FINAL CTA -->
-    <section class="reveal">
+    <section class="reveal final-cta-section">
       <div style="text-align: center;">
+        <hr class="final-cta-rule" />
         <h2 class="section-headline">Your Gut Has Been Waiting Long Enough.</h2>
         <p style="max-width: 600px; margin: 0 auto 28px; color: #4A4035; font-size: 1rem;">The next cohort is forming now. Waitlist members are notified first and receive early access. Join below to secure your spot.</p>
-        <a class="button button-full" href="https://sendfox.com/lp/3q45xj" target="_blank" rel="noopener noreferrer">Join the Waiting List</a>
+        <a class="button button-full" href="https://sendfox.com/lp/3q45xj" target="_blank" rel="noopener noreferrer">Reserve My Spot</a>
+        <p class="scarcity-line">Next cohort is limited. Waitlist members get first access.</p>
         <div style="margin-top: 28px; color: #6B5E52; font-size: 0.9rem; line-height: 1.6;">
           <p style="margin: 0;">14-day money-back guarantee</p>
           <p style="margin: 0;">Lifetime access to all materials</p>
@@ -1933,37 +2206,37 @@
       <h2 class="section-headline">Common Questions</h2>
       <div class="faq">
         <div class="faq-item">
-          <button class="faq-button" type="button"><img class="faq-icon" src="assets/26.png" alt="" />When can I expect to feel a difference?</button>
+          <button class="faq-button" type="button"><i data-lucide="help-circle" style="width:20px;height:20px;color:#C17B2F;flex-shrink:0;margin-right:10px;"></i>When can I expect to feel a difference?</button>
           <div class="faq-content">
             <p>Most people notice a shift after the very first tapping session. For deeper, lasting change, consistent practice over the 30 days makes the real difference. You have lifetime access, so you can return to the material anytime.</p>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-button" type="button"><img class="faq-icon" src="assets/27.png" alt="" />How much time does this require each day?</button>
+          <button class="faq-button" type="button"><i data-lucide="help-circle" style="width:20px;height:20px;color:#C17B2F;flex-shrink:0;margin-right:10px;"></i>How much time does this require each day?</button>
           <div class="faq-content">
             <p>15 minutes most days. On live call weeks, add 90 minutes for the group session. That's it.</p>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-button" type="button"><img class="faq-icon" src="assets/28.png" alt="" />Will this help with IBS, SIBO, GERD, or chronic bloating?</button>
+          <button class="faq-button" type="button"><i data-lucide="help-circle" style="width:20px;height:20px;color:#C17B2F;flex-shrink:0;margin-right:10px;"></i>Will this help with IBS, SIBO, GERD, or chronic bloating?</button>
           <div class="faq-content">
             <p>Yes. EFT does not target a diagnosis, it targets the underlying nervous system dysregulation that drives digestive symptoms regardless of their label. It works alongside any other medical treatment you are receiving.</p>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-button" type="button"><img class="faq-icon" src="assets/29.png" alt="" />Does this replace my doctor's advice?</button>
+          <button class="faq-button" type="button"><i data-lucide="help-circle" style="width:20px;height:20px;color:#C17B2F;flex-shrink:0;margin-right:10px;"></i>Does this replace my doctor's advice?</button>
           <div class="faq-content">
             <p>No. This is complementary to any medical treatment. Always keep your doctor informed about any changes in your health.</p>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-button" type="button"><img class="faq-icon" src="assets/30.png" alt="" />Is there a payment plan?</button>
+          <button class="faq-button" type="button"><i data-lucide="help-circle" style="width:20px;height:20px;color:#C17B2F;flex-shrink:0;margin-right:10px;"></i>Is there a payment plan?</button>
           <div class="faq-content">
             <p>Yes. You can pay in 3 monthly instalments of $130 USD. The 14-day guarantee applies to payment plans as well.</p>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-button" type="button"><img class="faq-icon" src="assets/31.png" alt="" />Can I speak to Michael before I enrol?</button>
+          <button class="faq-button" type="button"><i data-lucide="help-circle" style="width:20px;height:20px;color:#C17B2F;flex-shrink:0;margin-right:10px;"></i>Can I speak to Michael before I enrol?</button>
           <div class="faq-content">
             <p>Yes. Book a free 20-minute chat at <a href="https://tidycal.com/michaelhetherington/digestionprogram" target="_blank" rel="noopener noreferrer">tidycal.com/michaelhetherington</a></p>
           </div>
