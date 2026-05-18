@@ -2453,7 +2453,7 @@
 
     <div style="text-align:center; margin: 2rem 0;">
       <p style="font-family:Lora; font-size:0.95rem; color:#6B5E4E; margin-bottom:0.8rem;">Not sure if this program is right for you?</p>
-      <a href="quiz.html" style="display:inline-block; font-family:Lora; font-size:0.95rem; color:#FFFFFF; background:#C17B2F; border:2px solid #C17B2F; padding:0.7rem 1.8rem; border-radius:50px; text-decoration:none; font-weight:600;">Take the 60-Second Quiz</a>
+      <a href="quiz.html" id="quizPageBtn" style="display:inline-block; font-family:Lora; font-size:0.95rem; color:#FFFFFF; background:#C17B2F; border:2px solid #C17B2F; padding:0.7rem 1.8rem; border-radius:50px; text-decoration:none; font-weight:600;">Take the 60-Second Quiz</a>
     </div>
 
     <hr class="section-rule" />
@@ -2691,26 +2691,76 @@
 
   <script>
     (function () {
-      const overlay = document.getElementById('quizPopupOverlay');
-      const popup   = document.getElementById('quizPopup');
-      const closeBtn = document.getElementById('quizPopupClose');
-      const skipBtn  = document.getElementById('quizPopupSkip');
+      var overlay   = document.getElementById('quizPopupOverlay');
+      var popup     = document.getElementById('quizPopup');
+      var closeBtn  = document.getElementById('quizPopupClose');
+      var skipBtn   = document.getElementById('quizPopupSkip');
+      var quizBtn   = document.getElementById('quizPageBtn');
+      var popupTimer = null;
+      var SESSION_KEY = 'quizPopupShown';
 
-      function openPopup() {
+      /* ---- showPopup ---- */
+      function showPopup() {
+        if (sessionStorage.getItem(SESSION_KEY)) return;
+        clearTimeout(popupTimer);
+        sessionStorage.setItem(SESSION_KEY, 'true');
         overlay.classList.add('show');
         popup.classList.add('show');
+        document.body.style.overflow = 'hidden';
       }
 
+      /* ---- closePopup ---- */
       function closePopup() {
         overlay.classList.remove('show');
         popup.classList.remove('show');
+        document.body.style.overflow = '';
       }
 
+      /* ---- Close handlers ---- */
       closeBtn.addEventListener('click', closePopup);
       skipBtn.addEventListener('click', closePopup);
       overlay.addEventListener('click', closePopup);
+      popup.addEventListener('click', function (e) {
+        e.stopPropagation(); // don't close when clicking inside card
+      });
 
-      setTimeout(openPopup, 20000);
+      /* ---- Trigger 4: quiz page button opens popup instead ---- */
+      if (quizBtn) {
+        quizBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          showPopup();
+        });
+      }
+
+      /* ---- Skip all triggers if already shown this session ---- */
+      if (sessionStorage.getItem(SESSION_KEY)) return;
+
+      /* ---- Trigger 1: 30-second delay ---- */
+      popupTimer = setTimeout(function () {
+        showPopup();
+      }, 30000);
+
+      /* ---- Trigger 2: exit intent (desktop only) ---- */
+      if (window.innerWidth > 768) {
+        document.addEventListener('mouseleave', function (e) {
+          if (e.clientY < 20) {
+            showPopup();
+          }
+        });
+      }
+
+      /* ---- Trigger 3: scroll depth 60% (mobile only) ---- */
+      if (window.innerWidth < 769) {
+        window.addEventListener('scroll', function () {
+          var scrolled = window.scrollY + window.innerHeight;
+          var total    = document.body.scrollHeight;
+          var percent  = (scrolled / total) * 100;
+          if (percent > 60) {
+            showPopup();
+          }
+        }, { passive: true });
+      }
+
     })();
   </script>
 </body>
