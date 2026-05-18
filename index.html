@@ -2559,5 +2559,167 @@
     });
   </script>
   <script>lucide.createIcons();</script>
+
+  <!-- Quiz popup -->
+  <style>
+    .quiz-popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(44, 36, 22, 0.45);
+      backdrop-filter: blur(3px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .quiz-popup-overlay.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .quiz-popup {
+      background: #FDFAF6;
+      border-radius: 20px;
+      padding: 2.5rem 2rem 2rem;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 24px 64px rgba(44, 36, 22, 0.18);
+      position: relative;
+      text-align: center;
+      transform: translateY(16px);
+      transition: transform 0.35s ease;
+    }
+
+    .quiz-popup-overlay.show .quiz-popup {
+      transform: translateY(0);
+    }
+
+    .quiz-popup-close {
+      position: absolute;
+      top: 0.9rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #6B5E4E;
+      font-size: 1.4rem;
+      line-height: 1;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      transition: color 0.2s ease;
+    }
+
+    .quiz-popup-close:hover {
+      color: #2C2418;
+    }
+
+    .quiz-popup-icon {
+      width: 52px;
+      height: 52px;
+      background: #FBF4EA;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+    }
+
+    .quiz-popup h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: #2C2418;
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+
+    .quiz-popup p {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.92rem;
+      color: #6B5E4E;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz-popup-btn {
+      display: block;
+      width: 100%;
+      background: #C17B2F;
+      color: #FFFFFF;
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.85rem 1.5rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+
+    .quiz-popup-btn:hover {
+      background: #A36530;
+    }
+
+    .quiz-popup-skip {
+      display: block;
+      margin-top: 0.9rem;
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.82rem;
+      color: #6B5E4E;
+      cursor: pointer;
+      background: none;
+      border: none;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .quiz-popup-skip:hover {
+      color: #2C2418;
+    }
+  </style>
+
+  <div class="quiz-popup-overlay" id="quizPopupOverlay">
+    <div class="quiz-popup">
+      <button class="quiz-popup-close" id="quizPopupClose" aria-label="Close">&#x2715;</button>
+      <div class="quiz-popup-icon">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="13" cy="13" r="11" stroke="#C17B2F" stroke-width="1.8" fill="none"/>
+          <path d="M13 8v5.5" stroke="#C17B2F" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="13" cy="17.5" r="1.2" fill="#C17B2F"/>
+        </svg>
+      </div>
+      <h3>Not sure if this is right for you?</h3>
+      <p>Take our 60-second quiz and find out if the 30-Day Heal Your Digestion program is the right fit for where you are right now.</p>
+      <a class="quiz-popup-btn" href="quiz.html">Take the 60-Second Quiz →</a>
+      <button class="quiz-popup-skip" id="quizPopupSkip">No thanks, I'll decide later</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const overlay = document.getElementById('quizPopupOverlay');
+      const closeBtn = document.getElementById('quizPopupClose');
+      const skipBtn = document.getElementById('quizPopupSkip');
+
+      function closePopup() {
+        overlay.classList.remove('show');
+      }
+
+      closeBtn.addEventListener('click', closePopup);
+      skipBtn.addEventListener('click', closePopup);
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closePopup();
+      });
+
+      setTimeout(function () {
+        overlay.classList.add('show');
+      }, 20000);
+    })();
+  </script>
 </body>
 </html>
