@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz — Is This Program Right For You? | Heal Your Digestion with EFT</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      font-family: 'Lora', Georgia, serif;
+      color: #2C2418;
+      background: #F5F0E8;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #F5F0E8;
+      min-height: 100vh;
+      line-height: 1.7;
+      font-size: 1rem;
+      padding: 3rem 1.5rem 4rem;
+    }
+
+    .quiz-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* --- Header --- */
+    .quiz-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .quiz-label {
+      font-family: 'Lora', Georgia, serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #6B7B5E;
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+
+    .quiz-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      color: #2C2418;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .quiz-subtext {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.95rem;
+      color: #6B5E4E;
+      max-width: 480px;
+      margin: 0 auto 2.5rem auto;
+      line-height: 1.7;
+    }
+
+    /* --- Progress Bar --- */
+    .progress-section {
+      margin-bottom: 2rem;
+    }
+
+    .progress-label {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.8rem;
+      color: #6B5E4E;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 6px;
+      background: #EDE8DF;
+      border-radius: 50px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #C17B2F;
+      border-radius: 50px;
+      width: 16.6%;
+      transition: width 0.4s ease;
+    }
+
+    /* --- Question Card --- */
+    .question-card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      margin-bottom: 1.5rem;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .question-card.fade-out {
+      opacity: 0;
+    }
+
+    .question-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: #2C2418;
+      text-align: center;
+      margin-bottom: 1.8rem;
+      line-height: 1.3;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .option-btn {
+      width: 100%;
+      background: #F5F0E8;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      padding: 0.9rem 1.2rem;
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.95rem;
+      color: #2C2418;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      min-height: 52px;
+    }
+
+    .option-btn:hover {
+      border-color: #C17B2F;
+      background: #FBF4EA;
+    }
+
+    .option-btn.selected {
+      border-color: #C17B2F;
+      background: #FBF4EA;
+    }
+
+    .option-check {
+      display: none;
+      flex-shrink: 0;
+    }
+
+    .option-btn.selected .option-check {
+      display: block;
+    }
+
+    /* --- Results --- */
+    .result-card {
+      display: none;
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .result-card.visible {
+      display: block;
+    }
+
+    .result-card.fade-in {
+      opacity: 1;
+    }
+
+    .result-icon {
+      display: block;
+      margin: 0 auto 1.2rem;
+    }
+
+    .result-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      color: #2C2418;
+      margin-bottom: 1rem;
+      line-height: 1.15;
+    }
+
+    .result-body {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.95rem;
+      color: #6B5E4E;
+      line-height: 1.8;
+      margin: 1rem 0 1.5rem 0;
+      text-align: left;
+    }
+
+    .result-body p + p {
+      margin-top: 1rem;
+    }
+
+    .cta-btn {
+      display: block;
+      width: 100%;
+      background: #C17B2F;
+      color: #FFFFFF;
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      margin-top: 1rem;
+      transition: background 0.2s ease;
+    }
+
+    .cta-btn:hover {
+      background: #A36530;
+    }
+
+    .cta-note {
+      font-family: 'Lora', Georgia, serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: #6B5E4E;
+      display: block;
+      margin-top: 0.8rem;
+    }
+
+    /* --- Footer --- */
+    .quiz-footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(44,36,22,0.1);
+    }
+
+    .quiz-footer p {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.8rem;
+      color: #6B5E4E;
+      margin-bottom: 0.6rem;
+    }
+
+    .back-link {
+      color: #C17B2F;
+      text-decoration: none;
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.85rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* --- Mobile --- */
+    @media (max-width: 768px) {
+      body {
+        padding: 1.5rem 1rem 3rem;
+      }
+
+      .question-text {
+        font-size: 1.1rem;
+      }
+
+      .option-btn {
+        min-height: 56px;
+        padding: 1rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-wrap">
+
+    <!-- HEADER -->
+    <div class="quiz-header">
+      <span class="quiz-label">60-Second Quiz</span>
+      <h1 class="quiz-heading">Is This Program Right For You?</h1>
+      <p class="quiz-subtext">Answer 6 quick questions and find out if the 30-Day Heal Your Digestion program is the right fit for where you are right now.</p>
+    </div>
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-section">
+      <span class="progress-label" id="progress-label">Question 1 of 6</span>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
+
+    <!-- QUESTION CARD -->
+    <div class="question-card" id="question-card">
+      <p class="question-text" id="question-text"></p>
+      <div class="options-list" id="options-list"></div>
+    </div>
+
+    <!-- RESULT: STRONG FIT -->
+    <div class="result-card" id="result-fit">
+      <svg class="result-icon" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="30" stroke="#C17B2F" stroke-width="2" fill="#FBF4EA"/>
+        <path d="M20 32L28 40L44 24" stroke="#C17B2F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h2 class="result-heading">This Program Is a Strong Fit For You</h2>
+      <div class="result-body">
+        <p>Based on your answers, you are dealing with chronic digestive symptoms that have not fully resolved through diet or conventional approaches. You also recognise that stress and emotion play a role in what you are experiencing.</p>
+        <p>This is exactly who the 30-Day Heal Your Digestion with EFT program was built for. The program addresses the emotional root cause of digestive dysfunction using EFT Tapping grounded in Chinese medicine and nervous system science.</p>
+        <p>Most people notice a shift within the first session.</p>
+      </div>
+      <a class="cta-btn" href="https://sendfox.com/lp/3q45xj" target="_blank" rel="noopener noreferrer">Join the Waiting List</a>
+      <span class="cta-note">14-day money-back guarantee. No questions asked.</span>
+    </div>
+
+    <!-- RESULT: NOT A FIT -->
+    <div class="result-card" id="result-notfit">
+      <svg class="result-icon" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="30" stroke="#6B7B5E" stroke-width="2" fill="#F0F4EE"/>
+        <line x1="32" y1="28" x2="32" y2="44" stroke="#6B7B5E" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="32" cy="21" r="2.5" fill="#6B7B5E"/>
+      </svg>
+      <h2 class="result-heading">A Group Program May Not Be Your Best Next Step</h2>
+      <div class="result-body">
+        <p>Based on your answers, you may benefit more from personalised one-on-one support before joining a group program. This does not mean EFT cannot help you — it almost certainly can.</p>
+        <p>It simply means that your situation may need more individual attention than a group program provides. Many of our most successful students started with a one-on-one session first.</p>
+        <p>If you would like to explore whether EFT Tapping is right for your specific situation, you are welcome to browse the free resources on michaelhetherington.com or watch the YouTube channel to get a feel for the approach before committing.</p>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="quiz-footer">
+      <p>Heal Your Digestion with EFT · Created by Michael Hetherington</p>
+      <a class="back-link" href="index.html">← Back to main page</a>
+    </div>
+
+  </div>
+
+  <script>
+    const questions = [
+      {
+        text: "How long have you been dealing with digestive issues?",
+        options: [
+          { label: "Less than 1 year", score: 1 },
+          { label: "1 to 3 years", score: 2 },
+          { label: "3 to 5 years", score: 3 },
+          { label: "More than 5 years", score: 3 }
+        ]
+      },
+      {
+        text: "Which symptoms affect you most regularly?",
+        options: [
+          { label: "Bloating and cramping after meals", score: 2 },
+          { label: "Food anxiety and fear of eating the wrong thing", score: 2 },
+          { label: "Constipation or irregular bowel movements", score: 2 },
+          { label: "All of the above", score: 3 }
+        ]
+      },
+      {
+        text: "Have you tried elimination diets or gut health protocols before?",
+        options: [
+          { label: "No, I have not tried anything yet", score: 1 },
+          { label: "Yes and they helped a little but symptoms returned", score: 2 },
+          { label: "Yes and I saw no lasting improvement at all", score: 3 },
+          { label: "I have tried everything and nothing fully works", score: 3 }
+        ]
+      },
+      {
+        text: "How would you describe your stress and emotional load day to day?",
+        options: [
+          { label: "Generally low, I feel pretty calm", score: 1 },
+          { label: "Moderate, I have some stress but manage it", score: 2 },
+          { label: "High, I feel stressed or anxious most days", score: 3 },
+          { label: "Very high, I feel overwhelmed regularly", score: 3 }
+        ]
+      },
+      {
+        text: "Have you ever explored the connection between your emotions and your digestive symptoms?",
+        options: [
+          { label: "No, I have always thought it was purely physical", score: 2 },
+          { label: "I have suspected a connection but never addressed it", score: 2 },
+          { label: "Yes and I believe emotions play a big role", score: 3 },
+          { label: "Yes and I have tried some mind-body approaches but want to go deeper", score: 3 }
+        ]
+      },
+      {
+        text: "How committed are you to making a change in your digestive health right now?",
+        options: [
+          { label: "I am curious but not sure I am ready to commit", score: 0 },
+          { label: "I am ready but want to make sure it is the right fit first", score: 2 },
+          { label: "I am very ready and looking for the right program", score: 3 },
+          { label: "I am done suffering and ready to do whatever it takes", score: 3 }
+        ]
+      }
+    ];
+
+    let currentQuestion = 0;
+    let totalScore = 0;
+    let answered = false;
+
+    const questionCard = document.getElementById('question-card');
+    const questionText = document.getElementById('question-text');
+    const optionsList = document.getElementById('options-list');
+    const progressLabel = document.getElementById('progress-label');
+    const progressFill = document.getElementById('progress-fill');
+    const resultFit = document.getElementById('result-fit');
+    const resultNotFit = document.getElementById('result-notfit');
+
+    function renderQuestion(index) {
+      const q = questions[index];
+      questionText.textContent = q.text;
+      optionsList.innerHTML = '';
+      answered = false;
+
+      q.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.innerHTML = `
+          <span>${opt.label}</span>
+          <svg class="option-check" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="9" cy="9" r="8" fill="#C17B2F"/>
+            <path d="M5 9L7.5 11.5L13 6.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        `;
+        btn.addEventListener('click', () => selectOption(btn, opt.score));
+        optionsList.appendChild(btn);
+      });
+
+      updateProgress(index);
+    }
+
+    function selectOption(btn, score) {
+      if (answered) return;
+      answered = true;
+
+      // Mark selected
+      document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+
+      totalScore += score;
+
+      setTimeout(() => {
+        if (currentQuestion < questions.length - 1) {
+          // Fade out, advance
+          questionCard.classList.add('fade-out');
+          setTimeout(() => {
+            currentQuestion++;
+            renderQuestion(currentQuestion);
+            questionCard.classList.remove('fade-out');
+          }, 300);
+        } else {
+          // Last question — show results
+          questionCard.classList.add('fade-out');
+          setTimeout(() => {
+            questionCard.style.display = 'none';
+            document.querySelector('.progress-section').style.display = 'none';
+            showResult();
+          }, 300);
+        }
+      }, 400);
+    }
+
+    function updateProgress(index) {
+      const qNum = index + 1;
+      const total = questions.length;
+      progressLabel.textContent = `Question ${qNum} of ${total}`;
+      progressFill.style.width = `${(qNum / total) * 100}%`;
+    }
+
+    function showResult() {
+      const isFit = totalScore >= 13;
+      const card = isFit ? resultFit : resultNotFit;
+
+      card.classList.add('visible');
+      // Trigger reflow before fade-in
+      void card.offsetWidth;
+      card.classList.add('fade-in');
+    }
+
+    // Init
+    renderQuestion(0);
+  </script>
+</body>
+</html>
