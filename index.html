@@ -99,6 +99,19 @@
       }
     }
 
+    @media (min-width: 769px) {
+      .header-inner {
+        padding: 0.5rem 2rem;
+      }
+      .logo {
+        font-size: 0.9rem;
+      }
+      .header-cta {
+        padding: 0.45rem 1.1rem;
+        font-size: 0.82rem;
+      }
+    }
+
     /* --- Sections --- */
     section {
       padding: 48px 0;
@@ -120,13 +133,33 @@
 
     /* --- Hero --- */
     .hero {
-      padding-top: 60px;
-      padding-bottom: 60px;
+      padding: 3rem 2rem 4rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
-    .hero-layout {
-      display: grid;
-      gap: 40px;
+    .hero-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 2rem auto;
+    }
+
+    .hero-body-row {
+      display: flex;
+      gap: 3rem;
+      align-items: flex-start;
+    }
+
+    .hero-left {
+      flex: 0 0 55%;
+    }
+
+    .hero-right {
+      flex: 0 0 calc(45% - 3rem);
     }
 
     .hero h1 {
@@ -164,12 +197,33 @@
     }
 
     .hero-image {
-      height: 300px;
       width: 100%;
+      height: auto;
       object-fit: cover;
       object-position: center top;
-      border-radius: 24px;
+      border-radius: 16px;
       display: block;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 2rem 1rem 3rem 1rem;
+      }
+      .hero-headline {
+        font-size: clamp(2rem, 8vw, 2.8rem);
+      }
+      .hero-body-row {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .hero-left,
+      .hero-right {
+        flex: 0 0 100%;
+        width: 100%;
+      }
+      .hero-image {
+        border-radius: 12px;
+      }
     }
 
     /* --- Hero trust badges --- */
@@ -1583,17 +1637,7 @@
       }
 
       .hero {
-        padding-top: 100px;
-        padding-bottom: 80px;
-      }
-
-      .hero-layout {
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-      }
-
-      .hero-image {
-        height: 500px;
+        padding: 3rem 2rem 4rem 2rem;
       }
 
       .about-grid {
@@ -1884,9 +1928,9 @@
   <main class="page-wrap">
     <!-- SECTION 1: HERO -->
     <section class="hero reveal">
-      <div class="hero-layout">
-        <div class="hero-text">
-          <h1>You've Changed Your Diet. Tried the Elimination Plans. Your Gut Still Isn't Right.</h1>
+      <h2 class="hero-headline">You've Changed Your Diet. Tried the Elimination Plans. Your Gut Still Isn't Right.</h2>
+      <div class="hero-body-row">
+        <div class="hero-left">
           <p>What most gut health advice misses is the emotional root cause. This 30-day program uses EFT Tapping, backed by Chinese medicine and nervous system science, to address what diet alone never could.</p>
           <p class="program-descriptor">The 30-Day EFT Tapping Program for Gut and Digestive Health</p>
           <div class="hero-actions">
@@ -1908,7 +1952,9 @@
             </div>
           </div>
         </div>
-        <img src="assets/ChatGPT%20Image%20May%207%2C%202026%2C%2011_19_04%20AM.png" alt="Woman holding her stomach warmly, with a glowing illustration of the digestive system" class="hero-image" />
+        <div class="hero-right">
+          <img src="assets/ChatGPT%20Image%20May%207%2C%202026%2C%2011_19_04%20AM.png" alt="Woman holding her stomach warmly, with a glowing illustration of the digestive system" class="hero-image" />
+        </div>
       </div>
     </section>
 
