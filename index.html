@@ -1915,6 +1915,95 @@
         grid-template-columns: 1fr !important;
       }
     }
+
+    /* Fix 1 & 2: Problem deepener image and two-column layout */
+    .deepener-main {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 36px;
+    }
+
+    .deepener-heading {
+      order: 1;
+      text-align: center;
+      font-family: 'DM Serif Display', serif;
+      margin: 0 0 1.5rem;
+    }
+
+    .deepener-text {
+      order: 3;
+      color: #4A4035;
+      line-height: 1.8;
+    }
+
+    .deepener-text p {
+      margin: 0 0 1rem;
+    }
+
+    .deepener-image {
+      order: 2;
+      width: 100% !important;
+      max-width: unset !important;
+      height: 260px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 12px !important;
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 769px) {
+      .deepener-main {
+        display: grid;
+        grid-template-columns: 52% 1fr;
+        grid-template-rows: auto 1fr;
+        column-gap: 3rem;
+        align-items: stretch;
+      }
+
+      .deepener-heading {
+        grid-column: 1;
+        grid-row: 1;
+        text-align: left;
+        margin-bottom: 1rem;
+        order: unset;
+      }
+
+      .deepener-text {
+        grid-column: 1;
+        grid-row: 2;
+        align-self: start;
+        order: unset;
+      }
+
+      .deepener-image {
+        grid-column: 2;
+        grid-row: 1 / 3;
+        height: 100% !important;
+        min-height: 380px;
+        margin-bottom: 0;
+        order: unset;
+      }
+
+      /* Fix 3: Desktop section width constraints */
+      .faq {
+        max-width: 780px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .problem-list {
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .final-cta-section > div {
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1982,16 +2071,14 @@
 
     <!-- SECTION 3: PROBLEM DEEPENER -->
     <section class="problem-deepener reveal">
-      <h2>You're Not Imagining It. And It's Not Just Your Diet.</h2>
-      <div class="deepener-copy">
-        <div class="deepener-inner">
-          <div class="deepener-text">
-            <p>You've been told it's stress. Or gluten. Or IBS. Maybe all three. You've cut foods out, added supplements, tried the elimination plans. And yet your gut still doesn't feel right.</p>
-            <p>The constant bloating. The cramping after meals. The anxiety around food. The exhaustion of never knowing what your body will do next.</p>
-            <p>What nobody has told you is this: stress, anxiety, and unprocessed emotion physically change how your digestive system functions. Your gut has its own nervous system. And when your nervous system is stuck in stress mode, no diet in the world will fully fix what's happening.</p>
-          </div>
-          <img class="deepener-image" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800" alt="Woman experiencing digestive discomfort" />
+      <div class="deepener-main">
+        <h2 class="deepener-heading">You're Not Imagining It. And It's Not Just Your Diet.</h2>
+        <div class="deepener-text">
+          <p>You've been told it's stress. Or gluten. Or IBS. Maybe all three. You've cut foods out, added supplements, tried the elimination plans. And yet your gut still doesn't feel right.</p>
+          <p>The constant bloating. The cramping after meals. The anxiety around food. The exhaustion of never knowing what your body will do next.</p>
+          <p>What nobody has told you is this: stress, anxiety, and unprocessed emotion physically change how your digestive system functions. Your gut has its own nervous system. And when your nervous system is stuck in stress mode, no diet in the world will fully fix what's happening.</p>
         </div>
+        <img class="deepener-image" src="https://images.unsplash.com/photo-1544991875-5dc1b05f5ac2?w=800&q=80" alt="Woman experiencing digestive discomfort" />
       </div>
       <div class="problem-list">
         <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.png" alt="" />Regular bloating and cramping after eating</div>
