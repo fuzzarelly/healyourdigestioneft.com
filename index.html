@@ -2564,14 +2564,12 @@
   <style>
     .quiz-popup-overlay {
       position: fixed;
-      inset: 0;
-      background: rgba(44, 36, 22, 0.45);
-      backdrop-filter: blur(3px);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 999;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.35s ease;
@@ -2583,66 +2581,46 @@
     }
 
     .quiz-popup {
-      background: #FDFAF6;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -48%);
+      z-index: 1000;
+      max-width: 360px;
+      width: 90%;
+      padding: 2rem 1.8rem;
       border-radius: 20px;
-      padding: 2.5rem 2rem 2rem;
-      max-width: 400px;
-      width: 100%;
-      box-shadow: 0 24px 64px rgba(44, 36, 22, 0.18);
-      position: relative;
+      background: #FFFFFF;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
       text-align: center;
-      transform: translateY(16px);
-      transition: transform 0.35s ease;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease, transform 0.35s ease;
     }
 
-    .quiz-popup-overlay.show .quiz-popup {
-      transform: translateY(0);
+    .quiz-popup-overlay.show + .quiz-popup,
+    .quiz-popup.show {
+      opacity: 1;
+      pointer-events: all;
+      transform: translate(-50%, -50%);
     }
 
     .quiz-popup-close {
       position: absolute;
-      top: 0.9rem;
+      top: 1rem;
       right: 1rem;
-      background: none;
+      background: transparent;
       border: none;
-      cursor: pointer;
+      font-size: 1.2rem;
       color: #6B5E4E;
-      font-size: 1.4rem;
+      cursor: pointer;
       line-height: 1;
-      padding: 0.2rem 0.4rem;
-      border-radius: 4px;
+      padding: 0;
       transition: color 0.2s ease;
     }
 
     .quiz-popup-close:hover {
       color: #2C2418;
-    }
-
-    .quiz-popup-icon {
-      width: 52px;
-      height: 52px;
-      background: #FBF4EA;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.2rem;
-    }
-
-    .quiz-popup h3 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.4rem;
-      color: #2C2418;
-      margin-bottom: 0.6rem;
-      line-height: 1.2;
-    }
-
-    .quiz-popup p {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 0.92rem;
-      color: #6B5E4E;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
     }
 
     .quiz-popup-btn {
@@ -2653,7 +2631,7 @@
       font-family: 'Lora', Georgia, serif;
       font-size: 0.95rem;
       font-weight: 600;
-      padding: 0.85rem 1.5rem;
+      padding: 0.9rem 1.5rem;
       border-radius: 50px;
       border: none;
       cursor: pointer;
@@ -2667,15 +2645,17 @@
 
     .quiz-popup-skip {
       display: block;
-      margin-top: 0.9rem;
+      text-align: center;
       font-family: 'Lora', Georgia, serif;
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       color: #6B5E4E;
+      margin-top: 1rem;
       cursor: pointer;
       background: none;
       border: none;
       text-decoration: underline;
       text-underline-offset: 2px;
+      width: 100%;
     }
 
     .quiz-popup-skip:hover {
@@ -2683,42 +2663,45 @@
     }
   </style>
 
-  <div class="quiz-popup-overlay" id="quizPopupOverlay">
-    <div class="quiz-popup">
-      <button class="quiz-popup-close" id="quizPopupClose" aria-label="Close">&#x2715;</button>
-      <div class="quiz-popup-icon">
-        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="13" cy="13" r="11" stroke="#C17B2F" stroke-width="1.8" fill="none"/>
-          <path d="M13 8v5.5" stroke="#C17B2F" stroke-width="1.8" stroke-linecap="round"/>
-          <circle cx="13" cy="17.5" r="1.2" fill="#C17B2F"/>
-        </svg>
-      </div>
-      <h3>Not sure if this is right for you?</h3>
-      <p>Take our 60-second quiz and find out if the 30-Day Heal Your Digestion program is the right fit for where you are right now.</p>
-      <a class="quiz-popup-btn" href="quiz.html">Take the 60-Second Quiz →</a>
-      <button class="quiz-popup-skip" id="quizPopupSkip">No thanks, I'll decide later</button>
+  <div class="quiz-popup-overlay" id="quizPopupOverlay"></div>
+
+  <div class="quiz-popup" id="quizPopup">
+    <button class="quiz-popup-close" id="quizPopupClose" aria-label="Close">&#x2715;</button>
+    <div style="text-align:center; margin-bottom:1rem;">
+      <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="26" cy="26" r="24" stroke="#C17B2F" stroke-width="2" fill="#FBF4EA"/>
+        <path d="M26 16C22 16 18 19 18 23C18 26 20 28 23 29V33H29V29C32 28 34 26 34 23C34 19 30 16 26 16Z" stroke="#C17B2F" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="26" y1="36" x2="26" y2="38" stroke="#C17B2F" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
     </div>
+    <h3 style="font-family:'DM Serif Display',serif; font-size:1.5rem; color:#2C2418; font-style:normal; margin-bottom:0.6rem; line-height:1.2;">Is This Program Right For You?</h3>
+    <p style="font-family:'Lora',Georgia,serif; font-size:0.9rem; color:#6B5E4E; margin:0.6rem auto 1.5rem auto; max-width:260px; line-height:1.6;">Take our 60-second quiz and find out.</p>
+    <a class="quiz-popup-btn" href="quiz.html">Take the 60-Second Quiz →</a>
+    <button class="quiz-popup-skip" id="quizPopupSkip">No thanks, I'll decide later</button>
   </div>
 
   <script>
     (function () {
       const overlay = document.getElementById('quizPopupOverlay');
+      const popup   = document.getElementById('quizPopup');
       const closeBtn = document.getElementById('quizPopupClose');
-      const skipBtn = document.getElementById('quizPopupSkip');
+      const skipBtn  = document.getElementById('quizPopupSkip');
+
+      function openPopup() {
+        overlay.classList.add('show');
+        popup.classList.add('show');
+      }
 
       function closePopup() {
         overlay.classList.remove('show');
+        popup.classList.remove('show');
       }
 
       closeBtn.addEventListener('click', closePopup);
       skipBtn.addEventListener('click', closePopup);
-      overlay.addEventListener('click', function (e) {
-        if (e.target === overlay) closePopup();
-      });
+      overlay.addEventListener('click', closePopup);
 
-      setTimeout(function () {
-        overlay.classList.add('show');
-      }, 20000);
+      setTimeout(openPopup, 20000);
     })();
   </script>
 </body>
