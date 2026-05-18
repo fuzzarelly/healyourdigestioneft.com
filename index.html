@@ -613,7 +613,7 @@
     .about-section {
       background: #F0EBE1;
       border-radius: 24px;
-      padding: 42px 28px;
+      padding: 6rem 3rem;
     }
 
     .about-section h2 {
@@ -621,8 +621,18 @@
     }
 
     .about-content {
-      display: grid;
-      gap: 28px;
+      display: flex;
+      flex-direction: row;
+      gap: 4rem;
+      align-items: flex-start;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .about-text p {
+      margin-bottom: 1.2rem;
+      line-height: 1.9;
+      font-size: 1rem;
     }
 
     .about-text {
@@ -1799,17 +1809,18 @@
       display: flex !important;
       flex-direction: row !important;
       align-items: flex-start !important;
-      gap: 3rem !important;
+      gap: 4rem !important;
       grid-template-columns: unset !important;
     }
 
     .about-photo {
-      width: 280px;
-      height: 340px;
-      border-radius: 12px;
+      width: 300px;
+      height: 360px;
+      border-radius: 16px;
       object-fit: cover;
       object-position: top center;
       display: block;
+      flex-shrink: 0;
       box-shadow:
         0 8px 32px rgba(193, 122, 58, 0.22),
         0 2px 8px rgba(44, 36, 22, 0.10);
@@ -1913,6 +1924,11 @@
 
       .about-content {
         flex-direction: column !important;
+        gap: 2rem !important;
+      }
+
+      .about-section {
+        padding: 3rem 1.5rem !important;
       }
 
       .about-photo {
@@ -2006,6 +2022,23 @@
       border-radius: 50px !important;
       background: #C17B2F !important;
       color: #FFFFFF !important;
+    }
+
+    /* Fix 3: Section breathing room */
+    .section-rule {
+      margin: 0;
+      border: none;
+      border-top: 1px solid rgba(44, 36, 22, 0.18);
+    }
+
+    .problem-deepener,
+    .reframe,
+    .full-testimonials {
+      padding-bottom: 5rem;
+    }
+
+    section.reveal {
+      padding-bottom: 5rem;
     }
 
     /* Bonuses section */
@@ -2522,48 +2555,48 @@
     <hr class="section-rule" />
 
     <!-- HOW IT WORKS SECTION -->
-    <div style="background: #EDE8DF; padding: 4rem 2rem;">
+    <div style="background: #EDE8DF; padding: 6rem 3rem; margin-top: 2rem;">
       <div style="max-width: 900px; margin: 0 auto;">
         <p style="font-family: Lora, serif; font-style: italic; font-size: 0.95rem; color: #6B7B5E; text-align: center; margin-bottom: 0.5rem;">Simple to follow</p>
-        <h2 style="font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 2.2rem); color: #2C2418; text-align: center; margin-bottom: 3rem;">How It Works</h2>
+        <h2 style="font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 2.2rem); color: #2C2418; text-align: center; margin-bottom: 4rem;">How It Works</h2>
         <div style="display: flex; flex-direction: row; gap: 2rem; align-items: flex-start;" id="how-it-works-steps">
           <!-- Step 1 -->
-          <div style="flex: 1; text-align: center;">
-            <div style="width: 64px; height: 64px; border-radius: 50%; background: #C17B2F; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem auto;">
-              <span style="font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: #FFFFFF;">1</span>
+          <div style="flex: 1; text-align: center; padding: 1rem; max-width: 280px; margin: 0 auto;">
+            <div style="width: 72px; height: 72px; border-radius: 50%; background: #C17B2F; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto;">
+              <span style="font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: #FFFFFF;">1</span>
             </div>
-            <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: #2C2418; margin-bottom: 0.6rem;">Join the Waitlist</h3>
-            <p style="font-family: Lora, serif; font-size: 0.9rem; color: #6B5E4E; line-height: 1.7;">Add your name to the waitlist below. Waitlist members are notified first when enrollment opens and receive early bird pricing before anyone else.</p>
+            <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: #2C2418; margin-bottom: 0.8rem;">Join the Waitlist</h3>
+            <p style="font-family: Lora, serif; font-size: 0.95rem; color: #6B5E4E; line-height: 1.8;">Add your name to the waitlist below. Waitlist members are notified first when enrollment opens and receive early bird pricing before anyone else.</p>
           </div>
           <!-- Connector -->
-          <div style="flex-shrink: 0; padding-top: 32px;">
+          <div style="flex-shrink: 0; margin-top: 36px;">
             <svg width="40" height="16" viewBox="0 0 40 16" fill="none">
               <line x1="0" y1="8" x2="32" y2="8" stroke="#C17B2F" stroke-width="2" stroke-dasharray="4 3" stroke-linecap="round"/>
               <polygon points="30,3 40,8 30,13" fill="#C17B2F"/>
             </svg>
           </div>
           <!-- Step 2 -->
-          <div style="flex: 1; text-align: center;">
-            <div style="width: 64px; height: 64px; border-radius: 50%; background: #C17B2F; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem auto;">
-              <span style="font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: #FFFFFF;">2</span>
+          <div style="flex: 1; text-align: center; padding: 1rem; max-width: 280px; margin: 0 auto;">
+            <div style="width: 72px; height: 72px; border-radius: 50%; background: #C17B2F; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto;">
+              <span style="font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: #FFFFFF;">2</span>
             </div>
-            <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: #2C2418; margin-bottom: 0.6rem;">Access Your Materials</h3>
-            <p style="font-family: Lora, serif; font-size: 0.9rem; color: #6B5E4E; line-height: 1.7;">When the program opens you receive instant access to all tapping scripts, guides, audio meditations, and bonus materials in the members area.</p>
+            <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: #2C2418; margin-bottom: 0.8rem;">Access Your Materials</h3>
+            <p style="font-family: Lora, serif; font-size: 0.95rem; color: #6B5E4E; line-height: 1.8;">When the program opens you receive instant access to all tapping scripts, guides, audio meditations, and bonus materials in the members area.</p>
           </div>
           <!-- Connector -->
-          <div style="flex-shrink: 0; padding-top: 32px;">
+          <div style="flex-shrink: 0; margin-top: 36px;">
             <svg width="40" height="16" viewBox="0 0 40 16" fill="none">
               <line x1="0" y1="8" x2="32" y2="8" stroke="#C17B2F" stroke-width="2" stroke-dasharray="4 3" stroke-linecap="round"/>
               <polygon points="30,3 40,8 30,13" fill="#C17B2F"/>
             </svg>
           </div>
           <!-- Step 3 -->
-          <div style="flex: 1; text-align: center;">
-            <div style="width: 64px; height: 64px; border-radius: 50%; background: #C17B2F; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem auto;">
-              <span style="font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: #FFFFFF;">3</span>
+          <div style="flex: 1; text-align: center; padding: 1rem; max-width: 280px; margin: 0 auto;">
+            <div style="width: 72px; height: 72px; border-radius: 50%; background: #C17B2F; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto;">
+              <span style="font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: #FFFFFF;">3</span>
             </div>
-            <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: #2C2418; margin-bottom: 0.6rem;">Tap for 15 Minutes Daily</h3>
-            <p style="font-family: Lora, serif; font-size: 0.9rem; color: #6B5E4E; line-height: 1.7;">Follow the program for 30 days. Just 15 minutes most days is enough. Join the live group calls and watch your digestion shift from the inside out.</p>
+            <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: #2C2418; margin-bottom: 0.8rem;">Tap for 15 Minutes Daily</h3>
+            <p style="font-family: Lora, serif; font-size: 0.95rem; color: #6B5E4E; line-height: 1.8;">Follow the program for 30 days. Just 15 minutes most days is enough. Join the live group calls and watch your digestion shift from the inside out.</p>
           </div>
         </div>
       </div>
@@ -2585,10 +2618,11 @@
 
     <!-- SECTION 8: ABOUT MIKE -->
     <section class="about-section reveal">
-      <h2 class="section-headline">Who Is This Program With?</h2>
+      <div style="width:60px;height:3px;background:#C17B2F;margin:0 auto 1.5rem auto;border-radius:2px;"></div>
+      <h2 class="section-headline" style="font-size:clamp(1.8rem, 4vw, 2.4rem); margin-bottom:3rem;">Who Is This Program With?</h2>
       <div class="about-content">
         <img class="about-photo" src="assets/bio pic 1.jpg" alt="Michael Hetherington" />
-        <div class="about-text">
+        <div class="about-text" style="padding-top:0.5rem;">
           <p>Michael Hetherington is a Chinese medicine acupuncturist, certified EFT Practitioner and Trainer, and online educator with over a decade of clinical experience.</p>
           <p>He has worked with more than 1,000 private clients across Australia, Thailand, Bali, the USA, and Europe, and teaches a YouTube audience of 40,000 people worldwide.</p>
           <p>His approach is the only program that fuses traditional Chinese medicine organ theory with EFT Tapping for digestive health specifically. Nobody else is doing this.</p>
