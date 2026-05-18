@@ -1601,70 +1601,87 @@
     }
     /* === TARGETED IMPROVEMENTS === */
 
-    /* Change 1: Program descriptor */
+    /* Fix 2: Program descriptor */
     .program-descriptor {
       font-family: 'Lora', Georgia, serif;
       font-style: italic;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: #6B7B5E;
       text-align: center;
-      margin: 1rem 0;
+      margin: 1.2rem 0 1rem 0;
+      display: block;
     }
 
-    /* Change 2: Trust strip */
+    /* Fix 4: Trust strip */
     .trust-strip {
       display: flex;
       align-items: center;
       justify-content: center;
       background: #EDE8DF;
-      padding: 1.5rem 2rem;
+      padding: 1.8rem 2rem;
       border-radius: 12px;
       margin-top: 16px;
       width: 100%;
       box-sizing: border-box;
+      gap: 0;
     }
 
     .trust-stat {
-      flex: 1;
-      text-align: center;
-      padding: 0 1rem;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 2.5rem;
+      border-right: 1px solid rgba(193, 123, 47, 0.35);
+    }
+
+    .trust-stat:last-child {
+      border-right: none;
     }
 
     .trust-stat-number {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.3rem;
-      color: #2C2416;
+      font-size: 1.2rem;
+      color: #2C2418;
       display: block;
+      margin-bottom: 0.2rem;
     }
 
     .trust-stat-label {
       font-family: 'Lora', Georgia, serif;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #6B5E4E;
       display: block;
     }
 
-    .trust-divider {
-      width: 1px;
-      height: 2.5rem;
-      background: rgba(193, 123, 47, 0.6);
-      flex-shrink: 0;
+    /* Fix 3: Science section layout */
+    .science-section-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
-    /* Change 6: Science blocks single column with image between */
-    .science-blocks {
-      grid-template-columns: 1fr !important;
+    .science-top-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: stretch;
     }
 
-    .science-blocks .science-image {
-      max-width: 460px;
-      margin: 0 auto;
+    .science-image-hero {
       width: 100%;
-      border-radius: 24px;
+      max-height: 280px;
+      object-fit: cover;
+      border-radius: 12px;
       display: block;
     }
 
-    /* Change 7: Module card image at top via flexbox ordering */
+    .science-block-wide {
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Module card image at top via flexbox ordering */
     .module-card-new {
       display: flex;
       flex-direction: column;
@@ -1689,7 +1706,7 @@
       margin-top: 0.75rem !important;
     }
 
-    /* Change 8: Value section subheading */
+    /* Value section subheading */
     .value-section-subheading {
       font-family: 'Lora', Georgia, serif;
       font-style: italic;
@@ -1699,7 +1716,7 @@
       font-size: 1.05rem;
     }
 
-    /* Change 9: Payment plan line */
+    /* Payment plan line */
     .payment-plan-line {
       font-family: 'Lora', Georgia, serif;
       font-size: 1rem;
@@ -1711,12 +1728,21 @@
       display: inline-block;
     }
 
-    /* Change 10: About Michael photo */
+    /* Fix 5: About Michael photo */
+    .about-content {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: flex-start !important;
+      gap: 3rem !important;
+      grid-template-columns: unset !important;
+    }
+
     .about-photo {
       width: 280px;
-      height: auto;
+      height: 340px;
       border-radius: 12px;
       object-fit: cover;
+      object-position: top center;
       display: block;
       box-shadow:
         0 8px 32px rgba(193, 122, 58, 0.22),
@@ -1724,7 +1750,7 @@
       flex-shrink: 0;
     }
 
-    /* Change 11: Testimonials single column */
+    /* Testimonials single column */
     .testimonials-full-grid {
       display: flex !important;
       flex-direction: column !important;
@@ -1765,10 +1791,15 @@
       margin: 0;
     }
 
-    /* Change 13: Guarantee heading size */
+    /* Fix 6: Guarantee section */
     .guarantee h2 {
       font-size: 2rem;
       margin: 0 0 20px;
+      color: #2C2418;
+    }
+
+    .guarantee p {
+      color: #2C2418;
     }
 
     .guarantee-shield {
@@ -1776,16 +1807,9 @@
       margin: 0 auto 1rem;
     }
 
-    /* Change 14: Final CTA */
+    /* Fix 7: Final CTA */
     .final-cta-section {
       padding-top: 5rem !important;
-    }
-
-    .final-cta-rule {
-      border: none;
-      border-top: 1px solid rgba(193, 123, 47, 0.3);
-      max-width: 120px;
-      margin: 0 auto 3rem;
     }
 
     .scarcity-line {
@@ -1798,41 +1822,36 @@
       display: block;
     }
 
-    /* Reframe SVG */
-    .reframe-svg {
-      max-width: 420px;
-      width: 100%;
-      display: block;
-      border-radius: 12px;
-      margin: 0 auto;
-    }
-
-    @media (min-width: 720px) {
-      .reframe-svg {
-        margin: 0;
-      }
-    }
-
-    /* Mobile responsive overrides */
+    /* Mobile responsive */
     @media (max-width: 768px) {
       .trust-strip {
         flex-direction: column;
-        gap: 1rem;
         padding: 1.5rem 1rem;
       }
 
-      .trust-divider {
-        width: 2.5rem;
-        height: 1px;
+      .trust-stat {
+        border-right: none;
+        border-bottom: 1px solid rgba(193, 123, 47, 0.35);
+        padding: 1rem 0;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .trust-stat:last-child {
+        border-bottom: none;
+      }
+
+      .science-top-row {
+        grid-template-columns: 1fr;
+      }
+
+      .about-content {
+        flex-direction: column !important;
       }
 
       .about-photo {
         width: 100% !important;
-        max-width: 100%;
-      }
-
-      .about-content {
-        grid-template-columns: 1fr !important;
+        height: 280px !important;
       }
 
       .guarantee h2 {
@@ -1870,12 +1889,10 @@
               <span class="trust-stat-number">1,000+ Students</span>
               <span class="trust-stat-label">from around the world</span>
             </div>
-            <div class="trust-divider"></div>
             <div class="trust-stat">
               <span class="trust-stat-number">40,000 Subscribers</span>
               <span class="trust-stat-label">on YouTube</span>
             </div>
-            <div class="trust-divider"></div>
             <div class="trust-stat">
               <span class="trust-stat-number">IICT Accredited</span>
               <span class="trust-stat-label">Certified Practitioner</span>
@@ -1938,39 +1955,37 @@
     <!-- SECTION 4: THE REFRAME -->
     <section class="reframe reveal">
       <h2>Why Nothing Has Fully Worked</h2>
-      <div class="reframe-layout">
-        <div class="content-block">
-          <p>Most gut health approaches treat the digestive system as a purely physical problem. Change the diet, add the probiotic, manage the symptoms.</p>
-          <p>But in Chinese medicine, the digestive system and the emotional system are the same system. The Stomach and Spleen organs govern overthinking and worry. The Liver governs stress and frustration. When these emotions build up without being processed, they create physical stagnation in the gut.</p>
-          <p>This is what the Backlog and Flow method addresses. Over a lifetime, most people suppress far more emotion than they release. That unprocessed emotional material sits in the nervous system and the body, driving physical symptoms that no diet can reach.</p>
-          <p>EFT Tapping works by clearing that backlog. Not managing it. Clearing it.</p>
-        </div>
-        <svg class="reframe-svg" width="420" height="220" viewBox="0 0 420 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Left panel: Blocked stream -->
-          <rect x="4" y="4" width="182" height="182" rx="16" fill="#F5F0E8"/>
-          <!-- Water pooling — wavy lines, amber -->
-          <path d="M14 78 C34 68 54 88 74 78" stroke="#C17B2F" stroke-width="2" fill="none"/>
-          <path d="M14 92 C34 82 54 102 70 92" stroke="#C17B2F" stroke-width="2" fill="none" opacity="0.7"/>
-          <path d="M14 106 C34 96 52 114 68 106" stroke="#C17B2F" stroke-width="2" fill="none" opacity="0.5"/>
-          <!-- Rocks blocking flow -->
-          <ellipse cx="102" cy="82" rx="17" ry="11" fill="#5C4A3A" opacity="0.72"/>
-          <ellipse cx="120" cy="98" rx="14" ry="10" fill="#4A3828" opacity="0.62"/>
-          <ellipse cx="100" cy="112" rx="12" ry="8" fill="#5C4A3A" opacity="0.58"/>
-          <!-- Feeble trickle after rocks -->
-          <path d="M140 94 C155 90 168 98 182 92" stroke="#C17B2F" stroke-width="1.5" fill="none" opacity="0.32" stroke-dasharray="4 3"/>
+      <div class="content-block" style="max-width: 700px; margin: 0 auto;">
+        <p>Most gut health approaches treat the digestive system as a purely physical problem. Change the diet, add the probiotic, manage the symptoms.</p>
+        <p>But in Chinese medicine, the digestive system and the emotional system are the same system. The Stomach and Spleen organs govern overthinking and worry. The Liver governs stress and frustration. When these emotions build up without being processed, they create physical stagnation in the gut.</p>
+        <p>This is what the Backlog and Flow method addresses. Over a lifetime, most people suppress far more emotion than they release. That unprocessed emotional material sits in the nervous system and the body, driving physical symptoms that no diet can reach.</p>
+        <p>EFT Tapping works by clearing that backlog. Not managing it. Clearing it.</p>
+      </div>
+      <div style="display:flex; justify-content:center; margin: 2rem auto; max-width: 480px;">
+        <svg width="480" height="240" viewBox="0 0 480 240" xmlns="http://www.w3.org/2000/svg">
+          <!-- Left panel background -->
+          <rect x="0" y="0" width="200" height="200" rx="12" fill="#F5F0E8" stroke="#C17B2F" stroke-width="1" opacity="0.4"/>
+          <!-- Blocked stream - left panel -->
+          <path d="M20 100 Q40 85 60 100 Q80 115 100 100" stroke="#C17B2F" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- Debris/rocks blocking -->
+          <ellipse cx="110" cy="100" rx="14" ry="10" fill="#8B6347"/>
+          <ellipse cx="130" cy="95" rx="10" ry="8" fill="#6B4E37"/>
+          <ellipse cx="120" cy="110" rx="12" ry="7" fill="#7A5640"/>
+          <!-- Pooling water behind blockage -->
+          <path d="M60 100 Q80 90 100 100 Q100 120 80 125 Q60 125 60 100" fill="#C17B2F" opacity="0.15"/>
           <!-- Left label -->
-          <text x="95" y="208" text-anchor="middle" font-family="Lora, Georgia, serif" font-style="italic" font-size="12" fill="#2C2418">Emotional Backlog</text>
-          <!-- Arrow -->
-          <line x1="200" y1="96" x2="220" y2="96" stroke="#C17B2F" stroke-width="2.5" stroke-linecap="round"/>
-          <polyline points="213,89 221,96 213,103" stroke="#C17B2F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <!-- Right panel: Flowing stream -->
-          <rect x="234" y="4" width="182" height="182" rx="16" fill="#F5F0E8"/>
-          <!-- Clean flowing wavy lines, sage -->
-          <path d="M244 78 C264 68 284 88 304 78 C324 68 344 88 412 78" stroke="#6B7B5E" stroke-width="2.5" fill="none"/>
-          <path d="M244 96 C264 86 284 106 304 96 C324 86 344 106 412 96" stroke="#6B7B5E" stroke-width="2" fill="none" opacity="0.75"/>
-          <path d="M244 114 C264 104 284 122 304 114 C324 104 344 122 412 114" stroke="#6B7B5E" stroke-width="1.5" fill="none" opacity="0.55"/>
+          <text x="100" y="225" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="13" fill="#6B5E4E">Emotional Backlog</text>
+          <!-- Arrow in middle -->
+          <line x1="215" y1="100" x2="255" y2="100" stroke="#C17B2F" stroke-width="2.5" stroke-linecap="round"/>
+          <polygon points="255,94 268,100 255,106" fill="#C17B2F"/>
+          <!-- Right panel background -->
+          <rect x="278" y="0" width="200" height="200" rx="12" fill="#F5F0E8" stroke="#6B7B5E" stroke-width="1" opacity="0.4"/>
+          <!-- Flowing stream - right panel -->
+          <path d="M285 100 Q305 85 325 100 Q345 115 365 100 Q385 85 400 95 Q415 105 475 100" stroke="#6B7B5E" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- Second flow line for depth -->
+          <path d="M285 108 Q305 93 325 108 Q345 123 365 108 Q385 93 400 103 Q415 113 475 108" stroke="#6B7B5E" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.5"/>
           <!-- Right label -->
-          <text x="325" y="208" text-anchor="middle" font-family="Lora, Georgia, serif" font-style="italic" font-size="12" fill="#2C2418">Emotional Flow</text>
+          <text x="378" y="225" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="13" fill="#6B5E4E">Emotional Flow</text>
         </svg>
       </div>
     </section>
@@ -1980,17 +1995,19 @@
     <!-- SECTION 5: THE SCIENCE -->
     <section class="reveal">
       <h2 class="section-headline">This Is Not Just Tapping. It's Backed by Research.</h2>
-      <div class="science-blocks">
-        <div class="science-block" style="padding-top: 1rem;">
-          <h3>Acupressure Meets Neuroscience</h3>
-          <p>EFT combines tapping on acupressure points with cognitive processing. Research shows it lowers cortisol levels measurably within a single session.</p>
+      <div class="science-section-wrap">
+        <div class="science-top-row">
+          <div class="science-block">
+            <h3>Acupressure Meets Neuroscience</h3>
+            <p>EFT combines tapping on acupressure points with cognitive processing. Research shows it lowers cortisol levels measurably within a single session.</p>
+          </div>
+          <img class="science-image-hero" src="assets/woman tapping.png" alt="Woman tapping while calming her digestion" />
         </div>
-        <img class="science-image" src="assets/woman tapping.png" alt="Woman tapping while calming her digestion" />
-        <div class="science-block">
+        <div class="science-block science-block-wide">
           <h3>Clinically Researched</h3>
           <p>Multiple peer-reviewed studies show EFT outperforms CBT for anxiety in certain conditions. It is recognized by the American Psychological Association as an evidence-based practice.</p>
         </div>
-        <div class="science-block">
+        <div class="science-block science-block-wide">
           <h3>The Gut-Brain Connection</h3>
           <p>Your gut contains over 100 million nerve cells. When your nervous system is dysregulated, your digestion suffers. EFT directly targets nervous system regulation at the source.</p>
         </div>
@@ -2186,7 +2203,7 @@
     <!-- SECTION 12: FINAL CTA -->
     <section class="reveal final-cta-section">
       <div style="text-align: center;">
-        <hr class="final-cta-rule" />
+        <div style="width:80px; height:2px; background:#C17B2F; opacity:0.4; margin: 0 auto 2.5rem auto;"></div>
         <h2 class="section-headline">Your Gut Has Been Waiting Long Enough.</h2>
         <p style="max-width: 600px; margin: 0 auto 28px; color: #4A4035; font-size: 1rem;">The next cohort is forming now. Waitlist members are notified first and receive early access. Join below to secure your spot.</p>
         <a class="button button-full" href="https://sendfox.com/lp/3q45xj" target="_blank" rel="noopener noreferrer">Reserve My Spot</a>
