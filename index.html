@@ -2008,6 +2008,94 @@
       color: #FFFFFF !important;
     }
 
+    /* Bonuses section */
+    .bonuses-section {
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .bonuses-label {
+      font-family: 'Lora', Georgia, serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #6B7B5E;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .bonuses-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: #2C2418;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .bonus-cards {
+      display: flex;
+      flex-direction: row;
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+    .bonus-card {
+      flex: 1;
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      border-top: 4px solid #C17B2F;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .bonus-icon {
+      margin-bottom: 1rem;
+    }
+    .bonus-number {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.75rem;
+      color: #C17B2F;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .bonus-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: #2C2418;
+      margin-bottom: 0.8rem;
+      line-height: 1.4;
+    }
+    .bonus-description {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.9rem;
+      color: #6B5E4E;
+      line-height: 1.7;
+      flex-grow: 1;
+    }
+    .bonus-value {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.85rem;
+      color: #C17B2F;
+      margin-top: 1rem;
+      font-style: italic;
+    }
+    .bonus-total {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.95rem;
+      color: #6B5E4E;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .bonus-total span {
+      color: #2C2418;
+      font-weight: bold;
+    }
+    @media (max-width: 768px) {
+      .bonus-cards {
+        flex-direction: column;
+      }
+    }
+
     /* Fix 1 & 2: Problem deepener image and two-column layout */
     .deepener-main {
       display: flex;
@@ -2379,29 +2467,27 @@
     <hr class="section-rule" />
 
     <!-- BONUSES SECTION -->
-    <section style="padding: 4rem 2rem; max-width: 900px; margin: 0 auto;">
-      <p style="font-family: Lora, serif; font-style: italic; font-size: 0.95rem; color: #6B7B5E; text-align: center; margin-bottom: 0.5rem;">When you enrol today you also receive</p>
-      <h2 style="font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 2.2rem); color: #2C2418; text-align: center; margin-bottom: 3rem;">Three Free Bonuses</h2>
-      <div class="bonus-cards-container" style="display: flex; flex-direction: row; gap: 1.5rem; align-items: stretch;">
-        <!-- Bonus 1 -->
-        <div style="flex: 1; background: #FFFFFF; border-radius: 16px; padding: 2rem 1.5rem; text-align: center; box-shadow: 0 2px 16px rgba(0,0,0,0.06); border-top: 4px solid #C17B2F; display: flex; flex-direction: column; align-items: center;">
-          <div style="margin-bottom: 1rem;">
+    <div class="bonuses-section">
+      <p class="bonuses-label">When you enrol today you also receive</p>
+      <h2 class="bonuses-heading">Three Free Bonuses</h2>
+      <div class="bonus-cards">
+        <div class="bonus-card">
+          <div class="bonus-icon">
             <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="26" cy="26" r="24" stroke="#C17B2F" stroke-width="1.8" fill="#FBF4EA"/>
-              <path d="M26 14C26 14 20 18 20 26C20 30 22 33 26 35C30 33 32 30 32 26C32 18 26 14 26 14Z" stroke="#C17B2F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              <path d="M20 26C20 26 23 24 26 26C29 28 32 26 32 26" stroke="#C17B2F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              <path d="M26 35V40" stroke="#C17B2F" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M22 40H30" stroke="#C17B2F" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M26 14 C26 14 20 18 20 26 C20 30 22 33 26 35 C30 33 32 30 32 26 C32 18 26 14 26 14Z" stroke="#C17B2F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              <path d="M20 26 C23 24 26 26 29 28 C32 26 32 26 32 26" stroke="#C17B2F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              <line x1="26" y1="35" x2="26" y2="40" stroke="#C17B2F" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="22" y1="40" x2="30" y2="40" stroke="#C17B2F" stroke-width="1.8" stroke-linecap="round"/>
             </svg>
           </div>
-          <p style="font-family: Lora, serif; font-size: 0.75rem; color: #C17B2F; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem;">Bonus 1</p>
-          <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: #2C2418; margin-bottom: 0.8rem; line-height: 1.4;">20-Minute Taoist Yoga Flow for Digestion</h3>
-          <p style="font-family: Lora, serif; font-size: 0.9rem; color: #6B5E4E; line-height: 1.7; flex-grow: 1;">A gentle Taoist yoga class specifically designed to stimulate digestive organs, release tension in the gut, and support the body's natural elimination process. Download and practice anytime.</p>
-          <p style="font-family: Lora, serif; font-size: 0.85rem; color: #C17B2F; margin-top: 1rem; font-style: italic;">Value: $47</p>
+          <p class="bonus-number">Bonus 1</p>
+          <h3 class="bonus-title">20-Minute Taoist Yoga Flow for Digestion</h3>
+          <p class="bonus-description">A gentle Taoist yoga class designed to stimulate digestive organs, release gut tension, and support the body's natural elimination process. Download and practice anytime.</p>
+          <p class="bonus-value">Value: $47</p>
         </div>
-        <!-- Bonus 2 -->
-        <div style="flex: 1; background: #FFFFFF; border-radius: 16px; padding: 2rem 1.5rem; text-align: center; box-shadow: 0 2px 16px rgba(0,0,0,0.06); border-top: 4px solid #C17B2F; display: flex; flex-direction: column; align-items: center;">
-          <div style="margin-bottom: 1rem;">
+        <div class="bonus-card">
+          <div class="bonus-icon">
             <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="26" cy="26" r="24" stroke="#C17B2F" stroke-width="1.8" fill="#FBF4EA"/>
               <rect x="16" y="14" width="20" height="26" rx="3" stroke="#C17B2F" stroke-width="1.8" fill="none"/>
@@ -2410,37 +2496,28 @@
               <line x1="20" y1="30" x2="28" y2="30" stroke="#C17B2F" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
           </div>
-          <p style="font-family: Lora, serif; font-size: 0.75rem; color: #C17B2F; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem;">Bonus 2</p>
-          <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: #2C2418; margin-bottom: 0.8rem; line-height: 1.4;">EFT Daily Tapping Tips Poster</h3>
-          <p style="font-family: Lora, serif; font-size: 0.9rem; color: #6B5E4E; line-height: 1.7; flex-grow: 1;">A printable reference poster with the six most important EFT tapping tips to keep your practice consistent, effective and easy to fit into daily life. Stick it on your wall and never lose momentum.</p>
-          <p style="font-family: Lora, serif; font-size: 0.85rem; color: #C17B2F; margin-top: 1rem; font-style: italic;">Value: $19</p>
+          <p class="bonus-number">Bonus 2</p>
+          <h3 class="bonus-title">EFT Daily Tapping Tips Poster</h3>
+          <p class="bonus-description">A printable reference poster with the six most important EFT tapping tips to keep your practice consistent and easy to fit into daily life. Stick it on your wall and never lose momentum.</p>
+          <p class="bonus-value">Value: $19</p>
         </div>
-        <!-- Bonus 3 -->
-        <div style="flex: 1; background: #FFFFFF; border-radius: 16px; padding: 2rem 1.5rem; text-align: center; box-shadow: 0 2px 16px rgba(0,0,0,0.06); border-top: 4px solid #C17B2F; display: flex; flex-direction: column; align-items: center;">
-          <div style="margin-bottom: 1rem;">
+        <div class="bonus-card">
+          <div class="bonus-icon">
             <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="26" cy="26" r="24" stroke="#C17B2F" stroke-width="1.8" fill="#FBF4EA"/>
-              <path d="M16 32C16 32 18 24 26 24C34 24 36 32 36 32" stroke="#C17B2F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              <circle cx="26" cy="20" r="4" stroke="#C17B2F" stroke-width="1.8" fill="none"/>
-              <path d="M20 36C20 36 22 33 26 33C30 33 32 36 32 36" stroke="#C17B2F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              <path d="M18 30 Q22 22 26 22 Q30 22 34 30" stroke="#C17B2F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              <circle cx="26" cy="19" r="4" stroke="#C17B2F" stroke-width="1.8" fill="none"/>
+              <path d="M20 36 Q23 33 26 33 Q29 33 32 36" stroke="#C17B2F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
             </svg>
           </div>
-          <p style="font-family: Lora, serif; font-size: 0.75rem; color: #C17B2F; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem;">Bonus 3</p>
-          <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: #2C2418; margin-bottom: 0.8rem; line-height: 1.4;">Gut-Calming Bedtime Tapping Audio</h3>
-          <p style="font-family: Lora, serif; font-size: 0.9rem; color: #6B5E4E; line-height: 1.7; flex-grow: 1;">A guided 15-minute EFT audio session specifically designed for nighttime use. Calms the nervous system, releases digestive tension held from the day, and prepares the body for deep rest and overnight repair.</p>
-          <p style="font-family: Lora, serif; font-size: 0.85rem; color: #C17B2F; margin-top: 1rem; font-style: italic;">Value: $37</p>
+          <p class="bonus-number">Bonus 3</p>
+          <h3 class="bonus-title">Gut-Calming Bedtime Tapping Audio</h3>
+          <p class="bonus-description">A guided 15-minute EFT audio session for nighttime use. Calms the nervous system, releases digestive tension held from the day, and prepares your body for deep rest and overnight repair.</p>
+          <p class="bonus-value">Value: $37</p>
         </div>
       </div>
-      <p style="font-family: Lora, serif; font-size: 0.95rem; color: #6B5E4E; text-align: center; margin-top: 2rem;">Total bonus value: <span style="color: #2C2418; font-weight: bold;">$103</span> — yours free when you enrol.</p>
-    </section>
-
-    <style>
-      @media (max-width: 768px) {
-        .bonus-cards-container {
-          flex-direction: column !important;
-        }
-      }
-    </style>
+      <p class="bonus-total">Total bonus value: <span>$103</span> — yours free when you enrol.</p>
+    </div>
 
     <hr class="section-rule" />
 
