@@ -1656,53 +1656,66 @@
 
     /* Fix 2: Program descriptor */
     .program-descriptor {
-      font-family: 'Lora', Georgia, serif;
-      font-style: italic;
-      font-size: 1.05rem;
-      color: #6B7B5E;
+      font-family: 'DM Serif Display', serif;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #2C2418;
       text-align: center;
-      margin: 1.2rem 0 1rem 0;
+      margin: 1rem auto;
       display: block;
     }
 
     /* Fix 4: Trust strip */
     .trust-strip {
       display: flex;
-      align-items: center;
+      flex-direction: row;
       justify-content: center;
+      align-items: center;
       background: #EDE8DF;
-      padding: 1.8rem 2rem;
+      padding: 1.5rem 2rem;
       border-radius: 12px;
       margin-top: 16px;
       width: 100%;
       box-sizing: border-box;
-      gap: 0;
     }
 
     .trust-stat {
-      display: inline-flex;
+      display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 0 2.5rem;
+      justify-content: center;
+      text-align: center;
+      padding: 0 2rem;
       border-right: 1px solid rgba(193, 123, 47, 0.35);
+      flex: 1;
     }
 
     .trust-stat:last-child {
       border-right: none;
     }
 
+    .trust-stat-icon {
+      display: block;
+      margin: 0 auto 0.5rem auto;
+    }
+
     .trust-stat-number {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       color: #2C2418;
-      display: block;
+      font-weight: bold;
+      text-align: center;
       margin-bottom: 0.2rem;
+      display: block;
     }
 
     .trust-stat-label {
       font-family: 'Lora', Georgia, serif;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: #6B5E4E;
+      text-align: center;
+      line-height: 1.4;
       display: block;
     }
 
@@ -1885,7 +1898,7 @@
       .trust-stat {
         border-right: none;
         border-bottom: 1px solid rgba(193, 123, 47, 0.35);
-        padding: 1rem 0;
+        padding: 1.2rem 0;
         width: 100%;
         justify-content: center;
       }
@@ -2100,14 +2113,29 @@
           </div>
           <div class="trust-strip">
             <div class="trust-stat">
+              <svg class="trust-stat-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10" cy="9" r="4" stroke="#C17B2F" stroke-width="1.8" fill="none"/>
+                <circle cx="20" cy="9" r="4" stroke="#C17B2F" stroke-width="1.8" fill="none"/>
+                <path d="M2 24C2 20 5.5 17 10 17" stroke="#C17B2F" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                <path d="M12 24C12 20 15.5 17 20 17C24.5 17 28 20 28 24" stroke="#C17B2F" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+              </svg>
               <span class="trust-stat-number">1,000+ Students</span>
               <span class="trust-stat-label">from around the world</span>
             </div>
             <div class="trust-stat">
+              <svg class="trust-stat-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="6" width="24" height="17" rx="4" stroke="#C17B2F" stroke-width="1.8" fill="none"/>
+                <path d="M11 10.5L19 14.5L11 18.5V10.5Z" fill="#C17B2F"/>
+              </svg>
               <span class="trust-stat-number">40,000 Subscribers</span>
               <span class="trust-stat-label">on YouTube</span>
             </div>
             <div class="trust-stat">
+              <svg class="trust-stat-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="14" cy="12" r="7" stroke="#C17B2F" stroke-width="1.8" fill="none"/>
+                <path d="M10 12L13 15L18 9" stroke="#C17B2F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 20L8 27L14 24L20 27L18 20" stroke="#C17B2F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
               <span class="trust-stat-number">IICT Accredited</span>
               <span class="trust-stat-label">Certified Practitioner</span>
             </div>
