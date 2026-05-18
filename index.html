@@ -1916,6 +1916,85 @@
       }
     }
 
+    /* Fix 3: Science cards row */
+    .science-cards-row {
+      display: flex;
+      flex-direction: row;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .science-card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      text-align: center;
+      flex: 1;
+    }
+
+    .science-card svg {
+      display: block;
+      margin: 0 auto;
+    }
+
+    .science-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: #2C2418;
+      margin: 1rem 0 0.6rem 0;
+      text-align: center;
+    }
+
+    .science-card p {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.95rem;
+      color: #6B5E4E;
+      line-height: 1.7;
+      margin: 0;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .science-cards-row {
+        flex-direction: column;
+      }
+    }
+
+    /* Fix 4: Value stack pricing colours */
+    .payment-plan-line {
+      background: transparent !important;
+      color: #C17B2F !important;
+      font-style: italic !important;
+      font-size: 0.95rem !important;
+      border-radius: 0 !important;
+      padding: 0 !important;
+      display: block !important;
+      margin-top: 0.8rem;
+    }
+
+    .final-price-box {
+      background: transparent !important;
+      padding: 0.5rem 0 0 !important;
+      border-radius: 0 !important;
+      margin-top: 0.5rem;
+    }
+
+    .final-price {
+      font-family: 'DM Serif Display', serif !important;
+      font-size: 2.5rem !important;
+      color: #C17B2F !important;
+    }
+
+    .pricing-button {
+      padding: 1rem 2.5rem !important;
+      font-size: 1rem !important;
+      margin-top: 1rem !important;
+      border-radius: 50px !important;
+      background: #C17B2F !important;
+      color: #FFFFFF !important;
+    }
+
     /* Fix 1 & 2: Problem deepener image and two-column layout */
     .deepener-main {
       display: flex;
@@ -2007,13 +2086,6 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="page-wrap header-inner">
-      <div class="logo">Heal Your Digestion with EFT</div>
-      <a class="header-cta button" href="https://sendfox.com/lp/3q45xj" target="_blank" rel="noopener noreferrer">Join the Waiting List</a>
-    </div>
-  </header>
-
   <main class="page-wrap">
     <!-- SECTION 1: HERO -->
     <section class="hero reveal">
@@ -2137,19 +2209,39 @@
     <!-- SECTION 5: THE SCIENCE -->
     <section class="reveal">
       <h2 class="section-headline">This Is Not Just Tapping. It's Backed by Research.</h2>
-      <div class="science-section-wrap">
-        <div class="science-top-row">
-          <div class="science-block">
-            <h3>Acupressure Meets Neuroscience</h3>
-            <p>EFT combines tapping on acupressure points with cognitive processing. Research shows it lowers cortisol levels measurably within a single session.</p>
-          </div>
-          <img class="science-image-hero" src="assets/woman tapping.png" alt="Woman tapping while calming her digestion" />
+      <div class="science-cards-row">
+        <div class="science-card">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="28" r="26" stroke="#C17B2F" stroke-width="2" fill="#FBF4EA"/>
+            <circle cx="20" cy="22" r="3" fill="#C17B2F"/>
+            <circle cx="28" cy="18" r="3" fill="#C17B2F"/>
+            <circle cx="36" cy="22" r="3" fill="#C17B2F"/>
+            <circle cx="22" cy="32" r="3" fill="#C17B2F"/>
+            <circle cx="34" cy="32" r="3" fill="#C17B2F"/>
+            <circle cx="28" cy="38" r="3" fill="#C17B2F"/>
+          </svg>
+          <h3>Acupressure Meets Neuroscience</h3>
+          <p>EFT combines tapping on acupressure points with cognitive processing. Research shows it lowers cortisol levels measurably within a single session.</p>
         </div>
-        <div class="science-block science-block-wide">
+        <div class="science-card">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="28" r="26" stroke="#C17B2F" stroke-width="2" fill="#FBF4EA"/>
+            <rect x="18" y="16" width="20" height="26" rx="3" stroke="#C17B2F" stroke-width="2"/>
+            <path d="M23 28L26.5 31.5L33 25" stroke="#C17B2F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="23" y="14" width="10" height="5" rx="2" fill="#C17B2F" opacity="0.3" stroke="#C17B2F" stroke-width="1.5"/>
+          </svg>
           <h3>Clinically Researched</h3>
           <p>Multiple peer-reviewed studies show EFT outperforms CBT for anxiety in certain conditions. It is recognized by the American Psychological Association as an evidence-based practice.</p>
         </div>
-        <div class="science-block science-block-wide">
+        <div class="science-card">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="28" r="26" stroke="#C17B2F" stroke-width="2" fill="#FBF4EA"/>
+            <path d="M28 20C24 20 20 23 20 27C20 29 21 31 23 32C23 35 25 37 28 37C31 37 33 35 33 32C35 31 36 29 36 27C36 23 32 20 28 20Z" stroke="#C17B2F" stroke-width="2" fill="none"/>
+            <line x1="28" y1="37" x2="28" y2="42" stroke="#C17B2F" stroke-width="2" stroke-linecap="round"/>
+            <line x1="24" y1="40" x2="32" y2="40" stroke="#C17B2F" stroke-width="2" stroke-linecap="round"/>
+            <line x1="25" y1="27" x2="31" y2="27" stroke="#C17B2F" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="28" y1="24" x2="28" y2="30" stroke="#C17B2F" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
           <h3>The Gut-Brain Connection</h3>
           <p>Your gut contains over 100 million nerve cells. When your nervous system is dysregulated, your digestion suffers. EFT directly targets nervous system regulation at the source.</p>
         </div>
@@ -2250,7 +2342,7 @@
         </div>
         <a class="button pricing-button" href="https://sendfox.com/lp/3q45xj" target="_blank" rel="noopener noreferrer">Join the Waiting List</a>
       </div>
-      <p style="margin-top: 14px; color: #6B5E52; font-size: 0.9rem; text-align: center;">14-day money-back guarantee. No questions asked.</p>
+      <p style="margin-top: 14px; color: #6B5E4E; font-size: 0.9rem; text-align: center; font-style: italic;">14-day money-back guarantee. No questions asked.</p>
     </section>
 
     <hr class="section-rule" />
