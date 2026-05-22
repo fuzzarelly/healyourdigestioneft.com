@@ -55,24 +55,16 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      backdrop-filter: blur(12px);
-      background: rgba(250, 247, 242, 0.95);
-      border-top: 3px solid #2C2416;
-      border-bottom: 1px solid rgba(44, 36, 22, 0.08);
+      background: #2C2416;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .header-inner {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+      justify-content: center;
+      gap: 10px;
       padding: 0.6rem 2rem;
-    }
-
-    .logo {
-      font-family: 'DM Serif Display', serif;
-      font-size: 0.95rem;
-      letter-spacing: 0.03em;
     }
 
     .header-cta {
@@ -87,19 +79,20 @@
       text-decoration: none;
       border-radius: 999px;
       font-weight: 600;
+      white-space: nowrap;
     }
 
     .header-cta:hover {
-      background: #A36530;
+      background: #D98B45;
     }
 
     .header-early-bird {
       font-family: Lora, serif;
       font-size: 0.82rem;
       font-weight: 600;
-      color: #C17A3A;
-      background: rgba(193, 122, 58, 0.1);
-      border: 1px solid rgba(193, 122, 58, 0.3);
+      color: #F0C070;
+      background: rgba(193, 122, 58, 0.18);
+      border: 1px solid rgba(193, 122, 58, 0.45);
       padding: 0.3rem 0.85rem;
       border-radius: 999px;
       white-space: nowrap;
@@ -108,11 +101,11 @@
     @media (max-width: 768px) {
       .header-inner {
         padding: 0.5rem 1rem;
-        flex-wrap: wrap;
         gap: 8px;
       }
       .header-early-bird {
-        display: none;
+        font-size: 0.75rem;
+        padding: 0.25rem 0.65rem;
       }
     }
 
@@ -2239,7 +2232,6 @@
 <body>
   <header>
     <div class="header-inner">
-      <span class="logo">Heal Your Digestion with EFT</span>
       <span class="header-early-bird">🔥 Save $100 USD — Early Bird Ends June 7th</span>
       <a class="header-cta" href="https://mindbodymedicineacademy.onlinecoursehost.com/courses/heal-your-digestion-eft-june26?couponCode=100EARLYBIRD" target="_blank" rel="noopener noreferrer">Enrol Today</a>
     </div>
