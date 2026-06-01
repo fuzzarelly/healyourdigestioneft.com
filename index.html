@@ -17,8 +17,9 @@
   <link rel="apple-touch-icon" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Serif+Display&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Serif+Display&display=swap" /></noscript>
+  <link rel="preload" as="image" href="assets/ChatGPT%20Image%20May%207%2C%202026%2C%2011_19_04%20AM.webp" type="image/webp" />
   <style>
     :root {
       color-scheme: light;
@@ -2238,23 +2239,6 @@
     }
   </style>
 
-  <!-- Meta Pixel Code -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window,document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1017196089549728');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1017196089549728&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
 </head>
 <body>
   <header>
@@ -2306,7 +2290,10 @@
           </div>
         </div>
         <div class="hero-right">
-          <img src="assets/ChatGPT%20Image%20May%207%2C%202026%2C%2011_19_04%20AM.png" alt="Woman holding her stomach warmly, with a glowing illustration of the digestive system" class="hero-image" />
+          <picture>
+            <source srcset="assets/ChatGPT%20Image%20May%207%2C%202026%2C%2011_19_04%20AM.webp" type="image/webp" />
+            <img src="assets/ChatGPT%20Image%20May%207%2C%202026%2C%2011_19_04%20AM.png" alt="Woman holding her stomach warmly, with a glowing illustration of the digestive system" class="hero-image" fetchpriority="high" loading="eager" decoding="sync" width="600" height="600" />
+          </picture>
         </div>
       </div>
     </section>
@@ -2337,15 +2324,11 @@
     <section class="reveal" style="padding: 24px 0;">
       <h2 style="font-family:'DM Serif Display',serif; font-size:clamp(1.4rem,3vw,1.8rem); color:#2C2418; text-align:center; margin-bottom:1.2rem;">Watch: Is This Program Right for You?</h2>
       <div style="max-width:620px; margin:0 auto; border-radius:12px; overflow:hidden; box-shadow:0 4px 20px rgba(44,36,22,0.1);">
-        <div style="position:relative; padding-bottom:56.25%; height:0;">
-          <iframe
-            src="https://www.youtube.com/embed/gmY9W6duWM8"
-            title="Is This Program Right for You?"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            style="position:absolute; top:0; left:0; width:100%; height:100%;">
-          </iframe>
+        <div id="yt-facade" style="position:relative; padding-bottom:56.25%; height:0; cursor:pointer; background:#000;" onclick="this.innerHTML='<iframe src=\'https://www.youtube.com/embed/gmY9W6duWM8?autoplay=1\' title=\'Is This Program Right for You?\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen style=\'position:absolute;top:0;left:0;width:100%;height:100%;\'></iframe>'; this.style.cursor='default';">
+          <img src="https://i.ytimg.com/vi/gmY9W6duWM8/hqdefault.jpg" alt="Watch: Is This Program Right for You?" loading="lazy" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" width="480" height="360" />
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:48px;background:#FF0000;border-radius:12px;display:flex;align-items:center;justify-content:center;" aria-label="Play video">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </div>
         </div>
       </div>
     </section>
@@ -2361,17 +2344,20 @@
           <p>The constant bloating. The cramping after meals. The anxiety around food. The exhaustion of never knowing what your body will do next.</p>
           <p>What nobody has told you is this: stress, anxiety, and unprocessed emotion physically change how your digestive system functions. Your gut has its own nervous system. And when your nervous system is stuck in stress mode, no diet in the world will fully fix what's happening.</p>
         </div>
-        <img class="deepener-image" src="assets/digestive%20pain.png" alt="Woman experiencing digestive discomfort" style="width:100%;height:420px;object-fit:cover;object-position:center top;border-radius:12px;" />
+        <picture>
+          <source srcset="assets/digestive%20pain.webp" type="image/webp" />
+          <img class="deepener-image" src="assets/digestive%20pain.png" alt="Woman experiencing digestive discomfort" style="width:100%;height:420px;object-fit:cover;object-position:center top;border-radius:12px;" loading="lazy" decoding="async" width="800" height="420" />
+        </picture>
       </div>
       <div class="problem-list">
-        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.png" alt="" />Regular bloating and cramping after eating</div>
-        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.png" alt="" />Diagnosed with IBS, SIBO, or GERD</div>
-        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.png" alt="" />Constant fear of eating the wrong food</div>
-        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.png" alt="" />Tried every elimination diet with no lasting relief</div>
-        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.png" alt="" />Fatigue and brain fog after meals</div>
-        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.png" alt="" />Feeling like your body is working against you</div>
-        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.png" alt="" />Dependent on supplements just to feel normal</div>
-        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.png" alt="" />Avoiding social situations because of your gut</div>
+        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.webp" alt="" loading="lazy" decoding="async" width="20" height="20" />Regular bloating and cramping after eating</div>
+        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.webp" alt="" loading="lazy" decoding="async" width="20" height="20" />Diagnosed with IBS, SIBO, or GERD</div>
+        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.webp" alt="" loading="lazy" decoding="async" width="20" height="20" />Constant fear of eating the wrong food</div>
+        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.webp" alt="" loading="lazy" decoding="async" width="20" height="20" />Tried every elimination diet with no lasting relief</div>
+        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.webp" alt="" loading="lazy" decoding="async" width="20" height="20" />Fatigue and brain fog after meals</div>
+        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.webp" alt="" loading="lazy" decoding="async" width="20" height="20" />Feeling like your body is working against you</div>
+        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.webp" alt="" loading="lazy" decoding="async" width="20" height="20" />Dependent on supplements just to feel normal</div>
+        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.webp" alt="" loading="lazy" decoding="async" width="20" height="20" />Avoiding social situations because of your gut</div>
       </div>
     </section>
 
@@ -2492,7 +2478,10 @@ reason why.
         <p>This is what we address in this 30-day program. We focus on clearing out the backlog within the system so the organs and energy can be open and flow again. EFT Tapping is the tool that makes this possible — not managing the backlog, but clearing it.</p>
       </div>
       <div style="margin: 2.5rem auto 0 auto; max-width:700px;">
-        <img src="assets/open%20and%20flow.png" alt="Emotional Backlog to Open and Flow" style="width:100%; border-radius:14px; box-shadow:0 6px 28px rgba(44,36,22,0.12); display:block;" />
+        <picture>
+          <source srcset="assets/open%20and%20flow.webp" type="image/webp" />
+          <img src="assets/open%20and%20flow.png" alt="Emotional Backlog to Open and Flow" style="width:100%; border-radius:14px; box-shadow:0 6px 28px rgba(44,36,22,0.12); display:block;" loading="lazy" decoding="async" width="900" height="600" />
+        </picture>
       </div>
     </section>
 
@@ -2549,25 +2538,25 @@ reason why.
         <div class="module-card-new">
           <h3>Module 1: Healing the Stomach and Solar Plexus</h3>
           <p>EFT sequences and acupressure protocols targeting bloating, cramping, and digestive tension directly.</p>
-          <img class="module-image" src="assets/solar plexus.png" alt="Stomach and solar plexus illustration" />
+          <picture><source srcset="assets/solar plexus.webp" type="image/webp" /><img class="module-image" src="assets/solar plexus.png" alt="Stomach and solar plexus illustration" loading="lazy" decoding="async" width="400" height="300" /></picture>
           <p class="module-outcome">After this module: less physical tension in your gut, faster relief after meals.</p>
         </div>
         <div class="module-card-new">
           <h3>Module 2: Healing the Liver and Reducing Food Sensitivities</h3>
           <p>Targeting the stress-digestion connection through the liver meridian. Calms reactivity and improves how your body responds to food.</p>
-          <img class="module-image" src="assets/liver image.png" alt="Liver illustration" />
+          <picture><source srcset="assets/liver image.webp" type="image/webp" /><img class="module-image" src="assets/liver image.png" alt="Liver illustration" loading="lazy" decoding="async" width="400" height="300" /></picture>
           <p class="module-outcome">After this module: fewer food reactions, more ease around eating.</p>
         </div>
         <div class="module-card-new">
           <h3>Module 3: Opening the Lungs and Large Intestine</h3>
           <p>Working with the organs responsible for elimination, both physical and emotional. Addresses constipation, heaviness, and held grief or stress.</p>
-          <img class="module-image" src="assets/lungs image.png" alt="Lungs illustration" />
+          <picture><source srcset="assets/lungs image.webp" type="image/webp" /><img class="module-image" src="assets/lungs image.png" alt="Lungs illustration" loading="lazy" decoding="async" width="400" height="300" /></picture>
           <p class="module-outcome">After this module: improved regularity, lighter in body and mind.</p>
         </div>
         <div class="module-card-new">
           <h3>Module 4: Healing and Optimizing the Whole System</h3>
           <p>Integration of everything learned. Full-body reset using EFT and mind-body medicine to lock in the changes.</p>
-          <img class="module-image" src="assets/whole body image.png" alt="Whole body illustration" />
+          <picture><source srcset="assets/whole body image.webp" type="image/webp" /><img class="module-image" src="assets/whole body image.png" alt="Whole body illustration" loading="lazy" decoding="async" width="400" height="300" /></picture>
           <p class="module-outcome">After this module: a personal practice you can use for life.</p>
         </div>
       </div>
@@ -2580,7 +2569,10 @@ reason why.
       <h2 class="section-headline">Everything Included in the Program</h2>
       <p class="value-section-subheading">Everything you need to heal your digestion — in one program.</p>
       <div style="text-align:center; margin: 0 auto 1.8rem;">
-        <img src="assets/product%20image.png" alt="Heal Your Digestion with EFT — Program Materials" style="width:200px; height:200px; object-fit:cover; border-radius:16px; box-shadow:0 8px 28px rgba(44,36,22,0.15); display:inline-block;" />
+        <picture>
+          <source srcset="assets/product%20image.webp" type="image/webp" />
+          <img src="assets/product%20image.png" alt="Heal Your Digestion with EFT — Program Materials" style="width:200px; height:200px; object-fit:cover; border-radius:16px; box-shadow:0 8px 28px rgba(44,36,22,0.15); display:inline-block;" loading="lazy" decoding="async" width="200" height="200" />
+        </picture>
       </div>
       <div class="value-stack">
         <div class="value-row">
@@ -2760,7 +2752,10 @@ reason why.
       <div style="width:60px;height:3px;background:#C17B2F;margin:0 auto 1.5rem auto;border-radius:2px;"></div>
       <h2 class="section-headline" style="font-size:clamp(1.8rem, 4vw, 2.4rem); margin-bottom:3rem;">Who Is This Program With?</h2>
       <div class="about-content">
-        <img class="about-photo" src="assets/bio pic 1.jpg" alt="Michael Hetherington" />
+        <picture>
+          <source srcset="assets/bio pic 1.webp" type="image/webp" />
+          <img class="about-photo" src="assets/bio pic 1.jpg" alt="Michael Hetherington" loading="lazy" decoding="async" width="400" height="400" />
+        </picture>
         <div class="about-text" style="padding-top:0.5rem;">
           <p>Michael Hetherington is a Chinese medicine acupuncturist, certified EFT Practitioner and Trainer, and online educator with over a decade of clinical experience.</p>
           <p>He has worked with more than 1,000 private clients across Australia, Thailand, Bali, the USA, and Europe, and teaches a YouTube audience of 40,000 people worldwide.</p>
@@ -2814,7 +2809,7 @@ reason why.
       <!-- SocialJuice carousel -->
       <div style="margin-top: 3rem;">
         <p style="font-family: Lora, serif; font-style: italic; font-size: 0.95rem; color: #6B5E4E; text-align: center; margin-bottom: 1.5rem;">More results from students around the world</p>
-        <iframe id="socialjuice-carousel-michaelhetherington-5037" src="https://embed.socialjuice.io/carousel/6981?s=michaelhetherington&id=5037&custom=true" allowfullscreen allowtransparency="true" frameBorder="0" scrolling="no" width="100%" height="380px" style="border: none; border-radius: 12px; display: block;"></iframe>
+        <iframe id="socialjuice-carousel-michaelhetherington-5037" src="https://embed.socialjuice.io/carousel/6981?s=michaelhetherington&id=5037&custom=true" allowfullscreen allowtransparency="true" frameBorder="0" scrolling="no" width="100%" height="380px" style="border: none; border-radius: 12px; display: block;" loading="lazy"></iframe>
       </div>
 
     </section>
@@ -3017,7 +3012,10 @@ reason why.
 
     <!-- SECTION 11: GUARANTEE -->
     <section class="guarantee reveal">
-      <img src="assets/badge.png" alt="14-Day Satisfaction Guarantee" style="width:120px;height:auto;display:block;margin:0 auto 1.5rem;" />
+      <picture>
+        <source srcset="assets/badge.webp" type="image/webp" />
+        <img src="assets/badge.png" alt="14-Day Satisfaction Guarantee" style="width:120px;height:auto;display:block;margin:0 auto 1.5rem;" loading="lazy" decoding="async" width="120" height="120" />
+      </picture>
       <h2>Try It For 14 Days. If You Don't Feel a Difference, You Pay Nothing.</h2>
       <p>I am confident enough in this program to offer you a full 14-day money-back guarantee with no questions asked. If you go through the first two modules, do the tapping, and feel no difference at all, simply email me and I will refund your full payment within 48 hours. The risk is entirely mine.</p>
     </section>
@@ -3047,7 +3045,7 @@ reason why.
       <h2 class="section-headline">Common Questions</h2>
       <div class="faq">
         <div class="faq-item">
-          <button class="faq-button" type="button"><i data-lucide="help-circle" style="width:20px;height:20px;color:#C17B2F;flex-shrink:0;margin-right:10px;"></i>When are the live group calls?</button>
+          <button class="faq-button" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17B2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-right:10px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>When are the live group calls?</button>
           <div class="faq-content">
             <p>There are four 90-minute live group calls, one per week throughout the program. The dates and times by timezone are:</p>
             <p style="margin:0.6rem 0 0.2rem;"><strong>Week 1 — Saturday, June 20th</strong><br>
@@ -3063,37 +3061,37 @@ reason why.
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-button" type="button"><i data-lucide="help-circle" style="width:20px;height:20px;color:#C17B2F;flex-shrink:0;margin-right:10px;"></i>When can I expect to feel a difference?</button>
+          <button class="faq-button" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17B2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-right:10px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>When can I expect to feel a difference?</button>
           <div class="faq-content">
             <p>Most people notice a shift after the very first tapping session. For deeper, lasting change, consistent practice over the 30 days makes the real difference. You have lifetime access, so you can return to the material anytime.</p>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-button" type="button"><i data-lucide="help-circle" style="width:20px;height:20px;color:#C17B2F;flex-shrink:0;margin-right:10px;"></i>How much time does this require each day?</button>
+          <button class="faq-button" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17B2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-right:10px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>How much time does this require each day?</button>
           <div class="faq-content">
             <p>15 minutes most days. On live call weeks, add 90 minutes for the group session. That's it.</p>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-button" type="button"><i data-lucide="help-circle" style="width:20px;height:20px;color:#C17B2F;flex-shrink:0;margin-right:10px;"></i>Will this help with IBS, SIBO, GERD, or chronic bloating?</button>
+          <button class="faq-button" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17B2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-right:10px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Will this help with IBS, SIBO, GERD, or chronic bloating?</button>
           <div class="faq-content">
             <p>Yes. EFT does not target a diagnosis, it targets the underlying nervous system dysregulation that drives digestive symptoms regardless of their label. It works alongside any other medical treatment you are receiving.</p>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-button" type="button"><i data-lucide="help-circle" style="width:20px;height:20px;color:#C17B2F;flex-shrink:0;margin-right:10px;"></i>Does this replace my doctor's advice?</button>
+          <button class="faq-button" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17B2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-right:10px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Does this replace my doctor's advice?</button>
           <div class="faq-content">
             <p>No. This is complementary to any medical treatment. Always keep your doctor informed about any changes in your health.</p>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-button" type="button"><i data-lucide="help-circle" style="width:20px;height:20px;color:#C17B2F;flex-shrink:0;margin-right:10px;"></i>Is there a payment plan?</button>
+          <button class="faq-button" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17B2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-right:10px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Is there a payment plan?</button>
           <div class="faq-content">
             <p>Yes. You can pay in 3 monthly instalments of $99 USD. The 14-day guarantee applies to payment plans as well.</p>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-button" type="button"><i data-lucide="help-circle" style="width:20px;height:20px;color:#C17B2F;flex-shrink:0;margin-right:10px;"></i>Can I speak to Michael before I enrol?</button>
+          <button class="faq-button" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17B2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-right:10px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Can I speak to Michael before I enrol?</button>
           <div class="faq-content">
             <p>Yes. Book a free 20-minute chat at <a href="https://tidycal.com/michaelhetherington/digestionprogram" target="_blank" rel="noopener noreferrer">tidycal.com/michaelhetherington</a></p>
           </div>
@@ -3134,7 +3132,6 @@ reason why.
       });
     });
   </script>
-  <script>lucide.createIcons();</script>
 
   <!-- Quiz popup -->
   <style>
@@ -3332,6 +3329,24 @@ reason why.
   </script>
 
   <!-- Sales chat widget -->
-  <script src="https://api.dmchamp.com/v1/chat-widget/lPMKQRs6x3R0C1Un6cAX"></script>
+  <script src="https://api.dmchamp.com/v1/chat-widget/lPMKQRs6x3R0C1Un6cAX" defer></script>
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window,document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1017196089549728');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1017196089549728&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
 </body>
 </html>
