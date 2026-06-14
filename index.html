@@ -2149,22 +2149,29 @@
       }
     }
 
-    /* Fix 1 & 2: Problem deepener image and two-column layout */
+    /* Problem deepener two-column layout */
     .deepener-main {
       display: flex;
       flex-direction: column;
       margin-bottom: 36px;
     }
 
-    .deepener-heading {
+    .deepener-left-col {
       order: 1;
+    }
+
+    .deepener-picture {
+      order: 2;
+      display: block;
+    }
+
+    .deepener-heading {
       text-align: center;
       font-family: 'DM Serif Display', serif;
       margin: 0 0 1.5rem;
     }
 
     .deepener-text {
-      order: 3;
       color: #4A4035;
       line-height: 1.8;
     }
@@ -2174,7 +2181,6 @@
     }
 
     .deepener-image {
-      order: 2;
       width: 100% !important;
       max-width: unset !important;
       height: 260px;
@@ -2182,38 +2188,36 @@
       object-position: center top;
       border-radius: 12px !important;
       display: block;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0;
     }
 
     @media (min-width: 769px) {
       .deepener-main {
-        display: grid;
-        grid-template-columns: 52% 1fr;
-        grid-template-rows: auto 1fr;
-        column-gap: 3rem;
-        align-items: stretch;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 3rem;
+      }
+
+      .deepener-left-col {
+        flex: 0 0 52%;
+        order: unset;
+      }
+
+      .deepener-picture {
+        flex: 1;
+        min-width: 0;
+        order: unset;
       }
 
       .deepener-heading {
-        grid-column: 1;
-        grid-row: 1;
         text-align: left;
         margin-bottom: 1rem;
-        order: unset;
-      }
-
-      .deepener-text {
-        grid-column: 1;
-        grid-row: 2;
-        align-self: start;
-        order: unset;
       }
 
       .deepener-image {
-        grid-column: 2;
-        grid-row: 1 / 3;
-        height: 100% !important;
-        min-height: 380px;
+        width: 100% !important;
+        height: 420px !important;
         margin-bottom: 0;
         order: unset;
       }
@@ -2338,13 +2342,15 @@
     <!-- SECTION 3: PROBLEM DEEPENER -->
     <section class="problem-deepener reveal">
       <div class="deepener-main">
-        <h2 class="deepener-heading">You're Not Imagining It. And It's Not Just Your Diet.</h2>
-        <div class="deepener-text">
-          <p>You've been told it's stress. Or gluten. Or IBS. Maybe all three. You've cut foods out, added supplements, tried the elimination plans. And yet your gut still doesn't feel right.</p>
-          <p>The constant bloating. The cramping after meals. The anxiety around food. The exhaustion of never knowing what your body will do next.</p>
-          <p>What nobody has told you is this: stress, anxiety, and unprocessed emotion physically change how your digestive system functions. Your gut has its own nervous system. And when your nervous system is stuck in stress mode, no diet in the world will fully fix what's happening.</p>
+        <div class="deepener-left-col">
+          <h2 class="deepener-heading">You're Not Imagining It. And It's Not Just Your Diet.</h2>
+          <div class="deepener-text">
+            <p>You've been told it's stress. Or gluten. Or IBS. Maybe all three. You've cut foods out, added supplements, tried the elimination plans. And yet your gut still doesn't feel right.</p>
+            <p>The constant bloating. The cramping after meals. The anxiety around food. The exhaustion of never knowing what your body will do next.</p>
+            <p>What nobody has told you is this: stress, anxiety, and unprocessed emotion physically change how your digestive system functions. Your gut has its own nervous system. And when your nervous system is stuck in stress mode, no diet in the world will fully fix what's happening.</p>
+          </div>
         </div>
-        <picture>
+        <picture class="deepener-picture">
           <source srcset="assets/digestive%20pain.webp" type="image/webp" />
           <img class="deepener-image" src="assets/digestive%20pain.png" alt="Woman experiencing digestive discomfort" style="width:100%;height:420px;object-fit:cover;object-position:center top;border-radius:12px;" loading="lazy" decoding="async" width="800" height="420" />
         </picture>
@@ -2477,10 +2483,10 @@ reason why.
         <p>Over a lifetime, most people suppress far more emotion than they release. That unprocessed emotional material sits in the nervous system and the body, driving physical symptoms that no diet can reach.</p>
         <p>This is what we address in this 30-day program. We focus on clearing out the backlog within the system so the organs and energy can be open and flow again. EFT Tapping is the tool that makes this possible — not managing the backlog, but clearing it.</p>
       </div>
-      <div style="margin: 2.5rem auto 0 auto; max-width:480px;">
+      <div style="margin: 2.5rem auto 0 auto; max-width:660px;">
         <picture>
           <source srcset="assets/open%20and%20flow.webp" type="image/webp" />
-          <img src="assets/open%20and%20flow.png" alt="Emotional Backlog to Open and Flow" style="width:100%; border-radius:14px; box-shadow:0 6px 28px rgba(44,36,22,0.12); display:block;" loading="lazy" decoding="async" width="900" height="600" />
+          <img src="assets/open%20and%20flow.png" alt="Emotional Backlog to Open and Flow" style="width:100%; max-height:320px; object-fit:cover; border-radius:14px; box-shadow:0 6px 28px rgba(44,36,22,0.12); display:block;" loading="lazy" decoding="async" width="900" height="600" />
         </picture>
       </div>
     </section>
