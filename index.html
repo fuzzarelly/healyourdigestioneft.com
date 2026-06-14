@@ -2149,6 +2149,17 @@
       }
     }
 
+    .river-image {
+      height: auto;
+    }
+
+    @media (min-width: 769px) {
+      .river-image {
+        max-height: 320px;
+        object-fit: cover;
+      }
+    }
+
     /* Problem deepener two-column layout */
     .deepener-main {
       display: flex;
@@ -2486,7 +2497,7 @@ reason why.
       <div style="margin: 2.5rem auto 0 auto; max-width:660px;">
         <picture>
           <source srcset="assets/open%20and%20flow.webp" type="image/webp" />
-          <img src="assets/open%20and%20flow.png" alt="Emotional Backlog to Open and Flow" style="width:100%; max-height:320px; object-fit:cover; border-radius:14px; box-shadow:0 6px 28px rgba(44,36,22,0.12); display:block;" loading="lazy" decoding="async" width="900" height="600" />
+          <img class="river-image" src="assets/open%20and%20flow.png" alt="Emotional Backlog to Open and Flow" style="width:100%; border-radius:14px; box-shadow:0 6px 28px rgba(44,36,22,0.12); display:block;" loading="lazy" decoding="async" width="900" height="600" />
         </picture>
       </div>
     </section>
