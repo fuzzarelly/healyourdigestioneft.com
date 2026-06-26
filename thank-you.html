@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JX9XSHVB25"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JX9XSHVB25');
+    gtag('event', 'waitlist_signup', { 'event_category': 'conversion' });
+  </script>
+
+  <title>You're on the list — Heal Your Digestion with EFT</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Serif+Display&display=swap" />
+
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: 'Lora', Georgia, serif;
+      color: #2C2416;
+      background: #FAF7F2;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #FAF7F2;
+      min-height: 100%;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    /* --- Header --- */
+    header {
+      background: #2C2416;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 2rem;
+    }
+
+    .header-brand {
+      font-family: 'Lora', serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #F0C070;
+      letter-spacing: 0.04em;
+    }
+
+    /* --- Main --- */
+    .page-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 60px 20px 80px;
+      text-align: center;
+    }
+
+    /* --- Checkmark icon --- */
+    .icon-circle {
+      width: 72px;
+      height: 72px;
+      background: #4A7C6F;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 32px;
+    }
+
+    .icon-circle svg {
+      width: 36px;
+      height: 36px;
+      stroke: #FAF7F2;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* --- Heading --- */
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #4A7C6F;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin: 0 0 16px;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin: 0 0 20px;
+      color: #2C2416;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #3D3027;
+      margin: 0 0 48px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* --- What happens next card --- */
+    .next-steps {
+      background: #fff;
+      border: 1px solid rgba(44, 36, 22, 0.08);
+      border-radius: 24px;
+      padding: 36px 32px;
+      box-shadow: 0 14px 38px rgba(44, 36, 22, 0.06);
+      text-align: left;
+      margin-bottom: 40px;
+    }
+
+    .next-steps h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      margin: 0 0 24px;
+      color: #2C2416;
+      text-align: center;
+    }
+
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .step:last-child {
+      margin-bottom: 0;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: #C17A3A;
+      color: #FAF7F2;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-top: 2px;
+    }
+
+    .step-text strong {
+      display: block;
+      color: #2C2416;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .step-text p {
+      margin: 0;
+      color: #6B5E52;
+      font-size: 0.95rem;
+    }
+
+    /* --- Testimonial snippet --- */
+    .testimonial {
+      background: #F0EBE1;
+      border-left: 3px solid #C17B2F;
+      border-radius: 12px;
+      padding: 24px 28px;
+      text-align: left;
+      margin-bottom: 40px;
+    }
+
+    .testimonial p {
+      margin: 0 0 12px;
+      font-style: italic;
+      color: #2C2416;
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+
+    .testimonial .name {
+      margin: 0;
+      font-weight: 600;
+      color: #C17B2F;
+      font-size: 0.88rem;
+    }
+
+    /* --- Back link --- */
+    .back-link {
+      display: inline-block;
+      color: #6B5E52;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(107, 94, 82, 0.35);
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .back-link:hover {
+      color: #C17A3A;
+      border-color: #C17A3A;
+    }
+
+    /* --- Footer --- */
+    footer {
+      background: #2C2416;
+      color: #FAF7F2;
+      padding: 28px 0 14px;
+      font-size: 0.92rem;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    footer p {
+      color: rgba(250, 247, 242, 0.8);
+      margin: 0 0 6px;
+    }
+
+    @media (max-width: 520px) {
+      .next-steps {
+        padding: 28px 20px;
+      }
+      .testimonial {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <span class="header-brand">Heal Your Digestion with EFT</span>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+
+    <div class="icon-circle">
+      <svg viewBox="0 0 24 24">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+
+    <p class="section-label">You're on the waiting list</p>
+    <h1>Congrats — you've joined the waiting list!</h1>
+    <p class="subtitle">You'll be among the first to hear when doors open again, along with an early-bird offer exclusive to the waiting list.</p>
+
+    <div class="next-steps">
+      <h2>What happens next</h2>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Check your inbox</strong>
+          <p>A confirmation email is on its way. If you don't see it in the next few minutes, check your spam folder.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Watch for your early-bird invite</strong>
+          <p>When enrolment opens, waitlist members get first access and a special discount — before it's announced publicly.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>Start your 30-day journey</strong>
+          <p>Use EFT Tapping to address the emotional root cause behind your gut symptoms — the piece most gut advice misses.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial">
+      <p>"I had IBS for years and tried everything. Within two weeks of this program I noticed a real shift — less bloating, less anxiety around food. I wish I'd found this sooner."</p>
+      <p class="name">— Sarah M., program participant</p>
+    </div>
+
+    <a class="back-link" href="index.html">← Back to the main page</a>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p>Heal Your Digestion with EFT · healyourdigestioneft.com</p>
+      <p>© 2026 · All rights reserved</p>
+      <p>This program is complementary to medical treatment and does not replace advice from your doctor.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
