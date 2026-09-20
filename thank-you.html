@@ -5,12 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JX9XSHVB25"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HFTYSBJ0B"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+
+    /* Main property - one property across every domain, with cross-domain linking. */
+    gtag('config', 'G-6HFTYSBJ0B', {
+      linker: { domains: [
+        'michaelhetherington.com',
+        'www.michaelhetherington.com',
+        'healyourselfeft.com',
+        'healyourdigestioneft.com',
+        'eftpractitionertraining.com',
+        'mindbodymedicineacademy.onlinecoursehost.com'
+      ] }
+    });
+
+    /* Google Ads - builds remarketing audiences from sales-page visitors. */
+    gtag('config', 'AW-1016615342');
+
+    /* Original property, kept so existing reports stay continuous. */
     gtag('config', 'G-JX9XSHVB25');
+
     gtag('event', 'waitlist_signup', { 'event_category': 'conversion' });
   </script>
 

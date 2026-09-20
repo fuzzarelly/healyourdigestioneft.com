@@ -5,12 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JX9XSHVB25"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HFTYSBJ0B"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+
+    /* Main property - one property across every domain, with cross-domain linking. */
+    gtag('config', 'G-6HFTYSBJ0B', {
+      linker: { domains: [
+        'michaelhetherington.com',
+        'www.michaelhetherington.com',
+        'healyourselfeft.com',
+        'healyourdigestioneft.com',
+        'eftpractitionertraining.com',
+        'mindbodymedicineacademy.onlinecoursehost.com'
+      ] }
+    });
+
+    /* Google Ads - quiz takers are the highest-intent remarketing audience. */
+    gtag('config', 'AW-1016615342');
+
+    /* Original property, kept so existing reports stay continuous. */
     gtag('config', 'G-JX9XSHVB25');
+  </script>
+  <script>
+    /* Capture ad click IDs so they survive to the checkout link later in the funnel. */
+    (function () {
+      var q = new URLSearchParams(location.search);
+      var put = function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} };
+      var get = function (k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } };
+      ['gclid', 'wbraid', 'gbraid', 'utm_source', 'utm_medium', 'utm_campaign'].forEach(function (k) {
+        var v = q.get(k); if (v) put('mh_' + k, v);
+      });
+      var clean = function (s) { return String(s || '').replace(/[^A-Za-z0-9_-]/g, ''); };
+      function clientId() {
+        var m = document.cookie.match(/_ga=GA\d\.\d\.(\d+\.\d+)/);
+        return m ? m[1].replace('.', '_') : '';
+      }
+      function reference() {
+        var parts = ['c' + clean(clientId())];
+        var click = get('mh_gclid') || get('mh_wbraid') || get('mh_gbraid');
+        if (click) parts.push('g' + clean(click));
+        var src = get('mh_utm_source');
+        if (src) parts.push('s' + clean(src));
+        return parts.join('-').slice(0, 195);
+      }
+      function decorate() {
+        var ref = reference();
+        if (!ref) return;
+        Array.prototype.forEach.call(
+          document.querySelectorAll('a[href*="buy.stripe.com"]'),
+          function (a) {
+            try { var u = new URL(a.href); u.searchParams.set('client_reference_id', ref); a.href = u.toString(); } catch (e) {}
+          }
+        );
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', decorate); }
+      else { decorate(); }
+      setTimeout(decorate, 1500);
+    })();
   </script>
   <title>Quiz: Is This Program Right For You? | Heal Your Digestion with EFT</title>
   <link rel="icon" type="image/png" href="assets/favicon.png" />
@@ -292,8 +346,38 @@
         padding: 1rem 1.2rem;
       }
     }
+
+    /* style SendFox's own markup, left structurally untouched */
+    .mh-cap form.sendfox-form p{margin:0 0 10px;}
+    .mh-cap form.sendfox-form label{display:block;font-size:.8rem;margin-bottom:4px;opacity:.85;}
+    .mh-cap form.sendfox-form input[type=text],
+    .mh-cap form.sendfox-form input[type=email]{width:100%;padding:13px 14px;font-size:16px;font-family:inherit;border:1px solid rgba(0,0,0,.18);border-radius:6px;background:#fff;color:#1b1b1b;box-sizing:border-box;}
+    .mh-cap form.sendfox-form button{width:100%;}
   </style>
 
+
+  <style>
+    /* Quiz lead capture */
+    .mh-cap{margin-top:28px;padding:22px 20px;border-radius:10px;text-align:left;}
+    .mh-cap--primary{background:#FBF4EA;border:1px solid #E7D6BD;}
+    .mh-cap--secondary{background:transparent;border-top:1px solid #DDD3C4;border-radius:0;padding:22px 0 0;margin-top:26px;}
+    .mh-cap h3{margin:0 0 6px;font-size:1.05rem;line-height:1.3;color:#3A3226;}
+    .mh-cap p.mh-cap__sub{margin:0 0 14px;font-size:.92rem;line-height:1.55;color:#6F6552;}
+    .mh-cap__row{display:flex;flex-wrap:wrap;gap:10px;}
+    .mh-cap__row input[type=text],.mh-cap__row input[type=email]{
+      flex:1 1 180px;min-width:0;padding:13px 14px;font-size:16px;font-family:inherit;
+      border:1px solid #DDD3C4;border-radius:6px;background:#fff;color:#1b1b1b;}
+    .mh-cap__row input:focus{outline:2px solid #C17B2F;outline-offset:1px;}
+    .mh-cap__btn{flex:1 1 100%;padding:14px 18px;font-size:1rem;font-weight:600;font-family:inherit;
+      border:0;border-radius:6px;background:#C17B2F;color:#fff;cursor:pointer;}
+    .mh-cap__btn:hover{opacity:.9;}
+    .mh-cap__note{margin:10px 0 0;font-size:.78rem;color:#6F6552;}
+    .mh-cap__done{display:none;padding:16px 0 0;font-size:.95rem;line-height:1.55;color:#3A3226;}
+    .mh-cap.is-done .mh-cap__form,.mh-cap.is-done .mh-cap__sub{display:none;}
+    .mh-cap.is-done .mh-cap__done{display:block;}
+    .mh-cap__hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+    @media(max-width:520px){.mh-cap__row input[type=text],.mh-cap__row input[type=email]{flex:1 1 100%;}}
+  </style>
 </head>
 <body>
   <div class="quiz-wrap">
@@ -333,6 +417,12 @@
       </div>
       <a class="cta-btn" href="https://mindbodymedicineacademy.onlinecoursehost.com/courses/digestion-eft-sept25" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'enroll_click', {'button_location': 'quiz_result'});">Enrol Now</a>
       <span class="cta-note">Self-paced · 100% online · 14-day money-back guarantee.</span>
+
+      <div class="mh-cap mh-cap--secondary" id="mh-cap-dig-fit" style="display:none">
+        <h3>Not ready to enrol today?</h3>
+        <p class="mh-cap__sub">Get a free 10 minute gut healing script instead. You can use it tonight.</p>
+        <div class="mh-cap__slot"></div>
+      </div>
     </div>
 
     <!-- RESULT: NOT A FIT -->
@@ -348,6 +438,22 @@
         <p>It simply means that your situation may need more individual attention than a group program provides. Many of our most successful students started with a one-on-one session first.</p>
         <p>If you would like to explore whether EFT Tapping is right for your specific situation, you are welcome to browse the free resources on <a href="https://www.michaelhetherington.com" target="_blank" rel="noopener noreferrer" style="color:#C17B2F;">michaelhetherington.com</a> or watch the <a href="https://www.youtube.com/@MichaelHetherington" target="_blank" rel="noopener noreferrer" style="color:#C17B2F;">YouTube channel</a> to get a feel for the approach before committing.</p>
       </div>
+
+    <div class="mh-cap mh-cap--primary" id="mh-cap-dig-notfit">
+      <h3>Before you go, take this with you</h3>
+      <p class="mh-cap__sub">A short EFT tapping script for settling your gut and the stress sitting underneath it. Free, and you can use it tonight.</p>
+      <form method="post" action="https://sendfox.com/form/m44x5n/3ekowl" class="sendfox-form" id="3ekowl" data-async="true" data-recaptcha="true" data-quiz="digestion" data-branch="not_fit">
+          <p><label for="sendfox_form_name">First Name: </label><input type="text" id="sendfox_form_name" placeholder="First Name" name="first_name" required /></p>
+          <p><label for="sendfox_form_email">Email: </label><input type="email" id="sendfox_form_email" placeholder="Email" name="email" required /></p>
+          <!-- no botz please -->
+          <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="a_password" tabindex="-1" value="" autocomplete="off" /></div>
+          <p><button type="submit" class="mh-cap__btn">Send me the script</button></p>
+        </form>
+      <div class="mh-cap__done">
+        <strong>On its way.</strong> Check your inbox in the next couple of minutes. If it is not there, have a look in promotions or spam.
+      </div>
+    </div>
+
     </div>
 
     <!-- FOOTER -->
@@ -520,5 +626,67 @@
   src="https://www.facebook.com/tr?id=1017196089549728&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Meta Pixel Code -->
+  <script src="https://cdn.sendfox.com/js/form.js" charset="utf-8"></script>
+  <script>
+    /* Report the lead to GA4 and Ads. SendFox's script submits the form itself,
+       so we hook the button click rather than a submit event. */
+    (function () {
+      var btns = document.querySelectorAll('.mh-cap__btn');
+      Array.prototype.forEach.call(btns, function (btn) {
+        btn.addEventListener('click', function () {
+          var f = btn.form || btn.closest('form');
+          if (!f || (f.checkValidity && !f.checkValidity())) { return; }
+          try {
+            if (typeof gtag === 'function') {
+              gtag('event', 'quiz_lead', {
+                quiz_name: f.getAttribute('data-quiz'),
+                result_branch: f.getAttribute('data-branch'),
+                event_category: 'conversion'
+              });
+            }
+          } catch (e) {}
+        });
+      });
+    })();
+  </script>
+  <script>
+    /* The digestion quiz shows one result card at a time, and SendFox's embed
+       needs a unique id, so there is only ever one form. Move it into whichever
+       result is on screen rather than duplicating it. */
+    (function () {
+      var form = document.getElementById('3ekowl');
+      var notFitCap = document.getElementById('mh-cap-dig-notfit');
+      var fitCap = document.getElementById('mh-cap-dig-fit');
+      if (!form || !notFitCap || !fitCap) { return; }
+      var done = notFitCap.querySelector('.mh-cap__done');
+      var slot = fitCap.querySelector('.mh-cap__slot');
+
+      function place() {
+        var fit = document.getElementById('result-fit');
+        var showingFit = !!(fit && fit.classList.contains('visible'));
+        if (showingFit && !slot.contains(form)) {
+          slot.appendChild(form);
+          if (done) { slot.appendChild(done); }
+          form.setAttribute('data-branch', 'strong_fit');
+          fitCap.style.display = '';
+          notFitCap.style.display = 'none';
+        } else if (!showingFit && slot.contains(form)) {
+          notFitCap.insertBefore(form, done || null);
+          if (done) { notFitCap.appendChild(done); }
+          form.setAttribute('data-branch', 'not_fit');
+          fitCap.style.display = 'none';
+          notFitCap.style.display = '';
+        }
+      }
+
+      ['result-fit', 'result-notfit'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el && window.MutationObserver) {
+          new MutationObserver(place).observe(el, { attributes: true, attributeFilter: ['class'] });
+        }
+      });
+      place();
+    })();
+  </script>
 </body>
 </html>
