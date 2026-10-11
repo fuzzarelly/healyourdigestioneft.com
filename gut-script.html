@@ -31,12 +31,14 @@
   </script>
 
   <meta name="robots" content="noindex" />
+  <meta name="description" content="Your free 10-Minute Bloat Relief Kit: a tap-along EFT video, the Bloat Relief Script and the 5 Element Emotion Chart." />
   <title>Your 10-Minute Bloat Relief Kit | Heal Your Digestion with EFT</title>
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="apple-touch-icon" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Serif+Display&display=swap" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Serif+Display&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Serif+Display&display=swap" /></noscript>
 
   <style>
     :root {
@@ -213,12 +215,42 @@
       background: #2C2416;
     }
 
-    .video-frame iframe {
+    .video-frame iframe,
+    .video-play {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       border: 0;
+    }
+
+    /* Thumbnail stand-in: the YouTube player (about 1MB) only loads on tap. */
+    .video-play {
+      padding: 0;
+      cursor: pointer;
+      background: #2C2416;
+    }
+
+    .video-play img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 68px;
+      height: 48px;
+      transform: translate(-50%, -50%);
+      transition: transform 0.2s ease;
+    }
+
+    .video-play:hover .video-play-icon,
+    .video-play:focus-visible .video-play-icon {
+      transform: translate(-50%, -50%) scale(1.08);
     }
 
     /* --- Program section --- */
@@ -331,7 +363,13 @@
         </div>
         <p>Follow the 10-minute Bloat Relief Script with me on video, so you can see exactly where to tap.</p>
         <div class="video-frame">
-          <iframe src="https://www.youtube.com/embed/IfMpic-Tq1E" title="Tap along with me: 10-Minute Bloat Relief" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <button class="video-play" type="button" data-src="https://www.youtube.com/embed/IfMpic-Tq1E" aria-label="Play video: Tap along with me">
+            <img src="https://i.ytimg.com/vi/IfMpic-Tq1E/hqdefault.jpg" alt="" width="480" height="360" decoding="async" />
+            <svg class="video-play-icon" viewBox="0 0 68 48" aria-hidden="true">
+              <path d="M66.5 7.7c-.8-2.9-2.5-5.4-5.4-6.2C55.8.1 34 0 34 0S12.2.1 6.9 1.6C4 2.4 2.3 4.8 1.5 7.7.1 13 0 24 0 24s.1 11 1.5 16.3c.8 2.9 2.5 5.4 5.4 6.2C12.2 47.9 34 48 34 48s21.8-.1 27.1-1.6c2.9-.8 4.6-3.2 5.4-6.2C67.9 35 68 24 68 24s-.1-11-1.5-16.3z" fill="#C17B2F"/>
+              <path d="M45 24 27 14v20" fill="#fff"/>
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -377,32 +415,62 @@
       try { gtag('event', 'kit_click', { item: item }); } catch (e) {}
     }
 
+    var program = document.querySelector('[data-cta="program"]');
+    if (program) {
+      program.addEventListener('click', function () {
+        try { gtag('event', 'program_click', { source: 'bloat_kit' }); } catch (e) {}
+      });
+    }
+
     document.querySelectorAll('.kit-btn[data-item]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         kitClick(btn.getAttribute('data-item'));
       });
     });
 
-    /* Clicks inside the YouTube iframe never reach this page, but the window
-       loses focus to the iframe when it is clicked or tapped. Fire once. */
+    /* The video shows as a thumbnail and swaps in the YouTube player on tap.
+       kit_click fires once for any click or tap in the video section. */
     (function () {
       var section = document.getElementById('kit-video');
-      var iframe = section && section.querySelector('iframe');
       if (!section) { return; }
       var sent = false;
-      function once() {
+      section.addEventListener('click', function () {
         if (sent) { return; }
         sent = true;
         kitClick('video');
-      }
-      section.addEventListener('click', once);
-      window.addEventListener('blur', function () {
-        setTimeout(function () {
-          if (document.activeElement === iframe) { once(); }
-        }, 0);
+      });
+
+      var play = section.querySelector('.video-play');
+      if (!play) { return; }
+      play.addEventListener('click', function () {
+        var iframe = document.createElement('iframe');
+        iframe.src = play.getAttribute('data-src') + '?autoplay=1&rel=0';
+        iframe.title = 'Tap along with me: 10-Minute Bloat Relief';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        iframe.allowFullscreen = true;
+        play.replaceWith(iframe);
+        iframe.focus();
       });
     })();
   </script>
 
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window,document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1017196089549728');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1017196089549728&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
 </body>
 </html>

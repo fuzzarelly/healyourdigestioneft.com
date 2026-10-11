@@ -66,6 +66,7 @@
       setTimeout(decorate, 1500);
     })();
   </script>
+  <meta name="description" content="Take the 60-second quiz to find out if the 30-Day Heal Your Digestion with EFT program is right for you, and get the free 10-Minute Bloat Relief Kit." />
   <title>Quiz: Is This Program Right For You? | Heal Your Digestion with EFT</title>
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="apple-touch-icon" href="assets/favicon.png" />
@@ -636,6 +637,7 @@
     function showEmailGate() {
       const form = document.getElementById('3ekowl');
       if (form) form.setAttribute('data-branch', isFit() ? 'strong_fit' : 'not_fit');
+      if (window.mhLoadSendFox) window.mhLoadSendFox();
       fadeIn(emailGate);
     }
 
@@ -659,7 +661,7 @@
 
     document.querySelectorAll('.enrol-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        track('enrol_click', { button_location: 'quiz_result', result: resultKey() });
+        track('enroll_click', { button_location: 'quiz_result', result: resultKey() });
         fbTrack('InitiateCheckout');
       });
     });
@@ -685,29 +687,6 @@
   src="https://www.facebook.com/tr?id=1017196089549728&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Meta Pixel Code -->
-  <script src="https://cdn.sendfox.com/js/form.js" charset="utf-8"></script>
-  <script>
-    /* Report the lead to GA4 and Ads. SendFox's script submits the form itself,
-       so we hook the button click rather than a submit event. */
-    (function () {
-      var btns = document.querySelectorAll('.mh-cap__btn');
-      Array.prototype.forEach.call(btns, function (btn) {
-        btn.addEventListener('click', function () {
-          var f = btn.form || btn.closest('form');
-          if (!f || (f.checkValidity && !f.checkValidity())) { return; }
-          try {
-            if (typeof gtag === 'function') {
-              gtag('event', 'quiz_lead', {
-                quiz_name: f.getAttribute('data-quiz'),
-                result_branch: f.getAttribute('data-branch'),
-                event_category: 'conversion'
-              });
-            }
-          } catch (e) {}
-        });
-      });
-    })();
-  </script>
   <script>
     /* Email gate. SendFox's form.js does the actual submit (reCAPTCHA + XHR) and
        then appends a .sendfox-message.success or .error paragraph to the form.
@@ -719,6 +698,58 @@
       var firstName = '';
       var settled = false;
       var timer = null;
+
+      /* SendFox's form.js pulls in about 1MB of reCAPTCHA as soon as it runs,
+         which made the quiz slow on phones. It is only needed for this form,
+         so load it when the email screen appears instead of with the page.
+         form.js wires itself up on DOMContentLoaded, which has already fired by
+         then, so catch that listener while the script loads and call it. */
+      var sendfox = null;
+      window.mhLoadSendFox = function () {
+        if (sendfox) { return sendfox; }
+        sendfox = new Promise(function (resolve) {
+          var add = document.addEventListener;
+          var init = null;
+          document.addEventListener = function (type, fn) {
+            if (type === 'DOMContentLoaded') { init = fn; return; }
+            return add.apply(this, arguments);
+          };
+          var s = document.createElement('script');
+          s.src = 'https://cdn.sendfox.com/js/form.js';
+          s.charset = 'utf-8';
+          s.onload = function () {
+            document.addEventListener = add;
+            try { if (init) { init(); } } catch (e) { console.error('SendFox init failed:', e); }
+            resolve(!!init);
+          };
+          s.onerror = function () {
+            document.addEventListener = add;
+            resolve(false);
+          };
+          document.body.appendChild(s);
+        });
+        return sendfox;
+      };
+
+      function ready() {
+        return !!window.SENDFOX_FORM_LOADED && !!sendfox &&
+          (form.getAttribute('data-recaptcha') !== 'true' || !!(window.grecaptcha && window.grecaptcha.ready));
+      }
+
+      // Resolves true once form.js and reCAPTCHA are ready, false if that takes over 10s.
+      function whenReady() {
+        return window.mhLoadSendFox().then(function (loaded) {
+          if (!loaded) { return false; }
+          return new Promise(function (resolve) {
+            var start = Date.now();
+            (function check() {
+              if (ready()) { return resolve(true); }
+              if (Date.now() - start > 10000) { return resolve(false); }
+              setTimeout(check, 100);
+            })();
+          });
+        });
+      }
 
       function finish(ok, err) {
         if (ok) {
@@ -763,10 +794,18 @@
       form.addEventListener('submit', function (e) {
         // form.js resets the form on success, so grab the name now.
         firstName = (form.querySelector('[name="first_name"]') || {}).value || '';
-        if (!window.SENDFOX_FORM_LOADED) {
-          // SendFox script blocked or failed to load: don't post away from the page.
+        if (!ready()) {
+          // Still loading (or blocked): hold the submit, then hand it to form.js once
+          // it's ready. Never let the browser post away from the page.
           e.preventDefault();
-          finish(false, 'SendFox form.js not loaded');
+          e.stopImmediatePropagation();
+          var btn = form.querySelector('button');
+          if (btn) { btn.disabled = true; }
+          whenReady().then(function (ok) {
+            if (btn) { btn.disabled = false; }
+            if (!ok) { finish(false, 'SendFox form.js or reCAPTCHA did not load'); return; }
+            form.dispatchEvent(new Event('submit', { cancelable: true }));
+          });
           return;
         }
         // Network errors and reCAPTCHA hangs only log inside form.js, so fall back on a timeout.
