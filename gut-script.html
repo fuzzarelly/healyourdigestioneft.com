@@ -176,6 +176,81 @@
 
     .kit-btn:hover { background: #A36530; }
 
+    /* --- Video item --- */
+    .kit-item--video {
+      display: block;
+    }
+
+    .kit-head {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .kit-head .kit-num { margin-top: 0; }
+
+    .kit-head h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      line-height: 1.2;
+      margin: 0;
+      color: #2C2416;
+    }
+
+    .kit-item--video > p {
+      margin: 0 0 18px;
+      color: #6B5E52;
+      font-size: 0.95rem;
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #2C2416;
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* --- Program section --- */
+    .deeper {
+      background: #F0EBE1;
+      border-radius: 24px;
+      padding: 36px 32px;
+    }
+
+    .deeper h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      line-height: 1.15;
+      margin: 0 0 12px;
+      color: #2C2416;
+    }
+
+    .deeper p {
+      margin: 0 auto 22px;
+      max-width: 520px;
+      color: #3D3027;
+      font-size: 0.98rem;
+    }
+
+    .deeper-note {
+      display: block;
+      margin-top: 12px;
+      color: #6B5E52;
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+
     /* --- Back link --- */
     .back-link {
       display: inline-block;
@@ -212,10 +287,20 @@
       margin: 0 0 6px;
     }
 
+    footer a {
+      color: rgba(250, 247, 242, 0.8);
+    }
+
     @media (max-width: 520px) {
       .kit-item {
         padding: 24px 20px;
         gap: 14px;
+      }
+      .kit-head {
+        gap: 14px;
+      }
+      .deeper {
+        padding: 28px 20px;
       }
       .kit-btn {
         display: block;
@@ -236,26 +321,26 @@
 
     <p class="section-label">Your free gift</p>
     <h1>Your 10-Minute Bloat Relief Kit</h1>
-    <p class="subtitle">Three short tools for settling your gut and the stress sitting underneath it. Start with the script or the video tonight.</p>
+    <p class="subtitle">Three short tools for settling your gut and the stress sitting underneath it. Start with the video tonight.</p>
 
     <div class="kit">
-      <div class="kit-item">
-        <div class="kit-num">1</div>
-        <div class="kit-body">
-          <h2>The Bloat Relief Script</h2>
-          <p>The 10-minute EFT tapping script, word for word. Print it or keep it on your phone.</p>
-          <!-- TODO: replace # with [SCRIPT DRIVE LINK] -->
-          <a class="kit-btn" href="#" target="_blank" rel="noopener noreferrer" data-item="script">Download the script (PDF)</a>
+      <div class="kit-item kit-item--video" id="kit-video">
+        <div class="kit-head">
+          <div class="kit-num">1</div>
+          <h2>Tap along with me</h2>
+        </div>
+        <p>Follow the 10-minute Bloat Relief Script with me on video, so you can see exactly where to tap.</p>
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/IfMpic-Tq1E" title="Tap along with me: 10-Minute Bloat Relief" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
       </div>
 
       <div class="kit-item">
         <div class="kit-num">2</div>
         <div class="kit-body">
-          <h2>Tap along with me</h2>
-          <p>Follow the same script on video, so you can see exactly where to tap.</p>
-          <!-- TODO: replace # with [YOUTUBE LINK] -->
-          <a class="kit-btn" href="#" target="_blank" rel="noopener noreferrer" data-item="video">Watch the video</a>
+          <h2>The Bloat Relief Script</h2>
+          <p>The 10-minute EFT tapping script, word for word. Print it or keep it on your phone.</p>
+          <a class="kit-btn" href="https://drive.google.com/uc?export=download&amp;id=16zlkM2PiwHBag2ZdvSam6vbsSMoxxZ-p" target="_blank" rel="noopener noreferrer" data-item="script">Download the script (PDF)</a>
         </div>
       </div>
 
@@ -264,30 +349,59 @@
         <div class="kit-body">
           <h2>The 5 Element Emotion Chart</h2>
           <p>Find the emotion behind your gut symptom, so you know what to tap on.</p>
-          <!-- TODO: replace # with [CHART DRIVE LINK] -->
-          <a class="kit-btn" href="#" target="_blank" rel="noopener noreferrer" data-item="chart">Download the chart (PDF)</a>
+          <a class="kit-btn" href="https://drive.google.com/uc?export=download&amp;id=1KZ_7UzGjwDhkQIro7C7B7it60_WM8-5e" target="_blank" rel="noopener noreferrer" data-item="chart">Download the chart (PDF)</a>
         </div>
       </div>
     </div>
 
-    <a class="back-link" href="index.html">← Learn about the 30-Day Program</a>
+    <div class="deeper">
+      <h2>Want to go deeper?</h2>
+      <p>The Bloat Relief Kit is a starting point. The 30-Day Heal Your Digestion with EFT program works through the stress and stored emotion behind your gut symptoms, one organ system at a time, from home and at your own pace.</p>
+      <a class="kit-btn" href="index.html" data-cta="program">See the 30-Day Program</a>
+      <span class="deeper-note">Self-paced · 100% online · 14-day money-back guarantee</span>
+    </div>
 
   </main>
 
   <footer>
     <div class="footer-inner">
       <p>Heal Your Digestion with EFT · healyourdigestioneft.com</p>
+      <p><a href="mailto:info@michaelhetherington.com">info@michaelhetherington.com</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
       <p>© 2026 · All rights reserved</p>
       <p>This program is complementary to medical treatment and does not replace advice from your doctor.</p>
     </div>
   </footer>
 
   <script>
-    document.querySelectorAll('.kit-btn').forEach(function (btn) {
+    function kitClick(item) {
+      try { gtag('event', 'kit_click', { item: item }); } catch (e) {}
+    }
+
+    document.querySelectorAll('.kit-btn[data-item]').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        try { gtag('event', 'kit_click', { item: btn.getAttribute('data-item') }); } catch (e) {}
+        kitClick(btn.getAttribute('data-item'));
       });
     });
+
+    /* Clicks inside the YouTube iframe never reach this page, but the window
+       loses focus to the iframe when it is clicked or tapped. Fire once. */
+    (function () {
+      var section = document.getElementById('kit-video');
+      var iframe = section && section.querySelector('iframe');
+      if (!section) { return; }
+      var sent = false;
+      function once() {
+        if (sent) { return; }
+        sent = true;
+        kitClick('video');
+      }
+      section.addEventListener('click', once);
+      window.addEventListener('blur', function () {
+        setTimeout(function () {
+          if (document.activeElement === iframe) { once(); }
+        }, 0);
+      });
+    })();
   </script>
 
 </body>
