@@ -71,6 +71,7 @@
       setTimeout(decorate, 1500);
     })();
   </script>
+  <meta name="description" content="A self-paced 30-day program that uses EFT tapping, grounded in Chinese medicine, to work on the stress and stored emotion behind bloating, IBS and other gut symptoms. 14-day money-back guarantee." />
   <title>Heal Your Digestion with EFT</title>
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="apple-touch-icon" href="assets/favicon.png" />
@@ -202,6 +203,13 @@
     section.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* The hero is above the fold: show it straight away rather than waiting
+       for the scroll-reveal script, so it paints fast on phones. */
+    section.hero {
+      opacity: 1;
+      transform: none;
     }
 
     .section-rule {
