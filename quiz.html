@@ -359,24 +359,20 @@
   <style>
     /* Quiz lead capture */
     .mh-cap{margin-top:28px;padding:22px 20px;border-radius:10px;text-align:left;}
-    .mh-cap--primary{background:#FBF4EA;border:1px solid #E7D6BD;}
-    .mh-cap--secondary{background:transparent;border-top:1px solid #DDD3C4;border-radius:0;padding:22px 0 0;margin-top:26px;}
-    .mh-cap h3{margin:0 0 6px;font-size:1.05rem;line-height:1.3;color:#3A3226;}
-    .mh-cap p.mh-cap__sub{margin:0 0 14px;font-size:.92rem;line-height:1.55;color:#6F6552;}
-    .mh-cap__row{display:flex;flex-wrap:wrap;gap:10px;}
-    .mh-cap__row input[type=text],.mh-cap__row input[type=email]{
-      flex:1 1 180px;min-width:0;padding:13px 14px;font-size:16px;font-family:inherit;
-      border:1px solid #DDD3C4;border-radius:6px;background:#fff;color:#1b1b1b;}
-    .mh-cap__row input:focus{outline:2px solid #C17B2F;outline-offset:1px;}
+    .mh-cap--gate{margin-top:20px;padding:0;}
+    .mh-cap input:focus{outline:2px solid #C17B2F;outline-offset:1px;}
     .mh-cap__btn{flex:1 1 100%;padding:14px 18px;font-size:1rem;font-weight:600;font-family:inherit;
       border:0;border-radius:6px;background:#C17B2F;color:#fff;cursor:pointer;}
     .mh-cap__btn:hover{opacity:.9;}
-    .mh-cap__note{margin:10px 0 0;font-size:.78rem;color:#6F6552;}
-    .mh-cap__done{display:none;padding:16px 0 0;font-size:.95rem;line-height:1.55;color:#3A3226;}
-    .mh-cap.is-done .mh-cap__form,.mh-cap.is-done .mh-cap__sub{display:none;}
-    .mh-cap.is-done .mh-cap__done{display:block;}
-    .mh-cap__hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
-    @media(max-width:520px){.mh-cap__row input[type=text],.mh-cap__row input[type=email]{flex:1 1 100%;}}
+    .mh-cap__btn:disabled{opacity:.6;cursor:wait;}
+    .mh-cap__note{margin:10px 0 0;font-size:.78rem;color:#6F6552;text-align:center;}
+    .mh-cap .sendfox-message{display:none;}
+
+    /* Results follow-on */
+    .text-link{display:block;margin-top:0.9rem;color:#C17B2F;font-size:0.9rem;text-decoration:none;}
+    .text-link:hover{text-decoration:underline;}
+    .script-sent{display:none;margin-top:1.8rem;padding-top:1.2rem;border-top:1px solid #DDD3C4;font-size:0.82rem;line-height:1.55;color:#6B5E4E;}
+    .lead-ok .script-sent{display:block;}
   </style>
 </head>
 <body>
@@ -403,26 +399,41 @@
       <div class="options-list" id="options-list"></div>
     </div>
 
+    <!-- EMAIL GATE (shown after the last question, before the result) -->
+    <div class="result-card" id="email-gate">
+      <span class="quiz-label">Your results are ready</span>
+      <h2 class="result-heading">Where should I send your results and your free gut script?</h2>
+      <div class="result-body">
+        <p>You'll see your result on the next screen. I'll also email you a 10-minute EFT tapping script for settling your gut and the stress sitting underneath it. Most people use it the same night.</p>
+      </div>
+      <div class="mh-cap mh-cap--gate">
+        <form method="post" action="https://sendfox.com/form/m44x5n/3ekowl" class="sendfox-form" id="3ekowl" data-async="true" data-recaptcha="true" data-quiz="digestion" data-branch="not_fit">
+          <p><label for="sendfox_form_name">First name</label><input type="text" id="sendfox_form_name" placeholder="First name" name="first_name" autocomplete="given-name" required /></p>
+          <p><label for="sendfox_form_email">Email</label><input type="email" id="sendfox_form_email" placeholder="Email" name="email" autocomplete="email" required /></p>
+          <!-- no botz please -->
+          <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="a_password" tabindex="-1" value="" autocomplete="off" /></div>
+          <p><button type="submit" class="mh-cap__btn">Show my results</button></p>
+        </form>
+        <p class="mh-cap__note">No spam. Unsubscribe in one click.</p>
+      </div>
+    </div>
+
     <!-- RESULT: STRONG FIT -->
     <div class="result-card" id="result-fit">
       <svg class="result-icon" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="32" cy="32" r="30" stroke="#C17B2F" stroke-width="2" fill="#FBF4EA"/>
         <path d="M20 32L28 40L44 24" stroke="#C17B2F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      <h2 class="result-heading">This Program Is a Strong Fit For You</h2>
+      <h2 class="result-heading" data-named="this program is a strong fit for you">This Program Is a Strong Fit For You</h2>
       <div class="result-body">
         <p>Based on your answers, you are dealing with chronic digestive symptoms that have not fully resolved through diet or conventional approaches. You also recognise that stress and emotion play a role in what you are experiencing.</p>
         <p>This is exactly who the 30-Day Heal Your Digestion with EFT program was built for. The program addresses the emotional root cause of digestive dysfunction using EFT Tapping grounded in Chinese medicine and nervous system science.</p>
-        <p>Most people notice a shift within the first session.</p>
+        <p>You don't have to overhaul your diet again. This works on the stress and stored emotion your gut has been carrying, from home, at your own pace.</p>
       </div>
-      <a class="cta-btn" href="https://mindbodymedicineacademy.onlinecoursehost.com/courses/digestion-eft-sept25" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'enroll_click', {'button_location': 'quiz_result'});">Enrol Now</a>
+      <a class="cta-btn enrol-btn" href="https://mindbodymedicineacademy.onlinecoursehost.com/courses/digestion-eft-sept25" target="_blank" rel="noopener noreferrer">Start the 30-Day Program</a>
+      <a class="text-link" href="https://healyourdigestioneft.com/">Read the full program details first →</a>
       <span class="cta-note">Self-paced · 100% online · 14-day money-back guarantee.</span>
-
-      <div class="mh-cap mh-cap--secondary" id="mh-cap-dig-fit" style="display:none">
-        <h3>Not ready to enrol today?</h3>
-        <p class="mh-cap__sub">Get a free 10 minute gut healing script instead. You can use it tonight.</p>
-        <div class="mh-cap__slot"></div>
-      </div>
+      <p class="script-sent">Your gut script is on its way. If it's not in your inbox in 2 minutes, check promotions or spam.</p>
     </div>
 
     <!-- RESULT: NOT A FIT -->
@@ -432,28 +443,14 @@
         <line x1="32" y1="28" x2="32" y2="44" stroke="#6B7B5E" stroke-width="3" stroke-linecap="round"/>
         <circle cx="32" cy="21" r="2.5" fill="#6B7B5E"/>
       </svg>
-      <h2 class="result-heading">A Group Program May Not Be Your Best Next Step</h2>
+      <h2 class="result-heading" data-named="start gently first">Start Gently First</h2>
       <div class="result-body">
-        <p>Based on your answers, you may benefit more from personalised one-on-one support before joining a group program. This does not mean EFT cannot help you. It almost certainly can.</p>
-        <p>It simply means that your situation may need more individual attention than a group program provides. Many of our most successful students started with a one-on-one session first.</p>
-        <p>If you would like to explore whether EFT Tapping is right for your specific situation, you are welcome to browse the free resources on <a href="https://www.michaelhetherington.com" target="_blank" rel="noopener noreferrer" style="color:#C17B2F;">michaelhetherington.com</a> or watch the <a href="https://www.youtube.com/@MichaelHetherington" target="_blank" rel="noopener noreferrer" style="color:#C17B2F;">YouTube channel</a> to get a feel for the approach before committing.</p>
+        <p>Based on your answers, your gut may need a slower start. That's common, and it doesn't mean EFT can't help you. It almost certainly can.</p>
+        <p>Start with the script I just sent you. Use it once a day for the next week and notice what shifts. Over the next few days I'll also send you a few short emails on why stress and stored emotion affect digestion so strongly, and what you can do about it.</p>
+        <p>If your symptoms are severe, new or getting worse, please see your doctor first. EFT works best alongside good medical care, not instead of it.</p>
       </div>
-
-    <div class="mh-cap mh-cap--primary" id="mh-cap-dig-notfit">
-      <h3>Before you go, take this with you</h3>
-      <p class="mh-cap__sub">A short EFT tapping script for settling your gut and the stress sitting underneath it. Free, and you can use it tonight.</p>
-      <form method="post" action="https://sendfox.com/form/m44x5n/3ekowl" class="sendfox-form" id="3ekowl" data-async="true" data-recaptcha="true" data-quiz="digestion" data-branch="not_fit">
-          <p><label for="sendfox_form_name">First Name: </label><input type="text" id="sendfox_form_name" placeholder="First Name" name="first_name" required /></p>
-          <p><label for="sendfox_form_email">Email: </label><input type="email" id="sendfox_form_email" placeholder="Email" name="email" required /></p>
-          <!-- no botz please -->
-          <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="a_password" tabindex="-1" value="" autocomplete="off" /></div>
-          <p><button type="submit" class="mh-cap__btn">Send me the script</button></p>
-        </form>
-      <div class="mh-cap__done">
-        <strong>On its way.</strong> Check your inbox in the next couple of minutes. If it is not there, have a look in promotions or spam.
-      </div>
-    </div>
-
+      <a class="text-link" href="https://healyourdigestioneft.com/">When you're ready, here's the full 30-Day Program →</a>
+      <p class="script-sent">Your gut script is on its way. If it's not in your inbox in 2 minutes, check promotions or spam.</p>
     </div>
 
     <!-- FOOTER -->
@@ -533,6 +530,7 @@
     const progressFill = document.getElementById('progress-fill');
     const resultFit = document.getElementById('result-fit');
     const resultNotFit = document.getElementById('result-notfit');
+    const emailGate = document.getElementById('email-gate');
 
     function renderQuestion(index) {
       const q = questions[index];
@@ -567,6 +565,11 @@
 
       totalScore += score;
 
+      if (currentQuestion === 0) track('quiz_start');
+      if (currentQuestion === questions.length - 1) {
+        track('quiz_complete', { result: resultKey() });
+      }
+
       setTimeout(() => {
         if (currentQuestion < questions.length - 1) {
           // Fade out, advance
@@ -577,12 +580,12 @@
             questionCard.classList.remove('fade-out');
           }, 300);
         } else {
-          // Last question, show results
+          // Last question, ask for an email before showing the result
           questionCard.classList.add('fade-out');
           setTimeout(() => {
             questionCard.style.display = 'none';
             document.querySelector('.progress-section').style.display = 'none';
-            showResult();
+            showEmailGate();
           }, 300);
         }
       }, 400);
@@ -595,15 +598,59 @@
       progressFill.style.width = `${(qNum / total) * 100}%`;
     }
 
-    function showResult() {
-      const isFit = totalScore >= 13;
-      const card = isFit ? resultFit : resultNotFit;
+    function isFit() {
+      return totalScore >= 13;
+    }
 
+    function resultKey() {
+      return isFit() ? 'fit' : 'not_fit';
+    }
+
+    function track(name, params) {
+      try { if (typeof gtag === 'function') gtag('event', name, params || {}); } catch (e) {}
+    }
+
+    function fbTrack(name) {
+      try { if (typeof fbq === 'function') fbq('track', name); } catch (e) {}
+    }
+
+    function fadeIn(card) {
       card.classList.add('visible');
       // Trigger reflow before fade-in
       void card.offsetWidth;
       card.classList.add('fade-in');
     }
+
+    function showEmailGate() {
+      const form = document.getElementById('3ekowl');
+      if (form) form.setAttribute('data-branch', isFit() ? 'strong_fit' : 'not_fit');
+      fadeIn(emailGate);
+    }
+
+    let resultShown = false;
+
+    function showResult(firstName) {
+      if (resultShown) return;
+      resultShown = true;
+      const card = isFit() ? resultFit : resultNotFit;
+
+      const name = (firstName || '').trim();
+      if (name) {
+        const heading = card.querySelector('.result-heading');
+        heading.textContent = name + ', ' + heading.getAttribute('data-named');
+      }
+
+      emailGate.classList.remove('visible', 'fade-in');
+      fadeIn(card);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('.enrol-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        track('enrol_click', { button_location: 'quiz_result', result: resultKey() });
+        fbTrack('InitiateCheckout');
+      });
+    });
 
     // Init
     renderQuestion(0);
@@ -650,42 +697,72 @@
     })();
   </script>
   <script>
-    /* The digestion quiz shows one result card at a time, and SendFox's embed
-       needs a unique id, so there is only ever one form. Move it into whichever
-       result is on screen rather than duplicating it. */
+    /* Email gate. SendFox's form.js does the actual submit (reCAPTCHA + XHR) and
+       then appends a .sendfox-message.success or .error paragraph to the form.
+       We watch for that to reveal the result. Whatever happens, the result is
+       always shown, so nobody gets stuck behind the form. */
     (function () {
       var form = document.getElementById('3ekowl');
-      var notFitCap = document.getElementById('mh-cap-dig-notfit');
-      var fitCap = document.getElementById('mh-cap-dig-fit');
-      if (!form || !notFitCap || !fitCap) { return; }
-      var done = notFitCap.querySelector('.mh-cap__done');
-      var slot = fitCap.querySelector('.mh-cap__slot');
+      if (!form) { return; }
+      var firstName = '';
+      var settled = false;
+      var timer = null;
 
-      function place() {
-        var fit = document.getElementById('result-fit');
-        var showingFit = !!(fit && fit.classList.contains('visible'));
-        if (showingFit && !slot.contains(form)) {
-          slot.appendChild(form);
-          if (done) { slot.appendChild(done); }
-          form.setAttribute('data-branch', 'strong_fit');
-          fitCap.style.display = '';
-          notFitCap.style.display = 'none';
-        } else if (!showingFit && slot.contains(form)) {
-          notFitCap.insertBefore(form, done || null);
-          if (done) { notFitCap.appendChild(done); }
-          form.setAttribute('data-branch', 'not_fit');
-          fitCap.style.display = 'none';
-          notFitCap.style.display = '';
+      function finish(ok, err) {
+        if (ok) {
+          var result = resultKey();
+          track('generate_lead', { lead_magnet: 'digestion_quiz', result: result });
+          fbTrack('Lead');
+          document.body.classList.add('lead-ok');
+        } else if (err) {
+          console.error('Quiz email submit failed:', err);
+        }
+        if (settled) { return; }
+        settled = true;
+        clearTimeout(timer);
+        showResult(firstName);
+      }
+
+      if (window.MutationObserver) {
+        new MutationObserver(function (mutations) {
+          mutations.forEach(function (m) {
+            Array.prototype.forEach.call(m.addedNodes, function (n) {
+              if (!n.classList || !n.classList.contains('sendfox-message')) { return; }
+              if (n.classList.contains('success')) { finish(true); }
+              else { finish(false, n.textContent || 'SendFox returned an error'); }
+            });
+          });
+        }).observe(form, { childList: true });
+
+        // form.js re-enables the button when the request ends. If it ends with
+        // no message added (network error), fail straight away.
+        var btn = form.querySelector('button');
+        if (btn) {
+          new MutationObserver(function () {
+            if (!btn.disabled && timer && !settled) {
+              setTimeout(function () {
+                if (!settled) { finish(false, 'SendFox request failed'); }
+              }, 50);
+            }
+          }).observe(btn, { attributes: true, attributeFilter: ['disabled'] });
         }
       }
 
-      ['result-fit', 'result-notfit'].forEach(function (id) {
-        var el = document.getElementById(id);
-        if (el && window.MutationObserver) {
-          new MutationObserver(place).observe(el, { attributes: true, attributeFilter: ['class'] });
+      form.addEventListener('submit', function (e) {
+        // form.js resets the form on success, so grab the name now.
+        firstName = (form.querySelector('[name="first_name"]') || {}).value || '';
+        if (!window.SENDFOX_FORM_LOADED) {
+          // SendFox script blocked or failed to load: don't post away from the page.
+          e.preventDefault();
+          finish(false, 'SendFox form.js not loaded');
+          return;
         }
+        // Network errors and reCAPTCHA hangs only log inside form.js, so fall back on a timeout.
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+          finish(false, 'No response from SendFox after 10s');
+        }, 10000);
       });
-      place();
     })();
   </script>
 </body>
