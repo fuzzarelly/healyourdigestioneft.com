@@ -399,7 +399,16 @@
     .offer-card{background:#FBF4EA;border:2px solid #C17B2F;border-radius:12px;padding:1.6rem 1.3rem;margin:0 0 1.5rem;text-align:left;}
     .offer-detail{font-size:0.95rem;color:#6B5E4E;line-height:1.7;margin:0 0 0.4rem;}
     .offer-list li{font-weight:400;font-size:0.95rem;}
-    .offer-card .cta-btn{text-align:center;margin-top:1.4rem;}
+    .offer-card .cta-btn{text-align:center;margin-top:0.6rem;}
+    .offer-image{display:block;width:220px;max-width:100%;margin:0 auto 1.3rem;}
+    .offer-image img{display:block;width:100%;height:auto;border-radius:8px;box-shadow:0 6px 18px rgba(44,36,22,0.18);}
+    .offer-price{margin-top:1.3rem;text-align:center;font-size:0.95rem;color:#6B5E4E;}
+    .offer-price strong{color:#C17B2F;font-weight:700;font-size:1.1rem;}
+    @media (min-width:640px){
+      .offer-card{display:flex;gap:1.5rem;align-items:flex-start;}
+      .offer-image{flex:0 0 40%;width:auto;margin:0;}
+      .offer-content{flex:1 1 auto;min-width:0;}
+    }
     .offer-card .cta-note{text-align:center;}
     .offer-card .cta-note[hidden]{display:none;}
     .program-link{font-size:0.9rem;color:#6B5E4E;line-height:1.6;}
@@ -475,6 +484,13 @@
       </div>
 
       <div class="offer-card">
+        <a class="offer-image" id="offer-img-link" href="https://zylvie.com/michaelhetherington/p/gut-emotion-map">
+          <picture>
+            <source type="image/webp" srcset="assets/gut-emotion-map-300.webp 300w, assets/gut-emotion-map-600.webp 600w" sizes="(min-width: 640px) 230px, 220px" />
+            <img src="assets/gut-emotion-map.png" width="600" height="600" alt="The Gut-Emotion Map: 15 symptoms, 15 tapping scripts" loading="lazy" decoding="async" />
+          </picture>
+        </a>
+        <div class="offer-content">
         <h3 class="box-heading">Your type is one of 15 patterns in the Gut-Emotion Map. Get the full map and scripts for $9.</h3>
         <p class="offer-detail" id="offer-detail"></p>
         <ul class="kit-list offer-list">
@@ -483,9 +499,11 @@
           <li><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#C17B2F"/><path d="M5 9L7.5 11.5L13 6.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Your Gut-Emotion Tracker</span></li>
           <li><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#C17B2F"/><path d="M5 9L7.5 11.5L13 6.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>44-page PDF, made to read on your phone</span></li>
         </ul>
-        <a class="cta-btn" id="offer-btn" href="https://zylvie.com/michaelhetherington/p/gut-emotion-map">Get the Gut-Emotion Map for $9</a>
+        <p class="offer-price"><strong>$9</strong> · Instant download</p>
+        <a class="cta-btn" id="offer-btn" href="https://zylvie.com/michaelhetherington/p/gut-emotion-map">Get the Gut-Emotion Map →</a>
         <span class="cta-note">Instant download. 30-day money-back guarantee.</span>
         <span class="cta-note" id="credit-line" hidden>Join the 30-Day Program within 14 days and your $9 comes off the price.</span>
+        </div>
       </div>
 
       <p class="program-link"><span id="program-text"></span> <a id="program-link" href="https://healyourdigestioneft.com/">See the program →</a></p>
@@ -653,7 +671,11 @@
     const progressFill = document.getElementById('progress-fill');
     const resultCard = document.getElementById('result');
     const emailGate = document.getElementById('email-gate');
-    const offerBtn = document.getElementById('offer-btn');
+    // Both go to the Map checkout; click_target tells them apart in GA.
+    const offerLinks = [
+      [document.getElementById('offer-btn'), 'button'],
+      [document.getElementById('offer-img-link'), 'image']
+    ];
     const programLink = document.getElementById('program-link');
 
     function renderQuestion(index) {
@@ -781,7 +803,7 @@
       document.getElementById('result-tip').replaceChildren(...paragraphs(r.tip));
 
       document.getElementById('offer-detail').textContent = r.offer;
-      offerBtn.href = OFFER_URL + key;
+      offerLinks.forEach(([a]) => { a.href = OFFER_URL + key; });
       document.getElementById('credit-line').hidden = !SHOW_CREDIT_LINE;
       document.getElementById('program-text').textContent = r.program;
 
@@ -790,9 +812,11 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    offerBtn.addEventListener('click', () => {
-      track('tripwire_click', { product: 'gut_emotion_map', result: resultKey() });
-      try { if (typeof fbq === 'function') fbq('trackCustom', 'TripwireClick'); } catch (e) {}
+    offerLinks.forEach(([a, target]) => {
+      a.addEventListener('click', () => {
+        track('tripwire_click', { product: 'gut_emotion_map', result: resultKey(), click_target: target });
+        try { if (typeof fbq === 'function') fbq('trackCustom', 'TripwireClick'); } catch (e) {}
+      });
     });
 
     programLink.addEventListener('click', () => {
