@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HFTYSBJ0B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6HFTYSBJ0B', {
+      linker: { domains: [
+        'michaelhetherington.com','www.michaelhetherington.com',
+        'healyourselfeft.com','healyourdigestioneft.com',
+        'eftpractitionertraining.com',
+        'mindbodymedicineacademy.onlinecoursehost.com',
+        'zylvie.com'
+      ] }
+    });
+    gtag('config', 'AW-1016615342');
+  </script>
+
+  <!-- Where Zylvie sends Map buyers after checkout. Buyers get the map here, not
+       by email link, and the receipt email links back to this page. Keep it out
+       of search, out of the sitemap and unlinked from the site. Purchases are
+       tracked on Zylvie, so this page fires no purchase or conversion events. -->
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Your Gut-Emotion Map | Heal Your Digestion with EFT</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Serif+Display&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Serif+Display&display=swap" /></noscript>
+
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: 'Lora', Georgia, serif;
+      color: #2C2416;
+      background: #FAF7F2;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #FAF7F2;
+      min-height: 100%;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    /* --- Header --- */
+    header {
+      background: #2C2416;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 2rem;
+    }
+
+    .header-brand {
+      font-family: 'Lora', serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #F0C070;
+      letter-spacing: 0.04em;
+    }
+
+    /* --- Main --- */
+    .page-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 60px 20px 80px;
+      text-align: center;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #4A7C6F;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin: 0 0 16px;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin: 0 0 20px;
+      color: #2C2416;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #3D3027;
+      margin: 0 auto 40px;
+      max-width: 520px;
+    }
+
+    .part-heading {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 1.7rem;
+      line-height: 1.15;
+      margin: 56px 0 8px;
+      color: #2C2416;
+    }
+
+    .part-sub {
+      color: #3D3027;
+      margin: 0 auto 24px;
+      max-width: 520px;
+    }
+
+    /* --- The map --- */
+    .map-card {
+      background: #FBF4EA;
+      border: 2px solid #C17B2F;
+      border-radius: 24px;
+      padding: 28px;
+      text-align: left;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .map-card img {
+      flex: 0 0 160px;
+      width: 160px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 6px 18px rgba(44, 36, 22, 0.18);
+    }
+
+    .map-card h2 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 1.5rem;
+      line-height: 1.2;
+      margin: 0 0 6px;
+      color: #2C2416;
+    }
+
+    .map-card p {
+      margin: 0 0 18px;
+      color: #6B5E52;
+      font-size: 0.95rem;
+    }
+
+    /* --- Start tonight --- */
+    .start {
+      background: #fff;
+      border: 1px solid rgba(44, 36, 22, 0.08);
+      border-radius: 24px;
+      padding: 32px 28px;
+      box-shadow: 0 14px 38px rgba(44, 36, 22, 0.06);
+      text-align: left;
+    }
+
+    .start h2 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 1.15;
+      margin: 0 0 20px;
+      color: #2C2416;
+    }
+
+    .steps {
+      list-style: none;
+      counter-reset: step;
+      padding: 0;
+      margin: 0;
+    }
+
+    .steps li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 2.8rem;
+      margin-bottom: 1rem;
+      color: #3D3027;
+    }
+
+    .steps li:last-child {
+      margin-bottom: 0;
+    }
+
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #C17A3A;
+      color: #FAF7F2;
+      font-weight: 700;
+      font-size: 0.85rem;
+      line-height: 32px;
+      text-align: center;
+    }
+
+    /* --- Kit items --- */
+    .kit {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .kit-item {
+      background: #fff;
+      border: 1px solid rgba(44, 36, 22, 0.08);
+      border-radius: 24px;
+      padding: 28px 28px;
+      box-shadow: 0 14px 38px rgba(44, 36, 22, 0.06);
+      text-align: left;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .kit-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: #C17A3A;
+      color: #FAF7F2;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-top: 4px;
+    }
+
+    .kit-body { flex: 1; min-width: 0; }
+
+    .kit-body h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      line-height: 1.2;
+      margin: 0 0 6px;
+      color: #2C2416;
+    }
+
+    .kit-body p {
+      margin: 0 0 16px;
+      color: #6B5E52;
+      font-size: 0.95rem;
+    }
+
+    .kit-btn {
+      display: inline-block;
+      background: #C17B2F;
+      color: #FFFFFF;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+
+    .kit-btn:hover { background: #A36530; }
+
+    /* --- Video item --- */
+    .kit-item--video {
+      display: block;
+    }
+
+    .kit-head {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .kit-head .kit-num { margin-top: 0; }
+
+    .kit-head h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      line-height: 1.2;
+      margin: 0;
+      color: #2C2416;
+    }
+
+    .kit-item--video > p {
+      margin: 0 0 18px;
+      color: #6B5E52;
+      font-size: 0.95rem;
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #2C2416;
+    }
+
+    .video-frame iframe,
+    .video-play {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Thumbnail stand-in: the YouTube player (about 1MB) only loads on tap. */
+    .video-play {
+      padding: 0;
+      cursor: pointer;
+      background: #2C2416;
+    }
+
+    .video-play img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 68px;
+      height: 48px;
+      transform: translate(-50%, -50%);
+      transition: transform 0.2s ease;
+    }
+
+    .video-play:hover .video-play-icon,
+    .video-play:focus-visible .video-play-icon {
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    /* --- Program card --- */
+    .deeper {
+      background: #F0EBE1;
+      border-radius: 24px;
+      padding: 36px 32px;
+    }
+
+    .deeper h2 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 1.15;
+      margin: 0 0 12px;
+      color: #2C2416;
+    }
+
+    .deeper p {
+      margin: 0 auto 22px;
+      max-width: 520px;
+      color: #3D3027;
+      font-size: 0.98rem;
+    }
+
+    .help {
+      margin: 36px 0 0;
+      font-size: 0.88rem;
+      color: #6B5E52;
+    }
+
+    .help a {
+      color: #C17B2F;
+    }
+
+    /* --- Footer --- */
+    footer {
+      background: #2C2416;
+      color: #FAF7F2;
+      padding: 28px 0 14px;
+      font-size: 0.92rem;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    footer p {
+      color: rgba(250, 247, 242, 0.8);
+      margin: 0 0 6px;
+    }
+
+    footer a {
+      color: rgba(250, 247, 242, 0.8);
+    }
+
+    @media (max-width: 520px) {
+      .page-wrap {
+        padding: 44px 20px 64px;
+      }
+      .map-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 20px;
+      }
+      .start {
+        padding: 26px 20px;
+      }
+      .kit-item {
+        padding: 24px 20px;
+        gap: 14px;
+      }
+      .kit-head {
+        gap: 14px;
+      }
+      .deeper {
+        padding: 28px 20px;
+      }
+      .kit-btn {
+        display: block;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <span class="header-brand">Heal Your Digestion with EFT</span>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+
+    <p class="section-label">Thank you</p>
+    <h1>Your Gut-Emotion Map is ready.</h1>
+    <p class="subtitle">Download it below, with your bonus Bloat Relief Kit underneath. Bookmark this page. Your receipt email links back here too, so you can come back any time.</p>
+
+    <div class="map-card">
+      <img src="assets/gut-emotion-map-300.webp" srcset="assets/gut-emotion-map-300.webp 300w, assets/gut-emotion-map-600.webp 600w" sizes="160px" width="300" height="300" alt="The Gut-Emotion Map: 15 symptoms, 15 tapping scripts" decoding="async" />
+      <div>
+        <h2>The Gut-Emotion Map</h2>
+        <p>44 pages, 15 symptoms, 15 tapping scripts. Save it to your phone so it's there when your gut flares up.</p>
+        <a class="kit-btn" id="map-download" href="https://drive.google.com/uc?export=download&amp;id=1XBTLI6ArD_6GtJWsCnrD5xpBsgRScZnn" target="_blank" rel="noopener noreferrer">Download the map (PDF)</a>
+      </div>
+    </div>
+
+    <div class="start">
+      <h2>Start tonight. It takes 5 minutes.</h2>
+      <ol class="steps">
+        <li>Open the Quick Finder on page 6.</li>
+        <li>Read down the list until your body reacts to one.</li>
+        <li>Turn to that page and tap the three rounds.</li>
+        <li>Rate how you feel before and after, out of 10.</li>
+      </ol>
+    </div>
+
+    <h2 class="part-heading">Your bonus: the 10-Minute Bloat Relief Kit</h2>
+    <p class="part-sub">The map tells you the pattern. The kit gives you something to do tonight.</p>
+
+    <div class="kit">
+      <div class="kit-item kit-item--video" id="kit-video">
+        <div class="kit-head">
+          <div class="kit-num">1</div>
+          <h2>Tap along with me</h2>
+        </div>
+        <p>Follow the 10-minute Bloat Relief Script with me on video, so you can see exactly where to tap.</p>
+        <div class="video-frame">
+          <button class="video-play" type="button" data-src="https://www.youtube.com/embed/IfMpic-Tq1E" aria-label="Play video: Tap along with me">
+            <img src="https://i.ytimg.com/vi/IfMpic-Tq1E/hqdefault.jpg" alt="" width="480" height="360" decoding="async" />
+            <svg class="video-play-icon" viewBox="0 0 68 48" aria-hidden="true">
+              <path d="M66.5 7.7c-.8-2.9-2.5-5.4-5.4-6.2C55.8.1 34 0 34 0S12.2.1 6.9 1.6C4 2.4 2.3 4.8 1.5 7.7.1 13 0 24 0 24s.1 11 1.5 16.3c.8 2.9 2.5 5.4 5.4 6.2C12.2 47.9 34 48 34 48s21.8-.1 27.1-1.6c2.9-.8 4.6-3.2 5.4-6.2C67.9 35 68 24 68 24s-.1-11-1.5-16.3z" fill="#C17B2F"/>
+              <path d="M45 24 27 14v20" fill="#fff"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="kit-item">
+        <div class="kit-num">2</div>
+        <div class="kit-body">
+          <h2>The Bloat Relief Script</h2>
+          <p>The 10-minute EFT tapping script, word for word. Print it or keep it on your phone.</p>
+          <a class="kit-btn" href="https://drive.google.com/uc?export=download&amp;id=16zlkM2PiwHBag2ZdvSam6vbsSMoxxZ-p" target="_blank" rel="noopener noreferrer" data-item="script">Download the script (PDF)</a>
+        </div>
+      </div>
+
+      <div class="kit-item">
+        <div class="kit-num">3</div>
+        <div class="kit-body">
+          <h2>The 5 Element Emotion Chart</h2>
+          <p>Find the emotion behind your gut symptom, so you know what to tap on.</p>
+          <a class="kit-btn" href="https://drive.google.com/uc?export=download&amp;id=1KZ_7UzGjwDhkQIro7C7B7it60_WM8-5e" target="_blank" rel="noopener noreferrer" data-item="chart">Download the chart (PDF)</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="deeper">
+      <h2>When you're ready to clear the whole backlog</h2>
+      <p>The Map helps you work on one symptom at a time. The 30-Day Heal Your Digestion program takes you through all four parts of the digestive system, one module at a time, with 4 recorded tapping sessions, 12 scripts and guided audios. 15 minutes most days.</p>
+      <a class="kit-btn" id="program-btn" href="https://healyourdigestioneft.com/?utm_source=zylvie&amp;utm_medium=map_thank_you">See the 30-Day Program</a>
+    </div>
+
+    <p class="help">Questions? Email <a href="mailto:info@michaelhetherington.com">info@michaelhetherington.com</a></p>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p>Heal Your Digestion with EFT · healyourdigestioneft.com</p>
+      <p><a href="mailto:info@michaelhetherington.com">info@michaelhetherington.com</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
+      <p>© 2026 · All rights reserved</p>
+      <p>This program is complementary to medical treatment and does not replace advice from your doctor.</p>
+    </div>
+  </footer>
+
+  <script>
+    function kitClick(item) {
+      try { gtag('event', 'kit_click', { item: item, source: 'map_purchase' }); } catch (e) {}
+    }
+
+    var mapDownload = document.getElementById('map-download');
+    if (mapDownload) {
+      mapDownload.addEventListener('click', function () {
+        try { gtag('event', 'map_download', { item_name: 'Gut-Emotion Map' }); } catch (e) {}
+      });
+    }
+
+    var programBtn = document.getElementById('program-btn');
+    if (programBtn) {
+      programBtn.addEventListener('click', function () {
+        try { gtag('event', 'program_link_click', { button_location: 'map_thank_you' }); } catch (e) {}
+      });
+    }
+
+    document.querySelectorAll('.kit-btn[data-item]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        kitClick(btn.getAttribute('data-item'));
+      });
+    });
+
+    /* The video shows as a thumbnail and swaps in the YouTube player on tap.
+       kit_click fires once for any click or tap in the video section. */
+    (function () {
+      var section = document.getElementById('kit-video');
+      if (!section) { return; }
+      var sent = false;
+      section.addEventListener('click', function () {
+        if (sent) { return; }
+        sent = true;
+        kitClick('video');
+      });
+
+      var play = section.querySelector('.video-play');
+      if (!play) { return; }
+      play.addEventListener('click', function () {
+        var iframe = document.createElement('iframe');
+        iframe.src = play.getAttribute('data-src') + '?autoplay=1&rel=0';
+        iframe.title = 'Tap along with me: 10-Minute Bloat Relief';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        iframe.allowFullscreen = true;
+        play.replaceWith(iframe);
+        iframe.focus();
+      });
+    })();
+  </script>
+</body>
+</html>

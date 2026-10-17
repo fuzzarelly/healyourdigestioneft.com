@@ -19,7 +19,8 @@
         'healyourselfeft.com',
         'healyourdigestioneft.com',
         'eftpractitionertraining.com',
-        'mindbodymedicineacademy.onlinecoursehost.com'
+        'mindbodymedicineacademy.onlinecoursehost.com',
+        'zylvie.com'
       ] }
     });
 
@@ -911,7 +912,7 @@
       function finish(ok, err) {
         if (ok) {
           var result = resultKey();
-          track('generate_lead', { lead_magnet: 'digestion_quiz', result: result });
+          track('digestion_quiz_lead', { lead_magnet: 'digestion_quiz', result: result });
           fbTrack('Lead');
           document.body.classList.add('lead-ok');
         } else if (err) {

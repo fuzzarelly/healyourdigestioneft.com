@@ -15,7 +15,8 @@
         'michaelhetherington.com','www.michaelhetherington.com',
         'healyourselfeft.com','healyourdigestioneft.com',
         'eftpractitionertraining.com',
-        'mindbodymedicineacademy.onlinecoursehost.com'
+        'mindbodymedicineacademy.onlinecoursehost.com',
+        'zylvie.com'
       ] }
     });
     gtag('config', 'AW-1016615342');
@@ -837,8 +838,10 @@
   <script>
     /* Every CTA reads window.CHECKOUT_URL, so the checkout link lives in one place.
        The href is set on load (so long-press and hover show the real link) and
-       again on click (so a swapped URL is always picked up). Tracking can never
-       stop the click from going through. */
+       checked again on click, so a swapped URL is always picked up. It is only
+       rewritten when the URL has changed: gtag's cross-domain linker adds _gl to
+       the href just before the click, and rewriting it would drop that.
+       Tracking can never stop the click from going through. */
     (function () {
       function beginCheckout() {
         try {
@@ -851,9 +854,13 @@
         } catch (e) {}
       }
       Array.prototype.forEach.call(document.querySelectorAll('[data-checkout]'), function (a) {
-        if (window.CHECKOUT_URL) { a.href = window.CHECKOUT_URL; }
+        var applied = window.CHECKOUT_URL;
+        if (applied) { a.href = applied; }
         a.addEventListener('click', function () {
-          if (window.CHECKOUT_URL) { a.href = window.CHECKOUT_URL; }
+          if (window.CHECKOUT_URL && window.CHECKOUT_URL !== applied) {
+            applied = window.CHECKOUT_URL;
+            a.href = applied;
+          }
           beginCheckout();
         });
       });
