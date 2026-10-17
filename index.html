@@ -150,6 +150,7 @@
       border-radius: 999px;
       font-weight: 600;
       white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .header-cta:hover {
@@ -166,6 +167,10 @@
       padding: 0.3rem 0.85rem;
       border-radius: 999px;
       white-space: nowrap;
+      /* Never push the Enrol button off a narrow screen: trim the banner instead. */
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     @media (max-width: 768px) {
@@ -176,6 +181,12 @@
       .header-banner {
         font-size: 0.75rem;
         padding: 0.25rem 0.65rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-banner-more {
+        display: none;
       }
     }
 
@@ -2383,7 +2394,7 @@
 <body>
   <header>
     <div class="header-inner">
-      <span class="header-banner">Self-paced &amp; 100% online. Enrol today and start immediately</span>
+      <span class="header-banner">Self-paced &amp; 100% online.<span class="header-banner-more"> Enrol today and start immediately</span></span>
       <a class="header-cta" href="https://mindbodymedicineacademy.onlinecoursehost.com/courses/digestion-eft-sept25" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'enroll_click', {'button_location': 'header'});">Enrol Now</a>
     </div>
   </header>
