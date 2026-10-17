@@ -283,6 +283,35 @@
       line-height: 1.5;
     }
 
+    .hero-quiz-top {
+      text-align: center;
+      margin: 0 0 1.5rem;
+    }
+
+    .hero-quiz-pill {
+      display: inline-block;
+      font-family: Lora, serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #2C2418;
+      background: #FBF4EA;
+      border: 1.5px solid #C17B2F;
+      border-radius: 999px;
+      padding: 0.6rem 1.3rem;
+      line-height: 1.4;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .hero-quiz-pill span {
+      color: #C17B2F;
+      white-space: nowrap;
+    }
+
+    .hero-quiz-pill:hover {
+      background: #F5E6D0;
+    }
+
     .hero-quiz-link {
       font-size: 14px;
       color: #C17B2F;
@@ -2361,6 +2390,9 @@
   <main class="page-wrap">
     <!-- SECTION 1: HERO -->
     <section class="hero reveal">
+      <div class="hero-quiz-top">
+        <a class="hero-quiz-pill" href="/quiz.html" onclick="gtag('event', 'quiz_link_click', {'button_location': 'hero_top'});">What is your gut holding? <span>Take the free quiz →</span></a>
+      </div>
       <h2 class="hero-headline">You've Changed Your Diet. Tried the Elimination Plans. Your Gut Still Isn't Right.</h2>
       <div class="hero-body-row">
         <div class="hero-left">
