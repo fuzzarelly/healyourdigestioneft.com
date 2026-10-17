@@ -385,31 +385,61 @@
     .kit-list li{display:flex;gap:0.7rem;align-items:flex-start;color:#2C2418;font-weight:600;line-height:1.5;}
     .kit-list li + li{margin-top:0.7rem;}
     .kit-list svg{flex-shrink:0;width:18px;height:18px;margin-top:0.15rem;}
-    .kit-sent{display:none;flex-direction:column;align-items:center;gap:0.4rem;text-align:center;margin:0 0 1.8rem;padding:0.9rem 1rem;background:#FBF4EA;border:1px solid #E7D6BD;border-radius:10px;font-size:0.9rem;line-height:1.5;color:#3A3226;}
-    .kit-sent svg{flex-shrink:0;width:22px;height:22px;margin-top:0.05rem;}
-    .kit-sent strong{color:#2C2418;}
-    .lead-ok .kit-sent{display:flex;}
 
     /* Gut-Emotion Type result */
     .result-organ{font-style:italic;font-size:0.85rem;color:#6B7B5E;line-height:1.5;margin:-0.3rem 0 0.4rem;}
     .box-heading{font-family:'DM Serif Display',serif;font-weight:400;font-size:1.2rem;color:#2C2418;line-height:1.25;margin-bottom:0.8rem;}
-    .tip-box{background:#F5F0E8;border-radius:12px;padding:1.4rem 1.3rem;margin:0 0 1.5rem;text-align:left;}
+    .tip-box{background:#F5F0E8;border-radius:12px;padding:1.4rem 1.3rem;margin:0 0 1.5rem;text-align:center;}
+    #result-reading{text-align:center;}
+    #result-reading strong,.tip-steps strong{color:#2C2418;font-weight:700;}
     .tip-steps{font-size:0.95rem;color:#2C2418;line-height:1.7;}
     .tip-steps p + p{margin-top:0.7rem;}
     .tip-points{margin-top:1rem;padding-top:0.8rem;border-top:1px solid rgba(44,36,22,0.1);font-size:0.8rem;color:#6B5E4E;line-height:1.5;}
-    .offer-card{background:#FBF4EA;border:2px solid #C17B2F;border-radius:12px;padding:1.6rem 1.3rem;margin:0 0 1.5rem;text-align:left;}
+    .offer-card{background:#FBF4EA;border:2px solid #C17B2F;border-radius:12px;padding:1.8rem 1.3rem;margin:0 0 1.5rem;text-align:center;}
+    .offer-eyebrow{font-size:0.75rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#6B7B5E;margin-bottom:0.6rem;}
+    .offer-headline{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(1.55rem,5.6vw,2.05rem);line-height:1.18;color:#2C2418;margin:0 0 0.9rem;}
+    .offer-headline-cta{display:block;margin-top:0.35rem;color:#A35A1E;}
+    .offer-hl{padding:0 0.04em;background-image:linear-gradient(transparent 58%,#F3D39A 58%);background-repeat:no-repeat;background-size:100% 100%;}
+    .offer-pitch{font-size:1rem;color:#3D3027;line-height:1.7;max-width:460px;margin:0 auto 1.4rem;}
     .offer-detail{font-size:0.95rem;color:#6B5E4E;line-height:1.7;margin:0 0 0.4rem;}
+    .offer-list{text-align:left;}
     .offer-list li{font-weight:400;font-size:0.95rem;}
-    .offer-card .cta-btn{text-align:center;margin-top:0.6rem;}
+    .offer-bonus span{color:#2C2418;}
     .offer-image{display:block;width:220px;max-width:100%;margin:0 auto 1.3rem;}
     .offer-image img{display:block;width:100%;height:auto;border-radius:8px;box-shadow:0 6px 18px rgba(44,36,22,0.18);}
-    .offer-price{margin-top:1.3rem;text-align:center;font-size:0.95rem;color:#6B5E4E;}
-    .offer-price strong{color:#C17B2F;font-weight:700;font-size:1.1rem;}
+    .offer-price{margin-top:1.4rem;text-align:center;line-height:1.3;}
+    .price-was{font-size:1.15rem;color:#8A7D6B;text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:#A35A1E;margin-right:0.25rem;}
+    .price-now{font-size:1.9rem;font-weight:700;color:#C17B2F;vertical-align:-0.08em;}
+    .price-tag{display:inline-block;margin-left:0.45rem;padding:0.22rem 0.6rem;border-radius:999px;background:#2C2418;color:#FAF7F2;font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;vertical-align:0.35em;}
+    .offer-card .cta-btn{text-align:center;margin-top:0.8rem;}
+    .offer-btn{position:relative;font-size:1.08rem;padding:1.05rem 1.5rem;box-shadow:0 6px 18px rgba(193,123,47,0.35);transition:background 0.2s ease,transform 0.2s ease,box-shadow 0.2s ease;}
+    .offer-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(193,123,47,0.45);}
+    .offer-arrow{display:inline-block;}
     @media (min-width:640px){
-      .offer-card{display:flex;gap:1.5rem;align-items:flex-start;}
+      .offer-row{display:flex;gap:1.5rem;align-items:flex-start;text-align:left;}
       .offer-image{flex:0 0 40%;width:auto;margin:0;}
       .offer-content{flex:1 1 auto;min-width:0;}
     }
+
+    /* Offer animation: the headline rises in and $9 gets highlighted when the card
+       scrolls into view, and the button pulses gently. It only runs once the
+       script has armed it, and never for people who prefer reduced motion. */
+    @media (prefers-reduced-motion:no-preference){
+      .offer-card.will-animate .offer-headline,
+      .offer-card.will-animate .offer-pitch{opacity:0;transform:translateY(14px);}
+      .offer-card.will-animate .offer-hl{background-size:0% 100%;}
+      .offer-card.in-view .offer-headline,
+      .offer-card.in-view .offer-pitch{opacity:1;transform:none;transition:opacity 0.6s ease,transform 0.6s ease;}
+      .offer-card.in-view .offer-pitch{transition-delay:0.15s;}
+      .offer-card.in-view .offer-hl{background-size:100% 100%;transition:background-size 0.7s ease 0.6s;}
+      .offer-card.in-view{animation:offer-glow 1.6s ease 0.3s 2;}
+      .offer-btn{animation:offer-pulse 2.4s ease-out infinite;}
+      .offer-btn .offer-arrow{animation:offer-nudge 1.2s ease-in-out infinite;}
+      .offer-btn:hover{animation-play-state:paused;}
+    }
+    @keyframes offer-glow{0%,100%{box-shadow:0 0 0 0 rgba(193,123,47,0);}50%{box-shadow:0 0 0 6px rgba(193,123,47,0.18);}}
+    @keyframes offer-pulse{0%{box-shadow:0 6px 18px rgba(193,123,47,0.35),0 0 0 0 rgba(193,123,47,0.45);}70%{box-shadow:0 6px 18px rgba(193,123,47,0.35),0 0 0 14px rgba(193,123,47,0);}100%{box-shadow:0 6px 18px rgba(193,123,47,0.35),0 0 0 0 rgba(193,123,47,0);}}
+    @keyframes offer-nudge{0%,100%{transform:translateX(0);}50%{transform:translateX(4px);}}
     .offer-card .cta-note{text-align:center;}
     .offer-card .cta-note[hidden]{display:none;}
     .program-link{font-size:0.9rem;color:#6B5E4E;line-height:1.6;}
@@ -451,12 +481,7 @@
       <span class="quiz-label">Quiz complete</span>
       <h2 class="gate-heading">Your Gut-Emotion Type is ready.</h2>
       <div class="result-body">
-        <p>Where should I send it? You'll see your result on the next screen. I'll also email you your free Bloat Relief EFT Kit:</p>
-        <ul class="kit-list">
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#C17B2F"/><path d="M5 9L7.5 11.5L13 6.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>A Powerful Bloating Relief EFT Script Written by an Expert</span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#C17B2F"/><path d="M5 9L7.5 11.5L13 6.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>A 10-Minute Tap-Along Bloating Video for Quick Relief</span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#C17B2F"/><path d="M5 9L7.5 11.5L13 6.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>The 5 Element Emotion Chart to Help You Identify the Emotions Involved in Your Digestion</span></li>
-        </ul>
+        <p>You'll see your result on the next screen.</p>
       </div>
       <div class="mh-cap mh-cap--gate">
         <form method="post" action="https://sendfox.com/form/m44x5n/3ekowl" class="sendfox-form" id="3ekowl" data-async="true" data-recaptcha="true" data-quiz="digestion" data-branch="mixed">
@@ -472,7 +497,6 @@
 
     <!-- RESULT: one template, filled in from `results` in the script below -->
     <div class="result-card" id="result">
-      <p class="kit-sent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2" fill="none" stroke="#C17B2F" stroke-width="1.8"/><path d="M3 6.5l9 6.5 9-6.5" fill="none" stroke="#C17B2F" stroke-width="1.8" stroke-linejoin="round"/></svg><span><strong>Your Bloating Relief EFT Kit</strong> is on its way to your email right now! Please check all your inboxes to access it.</span></p>
       <span class="quiz-label">Your Gut-Emotion Type</span>
       <h2 class="result-heading" id="result-heading"></h2>
       <p class="result-organ" id="result-organ"></p>
@@ -484,26 +508,31 @@
         <p class="tip-points">The points: eyebrow, side of eye, under eye, under nose, chin, collarbone, under arm, top of head.</p>
       </div>
 
-      <div class="offer-card">
-        <a class="offer-image" id="offer-img-link" href="https://zylvie.com/michaelhetherington/p/gut-emotion-map">
-          <picture>
-            <source type="image/webp" srcset="assets/gut-emotion-map-300.webp 300w, assets/gut-emotion-map-600.webp 600w" sizes="(min-width: 640px) 230px, 220px" />
-            <img src="assets/gut-emotion-map.png" width="600" height="600" alt="The Gut-Emotion Map: 15 symptoms, 15 tapping scripts" loading="lazy" decoding="async" />
-          </picture>
-        </a>
-        <div class="offer-content">
-        <h3 class="box-heading">Your type is one of 15 patterns in the Gut-Emotion Map. Get the full map and scripts for $9.</h3>
-        <p class="offer-detail" id="offer-detail"></p>
-        <ul class="kit-list offer-list">
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#C17B2F"/><path d="M5 9L7.5 11.5L13 6.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>The one-page Quick Finder: symptom, organ, emotion</span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#C17B2F"/><path d="M5 9L7.5 11.5L13 6.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>15 word-for-word, 3-round tapping scripts</span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#C17B2F"/><path d="M5 9L7.5 11.5L13 6.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Your Gut-Emotion Tracker</span></li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#C17B2F"/><path d="M5 9L7.5 11.5L13 6.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>44-page PDF, made to read on your phone</span></li>
-        </ul>
-        <p class="offer-price"><strong>$9</strong> · Instant download</p>
-        <a class="cta-btn" id="offer-btn" href="https://zylvie.com/michaelhetherington/p/gut-emotion-map">Get the Gut-Emotion Map →</a>
-        <span class="cta-note">Instant download. 7-day money-back guarantee.</span>
-        <span class="cta-note" id="credit-line" hidden>Join the 30-Day Program within 14 days and your $9 comes off the price.</span>
+      <div class="offer-card" id="offer-card">
+        <p class="offer-eyebrow">Your next step</p>
+        <h3 class="offer-headline">Your type is one of 15 patterns in the Gut-Emotion Map. <span class="offer-headline-cta">Get the full map and scripts for <span class="offer-hl">$9</span>.</span></h3>
+        <p class="offer-pitch" id="offer-pitch"></p>
+        <div class="offer-row">
+          <a class="offer-image" id="offer-img-link" href="https://zylvie.com/michaelhetherington/p/gut-emotion-map">
+            <picture>
+              <source type="image/webp" srcset="assets/gut-emotion-map-300.webp 300w, assets/gut-emotion-map-600.webp 600w" sizes="(min-width: 640px) 230px, 220px" />
+              <img src="assets/gut-emotion-map.png" width="600" height="600" alt="The Gut-Emotion Map: 15 symptoms, 15 tapping scripts" loading="lazy" decoding="async" />
+            </picture>
+          </a>
+          <div class="offer-content">
+            <p class="offer-detail" id="offer-detail"></p>
+            <ul class="kit-list offer-list">
+              <li><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#C17B2F"/><path d="M5 9L7.5 11.5L13 6.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>The one-page Quick Finder: symptom, organ, emotion</span></li>
+              <li><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#C17B2F"/><path d="M5 9L7.5 11.5L13 6.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>15 word-for-word, 3-round tapping scripts</span></li>
+              <li><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#C17B2F"/><path d="M5 9L7.5 11.5L13 6.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Your Gut-Emotion Tracker</span></li>
+              <li><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#C17B2F"/><path d="M5 9L7.5 11.5L13 6.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>44-page PDF, made to read on your phone</span></li>
+              <li class="offer-bonus"><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#C17B2F"/><path d="M5 9L7.5 11.5L13 6.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Bonus:</strong> the 10-Minute Bloat Relief Kit. Tap-along video, the Bloat Relief Script and the 5 Element Emotion Chart.</span></li>
+            </ul>
+            <p class="offer-price"><span class="price-was">$29</span> <span class="price-now">$9</span> <span class="price-tag">This page only</span></p>
+            <a class="cta-btn offer-btn" id="offer-btn" href="https://zylvie.com/michaelhetherington/p/gut-emotion-map">Get the Gut-Emotion Map <span class="offer-arrow" aria-hidden="true">→</span></a>
+            <span class="cta-note">Instant download. 7-day money-back guarantee.</span>
+            <span class="cta-note" id="credit-line" hidden>Join the 30-Day Program within 14 days and your $9 comes off the price.</span>
+          </div>
         </div>
       </div>
 
@@ -592,21 +621,22 @@
       gt5: `You've been living with this for more than 5 years.`
     };
 
-    // reading[2] gets the duration line put in front of it.
+    // reading[2] gets the duration line put in front of it. **text** shows in bold.
     const results = {
       worrier: {
         name: `The Worrier`,
         organ: `Organ system: Spleen and Stomach · Emotion: worry and overthinking`,
         reading: [
-          `In Chinese medicine, the Spleen and Stomach have two jobs. They digest your food, and they digest your thoughts.`,
-          `When your mind is always running, planning, replaying and looking after everyone else, that energy gets pulled away from digestion. That's where the bloating, the heaviness and the after-meal tiredness come from.`,
-          `That's not a broken gut. It's a gut that has been doing two jobs for a long time with no break.`
+          `In Chinese medicine, the Spleen and Stomach have two jobs. **They digest your food, and they digest your thoughts.**`,
+          `When your mind is always running, planning, replaying and looking after everyone else, that energy gets pulled away from digestion. **That's where the bloating, the heaviness and the after-meal tiredness come from.**`,
+          `**That's not a broken gut.** It's a gut that has been doing two jobs for a long time with no break.`
         ],
         tip: [
           `Tap on the side of your hand and say three times: "Even though my mind won't switch off and my stomach is carrying it, I'm okay."`,
           `Then tap through the points saying: "All this worry, sitting in my belly."`,
           `Finish with one hand on your stomach and three slow breaths out.`
         ],
+        pitch: `You've just seen why your stomach carries your worry. The Map shows you what to do about it, one symptom at a time.`,
         offer: `Inside you'll find the Worrier symptoms like bloating, heaviness and tiredness after meals, each with its own word-for-word tapping script.`,
         program: `Want to go deeper? Module 1 of the 30-Day Heal Your Digestion program works directly on the Worrier pattern.`
       },
@@ -614,15 +644,16 @@
         name: `The Pressure Cooker`,
         organ: `Organ system: Liver · Emotion: frustration and held-in stress`,
         reading: [
-          `In Chinese medicine, the Liver keeps everything in your body moving smoothly. Emotions included.`,
-          `When you push through, swallow your frustration and keep going, the Liver gets tight. That tension spills straight into your gut. Cramping. Reflux. Flare-ups that seem to come from nowhere. Reacting to foods that used to be fine.`,
-          `Your gut isn't overreacting. It's reacting to pressure that has had nowhere else to go.`
+          `In Chinese medicine, the Liver keeps everything in your body moving smoothly. **Emotions included.**`,
+          `When you push through, swallow your frustration and keep going, the Liver gets tight. **That tension spills straight into your gut.** Cramping. Reflux. Flare-ups that seem to come from nowhere. Reacting to foods that used to be fine.`,
+          `**Your gut isn't overreacting.** It's reacting to pressure that has had nowhere else to go.`
         ],
         tip: [
           `Tap on the side of your hand and say three times: "Even though I'm holding so much in and my gut is paying for it, I'm okay."`,
           `Then tap through the points saying: "All this pressure. All this tension in my gut."`,
           `Finish with a long sigh out through your mouth. In Chinese medicine, a sigh is the Liver letting off steam.`
         ],
+        pitch: `You've just seen why the pressure lands in your gut. The Map shows you how to let it out, one symptom at a time.`,
         offer: `Inside you'll find the Pressure Cooker symptoms like cramping, reflux and food reactions, each with its own word-for-word tapping script.`,
         program: `Want to go deeper? Module 2 of the 30-Day Heal Your Digestion program works directly on the Liver and food sensitivities.`
       },
@@ -630,15 +661,16 @@
         name: `The Holder`,
         organ: `Organ system: Lung and Large Intestine · Emotion: grief and holding on`,
         reading: [
-          `In Chinese medicine, the Lung and Large Intestine are partners. The Lung takes in what's new. The Large Intestine lets go of what's finished.`,
-          `When grief, loss or old hurt doesn't get fully felt, the body starts holding on. Physically and emotionally. That's where the constipation, the heaviness and the stuck feeling come from.`,
-          `Your body isn't failing to let go. It's been holding on because something hasn't felt safe to release yet.`
+          `In Chinese medicine, the Lung and Large Intestine are partners. **The Lung takes in what's new. The Large Intestine lets go of what's finished.**`,
+          `**When grief, loss or old hurt doesn't get fully felt, the body starts holding on.** Physically and emotionally. That's where the constipation, the heaviness and the stuck feeling come from.`,
+          `**Your body isn't failing to let go.** It's been holding on because something hasn't felt safe to release yet.`
         ],
         tip: [
           `Tap on the side of your hand and say three times: "Even though part of me is still holding on, I'm open to letting a little bit go."`,
           `Then tap through the points saying: "What I'm still holding. Letting a little go."`,
           `Finish with a slow breath in through your nose and a longer breath out, letting your belly soften.`
         ],
+        pitch: `You've just seen why your body holds on. The Map shows you how to start letting go, one symptom at a time.`,
         offer: `Inside you'll find the Holder symptoms like constipation, heaviness and feeling stuck, each with its own word-for-word tapping script.`,
         program: `Want to go deeper? Module 3 of the 30-Day Heal Your Digestion program works directly on the Lungs and Large Intestine.`
       },
@@ -646,15 +678,16 @@
         name: `The Overloaded Gut`,
         organ: `Organ system: the whole digestive system · Emotion: a backlog of everything`,
         reading: [
-          `Your answers point to more than one pattern. Worry, pressure and holding on are all showing up in your gut. That's more common than you'd think.`,
-          `It usually means there's a backlog. Years of stress and emotion that never got fully processed, stacked up in the body. Your gut is simply where it shows.`,
-          `The good news: you don't have to clear it all at once. You start with whatever is loudest today.`
+          `Your answers point to more than one pattern. **Worry, pressure and holding on are all showing up in your gut.** That's more common than you'd think.`,
+          `**It usually means there's a backlog.** Years of stress and emotion that never got fully processed, stacked up in the body. Your gut is simply where it shows.`,
+          `The good news: **you don't have to clear it all at once.** You start with whatever is loudest today.`
         ],
         tip: [
           `Tap on the side of your hand and say three times: "Even though there's so much going on in my gut and I don't know where to start, I'm okay."`,
           `Then tap through the points saying: "All of it. Everything my gut is carrying."`,
           `Finish by asking yourself: "What's loudest right now?" That's where you start next time.`
         ],
+        pitch: `You've just seen why your gut is carrying so much. The Map shows you where to start, one symptom at a time.`,
         offer: `Inside you'll find all 15 gut symptom patterns, so you can work on whichever one is loudest for you today.`,
         program: `Want to go deeper? The 30-Day Heal Your Digestion program works through all four parts of the digestive system, one module at a time.`
       }
@@ -777,10 +810,20 @@
       fadeIn(emailGate);
     }
 
+    // Builds paragraphs from plain strings, turning **text** into <strong>.
     function paragraphs(texts) {
       return texts.map(t => {
         const p = document.createElement('p');
-        p.textContent = t;
+        t.split('**').forEach((part, i) => {
+          if (!part) return;
+          if (i % 2) {
+            const b = document.createElement('strong');
+            b.textContent = part;
+            p.appendChild(b);
+          } else {
+            p.appendChild(document.createTextNode(part));
+          }
+        });
         return p;
       });
     }
@@ -801,8 +844,9 @@
       const reading = r.reading.slice();
       if (durationLines[durationKey]) reading[2] = durationLines[durationKey] + ' ' + reading[2];
       document.getElementById('result-reading').replaceChildren(...paragraphs(reading));
-      document.getElementById('result-tip').replaceChildren(...paragraphs(r.tip));
+      document.getElementById('result-tip').replaceChildren(...paragraphs(r.tip.map(t => t.replace(/"[^"]+"/g, q => '**' + q + '**'))));
 
+      document.getElementById('offer-pitch').textContent = r.pitch;
       document.getElementById('offer-detail').textContent = r.offer;
       offerLinks.forEach(([a]) => { a.href = OFFER_URL + key; });
       document.getElementById('credit-line').hidden = !SHOW_CREDIT_LINE;
@@ -810,7 +854,22 @@
 
       emailGate.classList.remove('visible', 'fade-in');
       fadeIn(resultCard);
+      animateOffer();
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Plays the offer card's entrance once, when it scrolls into view.
+    function animateOffer() {
+      const card = document.getElementById('offer-card');
+      if (!card || !('IntersectionObserver' in window)) return;
+      card.classList.add('will-animate');
+      const io = new IntersectionObserver(entries => {
+        if (entries.some(e => e.isIntersecting)) {
+          card.classList.add('in-view');
+          io.disconnect();
+        }
+      }, { threshold: 0.25 });
+      io.observe(card);
     }
 
     offerLinks.forEach(([a, target]) => {
@@ -914,7 +973,6 @@
           var result = resultKey();
           track('digestion_quiz_lead', { lead_magnet: 'digestion_quiz', result: result });
           fbTrack('Lead');
-          document.body.classList.add('lead-ok');
         } else if (err) {
           console.error('Quiz email submit failed:', err);
         }
