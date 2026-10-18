@@ -20,9 +20,12 @@
       ] }
     });
     gtag('config', 'AW-1016615342');
+
+    /* Original property, kept so existing reports stay continuous. */
+    gtag('config', 'G-JX9XSHVB25');
   </script>
   <script>
-    window.CHECKOUT_URL = "https://zylvie.com/michaelhetherington/p/gut-emotion-map";
+    window.CHECKOUT_URL = "https://zylvie.com/michaelhetherington/cart/add/78pjRb03?disable_backlinks&empty_cart";
   </script>
 
   <title>The Gut-Emotion Map | 15 Gut Symptoms, 15 Tapping Scripts | $9</title>
@@ -37,821 +40,592 @@
   <link rel="apple-touch-icon" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display&display=swap" /></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" /></noscript>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window,document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1017196089549728');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1017196089549728&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
     :root {
+      --bg: #FAF7F2;
+      --sand: #F3ECE1;
+      --card: #FFFFFF;
+      --line: #E6DCCB;
+      --dark: #2A211A;
+      --on-dark: #FAF7F2;
+      --on-dark-2: #E4DACB;
+      --hl: #E9B98A;
+      --ink: #2A211A;
+      --body: #3B3129;
+      --muted: #5E5348;
+      --sage: #4E6B4A;
+      --btn: #A9601F;
+      --btn-hover: #8A4D18;
+      /* #A9601F is under 4.5:1 as small text on the light backgrounds, so links use the darker shade. */
+      --link: #8A4D18;
       color-scheme: light;
       font-family: 'Lora', Georgia, serif;
-      color: #2C2416;
-      background: #FAF7F2;
+      color: var(--body);
+      background: var(--bg);
     }
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #FAF7F2;
-    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); }
+    body { font-size: 16px; line-height: 1.6; color: var(--body); }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: 400; color: var(--ink); margin: 0; }
+    p { margin: 0; }
+    a { color: var(--link); }
 
-    body {
-      font-size: 1.05rem;
-      line-height: 1.75;
-    }
+    .wrap { max-width: 1120px; margin-left: auto; margin-right: auto; padding-left: 24px; padding-right: 24px; }
 
-    img {
-      max-width: 100%;
+    .eyebrow {
       display: block;
-    }
-
-    p {
-      margin: 0 0 1.1rem;
-    }
-
-    strong {
-      font-weight: 600;
-      color: #2C2416;
-    }
-
-    h1, h2, h3 {
-      font-family: 'DM Serif Display', serif;
-      font-weight: 400;
-      color: #2C2416;
-      margin: 0;
-    }
-
-    /* --- Layout: a narrow reading measure --- */
-    .measure {
-      max-width: 660px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .block {
-      padding: 64px 0;
-    }
-
-    .block + .block {
-      border-top: 1px solid rgba(44, 36, 22, 0.12);
-    }
-
-    .block--tint {
-      background: #F5F0E8;
-    }
-
-    .section-label {
-      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: #4A7C6F;
-      font-size: 0.78rem;
-      font-weight: 700;
-      margin-bottom: 14px;
+      color: var(--sage);
+      margin-bottom: 8px;
     }
 
-    .block h2 {
-      font-size: clamp(1.75rem, 5vw, 2.3rem);
-      line-height: 1.15;
-      margin-bottom: 1.4rem;
-    }
+    .section { padding: 24px 0; }
+    .section--sand { background: var(--sand); }
+    .section h2 { font-size: clamp(1.45rem, 6vw, 2.3rem); line-height: 1.14; margin-bottom: 8px; text-wrap: balance; }
+    .center { text-align: center; }
+    .center h2, .center .eyebrow { margin-left: auto; margin-right: auto; }
+    .center h2 { max-width: 760px; }
+    .lead { max-width: 640px; }
+    .center .lead { margin-left: auto; margin-right: auto; }
 
-    .block h3 {
-      font-size: 1.3rem;
-      line-height: 1.25;
-      margin: 2.2rem 0 0.8rem;
-    }
-
-    .muted {
-      color: #6B5E4E;
-    }
-
-    /* --- Hero --- */
-    .hero {
-      text-align: center;
-      padding: 56px 0 64px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.3rem, 8vw, 3.6rem);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.3rem;
-    }
-
-    .hero-sub {
-      font-size: 1.15rem;
-      color: #3D3027;
-      max-width: 540px;
-      margin: 0 auto 2rem;
-    }
-
-    .hero-sub strong {
-      color: #C17B2F;
-      font-weight: 700;
-    }
-
-    .product-shot {
-      width: 280px;
-      margin: 0 auto;
-    }
-
-    .product-shot img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 10px 30px rgba(44, 36, 22, 0.18);
-    }
-
-    /* --- Pull line --- */
-    .pull {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.5rem;
-      line-height: 1.3;
-      color: #C17B2F;
-      margin: 1.6rem 0 0;
-    }
-
-    /* --- Elements (Chinese medicine) --- */
-    .elements {
-      list-style: none;
-      padding: 0;
-      margin: 1.2rem 0 0;
-      display: grid;
-      gap: 14px;
-    }
-
-    .elements li {
-      background: #fff;
-      border: 1px solid rgba(44, 36, 22, 0.08);
-      border-radius: 16px;
-      padding: 1.1rem 1.3rem;
-    }
-
-    .elements .organ {
-      display: block;
-      font-weight: 700;
-      color: #2C2416;
-    }
-
-    .elements .element {
-      font-style: italic;
-      color: #4A7C6F;
-      font-weight: 400;
-    }
-
-    .elements p {
-      margin: 0.3rem 0 0;
-      color: #3D3027;
-      font-size: 1rem;
-    }
-
-    .bridge {
-      margin-top: 2rem;
-      padding: 1.4rem 1.5rem;
-      background: #FBF4EA;
-      border-left: 4px solid #C17B2F;
-      border-radius: 0 12px 12px 0;
-    }
-
-    .bridge p:last-child {
-      margin-bottom: 0;
-    }
-
-    /* --- Steps --- */
-    .steps {
-      list-style: none;
-      counter-reset: step;
-      padding: 0;
-      margin: 0;
-    }
-
-    .steps li {
-      counter-increment: step;
-      position: relative;
-      padding-left: 3rem;
-      margin-bottom: 1.1rem;
-    }
-
-    .steps li::before {
-      content: counter(step);
-      position: absolute;
-      left: 0;
-      top: 0.1rem;
-      width: 2rem;
-      height: 2rem;
-      border-radius: 50%;
-      background: #C17B2F;
-      color: #FAF7F2;
-      font-weight: 700;
-      font-size: 0.95rem;
-      line-height: 2rem;
-      text-align: center;
-    }
-
-    /* --- Checklists --- */
-    .ticks {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 1.2rem;
-    }
-
-    .ticks li {
-      position: relative;
-      padding-left: 2rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .ticks li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.35rem;
-      width: 18px;
-      height: 18px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Ccircle cx='9' cy='9' r='8' fill='%23C17B2F'/%3E%3Cpath d='M5 9L7.5 11.5L13 6.5' stroke='%23fff' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat;
-    }
-
-    .crosses li::before {
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Ccircle cx='9' cy='9' r='8' fill='%236B5E4E'/%3E%3Cpath d='M6 6L12 12M12 6L6 12' stroke='%23fff' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
-    }
-
-    /* --- Quick Finder table --- */
-    .finder {
-      width: 100%;
-      border-collapse: collapse;
-      background: #fff;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
-      font-size: 0.95rem;
-      line-height: 1.45;
-    }
-
-    .finder th {
-      background: #2C2416;
-      color: #FAF7F2;
-      font-weight: 600;
-      text-align: left;
-      padding: 0.8rem 0.9rem;
-      font-size: 0.85rem;
-      letter-spacing: 0.04em;
-    }
-
-    .finder td {
-      padding: 0.75rem 0.9rem;
-      border-top: 1px solid rgba(44, 36, 22, 0.08);
-      vertical-align: top;
-      color: #3D3027;
-    }
-
-    .finder tbody tr:nth-child(even) td {
-      background: #FDFAF6;
-    }
-
-    .finder td:first-child {
-      font-weight: 600;
-      color: #2C2416;
-      width: 40%;
-    }
-
-    .finder-note {
-      font-style: italic;
-      color: #6B5E4E;
-      text-align: center;
-      margin: 1.4rem auto 0;
-      max-width: 520px;
-    }
-
-    /* --- Who it's for --- */
-    .fit {
-      display: grid;
-      gap: 18px;
-    }
-
-    .fit-col {
-      background: #fff;
-      border: 1px solid rgba(44, 36, 22, 0.08);
-      border-radius: 16px;
-      padding: 1.4rem 1.4rem 0.6rem;
-    }
-
-    .fit-col h3 {
-      margin: 0 0 1rem;
-      font-size: 1.2rem;
-    }
-
-    .fit-col .ticks li {
-      font-size: 0.98rem;
-    }
-
-    /* --- About --- */
-    .about {
-      display: grid;
-      gap: 24px;
-      align-items: start;
-    }
-
-    .about-photo {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: top center;
-      box-shadow: 0 8px 24px rgba(193, 122, 58, 0.22);
-    }
-
-    /* --- Testimonials --- */
-    .quote {
-      margin: 0 0 1.4rem;
-      background: #FDFAF6;
-      border-left: 4px solid #C17B2F;
-      border-radius: 0 12px 12px 0;
-      padding: 1.4rem 1.5rem;
-    }
-
-    .quote p {
-      color: #3D3027;
-      font-size: 1rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .quote cite {
-      display: block;
-      font-style: normal;
-      font-weight: 600;
-      color: #C17B2F;
-      font-size: 0.92rem;
-    }
-
-    .source-note {
-      font-size: 0.88rem;
-      color: #6B5E4E;
-    }
-
-    /* --- Price --- */
-    .price-block {
-      text-align: center;
-    }
-
-    .price-block h2 {
-      font-size: clamp(2rem, 6vw, 2.6rem);
-    }
-
-    /* --- CTA --- */
-    .cta {
-      text-align: center;
-      margin-top: 2.2rem;
-    }
-
-    .button {
-      display: inline-flex;
+    /* --- Buttons --- */
+    .btn {
+      display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
-      max-width: 420px;
-      min-height: 56px;
-      padding: 16px 26px;
-      border-radius: 999px;
-      background: #C17A3A;
-      color: #FAF7F2;
+      min-height: 58px;
+      padding: 12px 22px;
+      background: var(--btn);
+      color: #FFFFFF;
       font-family: inherit;
-      font-size: 1.05rem;
-      font-weight: 600;
+      font-size: 1.08rem;
+      font-weight: 700;
+      text-align: center;
       text-decoration: none;
-      transition: background 0.25s ease, transform 0.25s ease;
+      border-radius: 14px;
+      transition: background 0.2s ease;
     }
+    .btn:hover { background: var(--btn-hover); }
 
-    .button:hover {
-      background: #A36530;
-      transform: translateY(-1px);
-    }
+    .ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+    .ticks li { display: flex; gap: 10px; align-items: flex-start; line-height: 1.45; }
+    .ticks svg { flex-shrink: 0; margin-top: 0.2em; }
+    .mini-ticks { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; margin-top: 10px; font-size: 0.9rem; color: var(--body); }
+    .mini-ticks span { display: inline-flex; align-items: center; gap: 6px; }
 
-    .cta-note {
-      display: block;
-      margin-top: 0.8rem;
-      font-size: 0.88rem;
-      font-style: italic;
-      color: #6B5E4E;
+    /* --- Header --- */
+    .site-header { border-bottom: 1px solid var(--line); }
+    .header-row { display: flex; align-items: center; min-height: 54px; }
+    .wordmark { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--ink); text-decoration: none; }
+    .wordmark em { color: var(--link); }
+
+    /* --- Hero: one cover image, placed beside the ticks on phones and as a large column on desktop --- */
+    .hero { padding: 22px 0 30px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 118px 1fr;
+      grid-template-areas: "intro intro" "cover facts" "cta cta";
+      gap: 16px 16px;
+      align-items: center;
     }
+    .hero-intro { grid-area: intro; }
+    .hero h1 { font-size: clamp(2rem, 8.6vw, 3.4rem); line-height: 1.06; letter-spacing: -0.01em; margin-bottom: 10px; text-wrap: balance; }
+    .hero h1 em { color: var(--btn); }
+    .hero-sub { font-size: 1.05rem; color: var(--body); max-width: 520px; }
+    .hero-cover { grid-area: cover; }
+    .hero-cover img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 10px 26px rgba(42, 33, 26, 0.2); }
+    .hero-facts { grid-area: facts; }
+    .hero-facts .ticks { gap: 6px; font-size: 0.92rem; color: var(--ink); }
+    .hero-price { margin-top: 8px; font-size: 0.92rem; color: var(--muted); }
+    .hero-price strong { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 1.7rem; color: var(--ink); margin-right: 4px; }
+    .hero-cta { grid-area: cta; }
+
+    /* --- Story --- */
+    .story { max-width: 640px; margin: 0 auto; display: grid; gap: 10px; font-size: 1rem; }
+    .story .big { font-family: 'DM Serif Display', serif; font-size: 1.7rem; line-height: 1.2; color: var(--ink); text-align: center; }
+    .story strong { color: var(--ink); }
+
+    /* --- Quick Finder --- */
+    .finder-grid { display: grid; gap: 12px; grid-template-areas: "head" "table" "cta"; }
+    .finder-head { grid-area: head; }
+    .finder-card { grid-area: table; }
+    @media (max-width: 767px) { .finder-card { margin: 0 -8px; } }
+    .finder-cta { grid-area: cta; }
+    .finder-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+    .finder { width: 100%; border-collapse: collapse; font-size: 0.86rem; line-height: 1.3; }
+    .finder th { text-align: left; padding: 9px 10px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage); background: var(--card); border-bottom: 1px solid var(--line); }
+    .finder td { padding: 6px 10px; border-top: 1px solid #F0E8DC; vertical-align: top; }
+    .finder tbody tr:first-child td { border-top: 0; }
+    .finder td:first-child { width: 50%; font-weight: 600; color: var(--ink); }
+    .finder td:last-child { color: var(--muted); }
+    .finder-note { font-size: 0.95rem; font-style: italic; color: var(--muted); }
+    .finder-cta .btn { margin-top: 12px; }
+
+    /* --- What you get --- */
+    .sample[hidden] { display: none; }
+    .sample img { width: 100%; max-width: 320px; height: auto; margin: 0 auto 18px; border-radius: 18px; box-shadow: 0 14px 34px rgba(42, 33, 26, 0.16); }
+    .get-list { max-width: 560px; margin: 14px auto 0; }
+
+    /* --- How you use it --- */
+    .steps { list-style: none; padding: 0; margin: 12px auto 0; max-width: 560px; display: grid; gap: 10px; counter-reset: step; }
+    .steps li { counter-increment: step; display: flex; gap: 14px; align-items: flex-start; line-height: 1.45; color: var(--ink); }
+    .steps li::before {
+      content: counter(step);
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--btn);
+      color: #FFFFFF;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem;
+      line-height: 34px;
+      text-align: center;
+    }
+    .steps-note { margin-top: 14px; font-size: 0.95rem; color: var(--muted); }
+
+    /* --- Why it works --- */
+    .why-cards { display: grid; gap: 10px; margin-top: 12px; }
+    .why-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; }
+    .why-card h3 { font-size: 1.2rem; margin-bottom: 4px; }
+    .pills { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 10px; }
+    .pill { padding: 4px 11px; border-radius: 99px; background: var(--sand); color: var(--ink); font-size: 0.85rem; }
+    .pill b { font-weight: 700; }
+
+    /* --- Bonus kit (dark card) --- */
+    .kit { background: var(--dark); color: var(--on-dark-2); border-radius: 20px; padding: 20px 18px; }
+    .kit .eyebrow { color: var(--hl); }
+    .kit h2 { color: var(--on-dark); }
+    .kit .ticks { margin: 12px 0 16px; color: var(--on-dark); }
+
+    /* --- For / not for --- */
+    .fit { display: grid; gap: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; }
+    .fit h3 { font-size: 1.2rem; margin-bottom: 6px; }
+
+    /* --- Who made it --- */
+    .maker { display: flex; gap: 16px; align-items: center; max-width: 640px; margin: 0 auto; }
+    .maker img { flex: 0 0 84px; width: 84px; height: 84px; border-radius: 50%; object-fit: cover; object-position: top center; }
+    .maker h2 { font-size: 1.3rem; margin-bottom: 4px; }
+    .quote { max-width: 640px; margin: 14px auto 0; background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--btn); border-radius: 14px; padding: 14px 16px; }
+    .quote blockquote { margin: 0; font-style: italic; color: var(--body); }
+    .quote figcaption { margin-top: 6px; font-size: 0.88rem; font-weight: 700; color: var(--ink); }
+    .quote figcaption span { font-weight: 400; color: var(--muted); }
+
+    /* --- Price box --- */
+    .price-box { max-width: 560px; margin: 0 auto; background: var(--card); border: 2px solid var(--btn); border-radius: 20px; padding: 18px 16px; }
+    .price-box h2 { text-align: center; }
+    .price-box .ticks { margin: 10px 0 14px; color: var(--ink); }
+    .guarantee { display: flex; gap: 10px; align-items: flex-start; margin-top: 12px; padding: 12px; background: #E9F0E6; border: 1px solid #CBDCC6; border-radius: 14px; color: var(--ink); font-size: 0.95rem; line-height: 1.5; }
+    .guarantee svg { flex-shrink: 0; color: var(--sage); margin-top: 2px; }
 
     /* --- FAQ --- */
-    .faq dt {
+    .faq { display: grid; gap: 5px; max-width: 760px; margin: 12px auto 0; }
+    .faq details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+    .faq summary {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      min-height: 48px;
+      padding: 7px 16px;
       font-weight: 700;
-      color: #2C2416;
-      margin-top: 1.5rem;
+      line-height: 1.35;
+      color: var(--ink);
+      cursor: pointer;
     }
-
-    .faq dt:first-child {
-      margin-top: 0;
-    }
-
-    .faq dd {
-      margin: 0.3rem 0 0;
-      color: #3D3027;
-    }
-
-    /* --- Disclaimer --- */
-    .disclaimer {
-      font-size: 0.88rem;
-      color: #6B5E4E;
-      line-height: 1.6;
-    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary svg { flex-shrink: 0; color: var(--btn); transition: transform 0.2s ease; }
+    .faq details[open] summary svg { transform: rotate(45deg); }
+    .faq details p { padding: 0 16px 14px; }
 
     /* --- Footer --- */
-    footer {
-      background: #2C2416;
-      color: #FAF7F2;
-      padding: 28px 0 14px;
-      font-size: 0.92rem;
-      text-align: center;
-      line-height: 1.7;
+    footer { background: var(--dark); color: var(--on-dark-2); padding: 20px 0; font-size: 0.85rem; line-height: 1.5; text-align: center; }
+    footer p + p { margin-top: 6px; }
+    footer a { color: var(--on-dark-2); }
+    footer strong { color: var(--on-dark); }
+
+    /* --- Sticky buy bar (phones) --- */
+    .sticky-buy {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 50;
+      height: 96px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 16px;
+      background: var(--card);
+      border-top: 1px solid var(--line);
+      box-shadow: 0 -6px 20px rgba(42, 33, 26, 0.1);
+      transform: translateY(110%);
+      visibility: hidden;
+      transition: transform 0.25s ease, visibility 0.25s;
+    }
+    .sticky-buy.show { transform: none; visibility: visible; }
+    .sticky-buy strong { display: block; font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 1.12rem; color: var(--ink); }
+    .sticky-buy span { font-size: 0.82rem; color: var(--muted); }
+    .sticky-buy .btn { width: auto; flex-shrink: 0; padding: 12px 26px; }
+
+    @media (max-width: 767px) {
+      body { padding-bottom: 96px; }
     }
 
-    footer p {
-      color: rgba(250, 247, 242, 0.8);
-      margin: 0 0 6px;
+    @media (min-width: 768px) {
+      body { font-size: 17px; line-height: 1.65; }
+      .sticky-buy { display: none; }
+      .section { padding: 64px 0; }
+      .hero { padding: 40px 0 48px; }
+      .hero-grid { grid-template-columns: 170px 1fr; gap: 20px 28px; }
+      .hero-cta { max-width: 420px; }
+      .hero-cta .mini-ticks { justify-content: flex-start; }
     }
 
-    footer a {
-      color: rgba(250, 247, 242, 0.8);
+    @media (min-width: 1024px) {
+      .hero { padding: 56px 0 64px; }
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 400px);
+        grid-template-areas: "intro cover" "facts cover" "cta cover";
+        grid-template-rows: auto auto auto;
+        gap: 20px 56px;
+        align-content: center;
+      }
+      .hero-cover { align-self: center; }
+      .hero-cover img { border-radius: 12px; }
     }
 
-    a {
-      color: #C17B2F;
-    }
-
-    /* --- Phones --- */
-    @media (max-width: 480px) {
-      body {
-        font-size: 1rem;
-      }
-
-      .block {
-        padding: 48px 0;
-      }
-
-      .hero {
-        padding: 40px 0 48px;
-      }
-
-      .product-shot {
-        width: 240px;
-      }
-
-      .measure--wide {
-        padding: 0 12px;
-      }
-
-      .finder {
-        font-size: 0.84rem;
-      }
-
-      .finder th,
-      .finder td {
-        padding: 0.65rem 0.55rem;
-      }
-
-      .finder th {
-        font-size: 0.75rem;
-      }
-    }
-
-    @media (min-width: 640px) {
-      .fit {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .about {
-        grid-template-columns: 160px 1fr;
-        gap: 32px;
-      }
-
-      .elements {
-        grid-template-columns: 1fr 1fr;
-      }
+    @media (min-width: 768px) {
+      .hero-sub { font-size: 1.15rem; }
+      .hero-facts .ticks { font-size: 1rem; }
+      .finder-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); grid-template-areas: "head table" "cta table"; grid-template-rows: auto 1fr; gap: 14px 48px; align-content: center; }
+      .finder-head { align-self: end; }
+      .finder-cta { align-self: start; }
+      .finder-cta .btn { width: fit-content; }
+      .why-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .kit { padding: 36px 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr); gap: 0 40px; align-items: center; }
+      .kit .kit-cta { grid-column: 2; grid-row: 1 / span 2; }
+      .fit { grid-template-columns: 1fr 1fr; padding: 22px 24px; gap: 28px; }
+      .maker img { flex-basis: 110px; width: 110px; height: 110px; }
+      .price-box { padding: 30px 32px; }
     }
   </style>
 </head>
 <body>
+
+  <!-- 1. HEADER -->
+  <header class="site-header">
+    <div class="wrap header-row">
+      <span class="wordmark">Heal Your Digestion <em>with EFT</em></span>
+    </div>
+  </header>
+
   <main>
 
-    <!-- 1-3. HERO -->
-    <header class="hero">
-      <div class="measure">
-        <span class="section-label">EFT Tapping for Digestion</span>
-        <h1>Your Gut Has Been Trying to Tell You Something</h1>
-        <p class="hero-sub">15 gut symptoms, the emotion behind each one, and the tapping script to clear it. A 44-page map you use in five minutes, not a book you read. <strong>$9.</strong></p>
-        <div class="product-shot">
+    <!-- 2. HERO WITH THE BUY BUTTON -->
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div class="hero-intro">
+          <span class="eyebrow">15 gut symptoms · 15 tapping scripts</span>
+          <h1>Your gut has been trying to tell you <em>something.</em></h1>
+          <p class="hero-sub">Find your symptom, see the emotion behind it, and tap through a 5-minute script to settle it.</p>
+        </div>
+        <div class="hero-cover">
           <picture>
-            <source type="image/webp" srcset="assets/gut-emotion-map-300.webp 300w, assets/gut-emotion-map-600.webp 600w" sizes="(max-width: 480px) 240px, 280px" />
+            <source type="image/webp" srcset="assets/gut-emotion-map-300.webp 300w, assets/gut-emotion-map-600.webp 600w" sizes="(min-width: 1024px) 400px, (min-width: 768px) 170px, 118px" />
             <img src="assets/gut-emotion-map.png" width="600" height="600" alt="The Gut-Emotion Map: 15 symptoms, 15 tapping scripts" fetchpriority="high" decoding="async" />
           </picture>
         </div>
-      </div>
-    </header>
-
-    <!-- 4. THE READER'S EXPERIENCE -->
-    <section class="block">
-      <div class="measure">
-        <p>You've probably done the sensible things. Cut out foods. Tried probiotics. Kept a food diary and looked for the pattern.</p>
-        <p>Maybe you had tests, and they came back normal. Nothing was found. That's a relief, and also no help at all, because the bloating, the knots and the heaviness are still there.</p>
-        <p>And you may have noticed something the food diary can't explain. In a hard week, your gut flares. On holiday, it settles. Same diet. Different gut.</p>
-        <p>At some point someone told you to manage your stress. Nobody showed you how.</p>
-        <p>After over 10 years treating digestion, one pattern has come up more than any other.</p>
-        <p class="pull">The gut holds what we don't say.</p>
-      </div>
-    </section>
-
-    <!-- 5. THE MECHANISM -->
-    <section class="block block--tint">
-      <div class="measure">
-        <span class="section-label">Why it happens</span>
-        <h2>Why your gut reacts to how you feel</h2>
-
-        <h3>The nerves</h3>
-        <p>Your gut has its own nervous system. Around 500 million nerve cells line your digestive tract, in constant conversation with your brain through the vagus nerve.</p>
-        <p>Under stress, your body shifts its resources to fight or flight, and digestion slows, speeds up, tightens or stops. That's why nerves hit the stomach, why grief takes away your appetite, and why a bad day can bloat you even on a good diet.</p>
-
-        <h3>The 2,000-year-old version</h3>
-        <p>Chinese medicine described the same thing in a different language. Each organ system has an emotion that affects it most.</p>
-        <ul class="elements">
-          <li>
-            <span class="organ">Spleen and Stomach <span class="element">· Earth</span></span>
-            <p>They turn food into energy. Their emotion is worry. Overthinking tires them, and food sits instead of moving.</p>
-          </li>
-          <li>
-            <span class="organ">Liver <span class="element">· Wood</span></span>
-            <p>It keeps things flowing. Its emotion is frustration. When it's blocked, it pushes sideways into the gut: knots, cramps, reflux, wind.</p>
-          </li>
-          <li>
-            <span class="organ">Lungs and Large Intestine <span class="element">· Metal</span></span>
-            <p>They govern letting go. Their emotion is grief. When it's heavy, things get stuck.</p>
-          </li>
-          <li>
-            <span class="organ">Heart <span class="element">· Fire</span></span>
-            <p>It holds the racing mind. When it's unsettled, it shows up as anxiety and dread in the belly.</p>
-          </li>
-        </ul>
-
-        <div class="bridge">
-          <p><strong>Tapping works on both at once.</strong> You tap on acupuncture points with your fingertips while you name what you feel. The nervous system settles, and the gut follows.</p>
+        <div class="hero-facts">
+          <ul class="ticks">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>44-page map, made for your phone</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Word-for-word scripts</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Free Bloat Relief Kit</span></li>
+          </ul>
+          <p class="hero-price"><strong>$9</strong> one payment</p>
+        </div>
+        <div class="hero-cta">
+          <a class="btn" id="hero-buy" data-checkout data-location="hero" href="#price">Get the Gut-Emotion Map · $9</a>
+          <p class="mini-ticks"><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Instant download</span><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>7-day money back</span></p>
         </div>
       </div>
     </section>
 
-    <!-- 6. THE PRODUCT -->
-    <section class="block">
-      <div class="measure">
-        <span class="section-label">The map</span>
-        <h2>The Gut-Emotion Map</h2>
-        <p>44 pages. 15 symptoms. 15 tapping scripts. It's built to be used, not read. You don't need to start at page one. You start with whatever your gut is doing today.</p>
-
-        <h3>How you use it</h3>
-        <ol class="steps">
-          <li>Go to the Quick Finder. Find your symptom.</li>
-          <li>Turn to its page. Read the short explanation, answer the two questions, and give the feeling one or two words.</li>
-          <li>Tap through the three rounds. About five minutes.</li>
-          <li>Rate yourself before and after on the tracker at the back.</li>
-        </ol>
-
-        <div class="cta">
-          <a class="button" data-checkout href="#price">Get the Gut-Emotion Map for $9</a>
-          <span class="cta-note">Instant download. 7-day money-back guarantee.</span>
+    <!-- 3. THE STORY -->
+    <section class="section section--sand">
+      <div class="wrap">
+        <div class="story">
+          <p>You've done the sensible things. Cut out foods. Tried probiotics. Kept a food diary.</p>
+          <p>Maybe the tests came back normal. A relief, and also no help at all, because the bloating and the knots are still there.</p>
+          <p>And you've noticed something the food diary can't explain. In a hard week, your gut flares. On holiday, it settles.</p>
+          <p class="big">Same diet. Different gut.</p>
+          <p>After over 10 years treating digestion, one pattern came up more than any other: <strong>the gut holds what we don't say.</strong></p>
         </div>
       </div>
     </section>
 
-    <!-- 7. THE QUICK FINDER -->
-    <section class="block block--tint">
-      <div class="measure measure--wide">
-        <span class="section-label">Inside the map</span>
-        <h2>The Quick Finder</h2>
-        <p>The map opens with a one-page Quick Finder. Read down the list and notice which one you recognise.</p>
-        <table class="finder">
-          <thead>
-            <tr><th scope="col">Symptom</th><th scope="col">Organ</th><th scope="col">Emotion</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Bloating after meals</td><td>Spleen</td><td>Worry, overthinking</td></tr>
-            <tr><td>Heavy, sluggish, foggy after eating</td><td>Spleen (Dampness)</td><td>Brooding, feeling stuck</td></tr>
-            <tr><td>Nervous stomach, butterflies, knots</td><td>Liver and Stomach</td><td>Anxiety, feeling wound up</td></tr>
-            <tr><td>Reflux and heartburn</td><td>Stomach (rising)</td><td>Frustration, irritability</td></tr>
-            <tr><td>Burping and trapped wind</td><td>Liver</td><td>Bottled-up emotion</td></tr>
-            <tr><td>Cramping and spasms</td><td>Liver</td><td>Anger, feeling stuck</td></tr>
-            <tr><td>Constipation</td><td>Large Intestine</td><td>Holding on</td></tr>
-            <tr><td>Loose stools or urgency under stress</td><td>Liver and Spleen</td><td>Pressure, dread</td></tr>
-            <tr><td>Alternating constipation and loose</td><td>Liver and Spleen</td><td>Frustration into worry</td></tr>
-            <tr><td>Nausea when upset</td><td>Stomach (rising)</td><td>Disgust, can't stomach it</td></tr>
-            <tr><td>Loss of appetite when stressed</td><td>Spleen and Stomach</td><td>Overwhelm, emptiness</td></tr>
-            <tr><td>Stress eating and sugar cravings</td><td>Spleen</td><td>Needing comfort</td></tr>
-            <tr><td>Fear or anxiety around eating</td><td>Spleen and Heart</td><td>Fear, obsessive thinking</td></tr>
-            <tr><td>Tight solar plexus, shallow breath</td><td>Liver and Lungs</td><td>Repression, held-in grief</td></tr>
-            <tr><td>Punched in the gut after loss</td><td>Lungs</td><td>Grief, shock</td></tr>
-          </tbody>
-        </table>
-        <p class="finder-note">"Not sure which one? Pick the one your body reacts to as you read the list. That's usually right."</p>
+    <!-- 4. QUICK FINDER -->
+    <section class="section">
+      <div class="wrap finder-grid">
+        <div class="finder-head">
+          <span class="eyebrow">Inside the map · the Quick Finder</span>
+          <h2>Which one do you recognise?</h2>
+          <p class="lead">Read down the list. The one your body reacts to is usually the right one.</p>
+        </div>
+        <div class="finder-card">
+          <table class="finder">
+            <thead><tr><th scope="col">Symptom</th><th scope="col">Emotion</th></tr></thead>
+            <tbody>
+              <tr><td>Bloating after meals</td><td>Worry, overthinking</td></tr>
+              <tr><td>Heavy, foggy after eating</td><td>Brooding, feeling stuck</td></tr>
+              <tr><td>Nervous stomach, knots</td><td>Anxiety, feeling wound up</td></tr>
+              <tr><td>Reflux and heartburn</td><td>Frustration, irritability</td></tr>
+              <tr><td>Burping and trapped wind</td><td>Bottled-up emotion</td></tr>
+              <tr><td>Cramping and spasms</td><td>Anger, feeling stuck</td></tr>
+              <tr><td>Constipation</td><td>Holding on</td></tr>
+              <tr><td>Loose stools under stress</td><td>Pressure, dread</td></tr>
+              <tr><td>Constipation, then loose</td><td>Frustration into worry</td></tr>
+              <tr><td>Nausea when upset</td><td>Disgust, can't stomach it</td></tr>
+              <tr><td>No appetite when stressed</td><td>Overwhelm, emptiness</td></tr>
+              <tr><td>Stress eating, sugar cravings</td><td>Needing comfort</td></tr>
+              <tr><td>Fear around eating</td><td>Fear, obsessive thinking</td></tr>
+              <tr><td>Tight solar plexus</td><td>Repression, held-in grief</td></tr>
+              <tr><td>Punched in the gut after loss</td><td>Grief, shock</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="finder-cta">
+          <p class="finder-note">Every one has its own page and its own tapping script.</p>
+          <a class="btn" data-checkout data-location="quick_finder" href="#price">Get my script · $9</a>
+        </div>
       </div>
     </section>
 
-    <!-- 8. EACH SYMPTOM PAGE -->
-    <section class="block">
-      <div class="measure">
-        <span class="section-label">Every symptom page</span>
+    <!-- 5. WHAT YOU GET FOR EACH SYMPTOM -->
+    <section class="section section--sand">
+      <div class="wrap center">
+        <span class="eyebrow">Every symptom page</span>
         <h2>What you get for each symptom</h2>
-        <ul class="ticks">
-          <li><strong>How it shows up:</strong> the symptom described as you actually experience it</li>
-          <li><strong>What Chinese medicine links it to</strong></li>
-          <li><strong>Find your version:</strong> two questions that turn the general script into yours</li>
-          <li><strong>A setup statement, then three tapping rounds:</strong> Release, Calm, Choice</li>
-          <li><strong>A practical tip</strong> for that organ</li>
-          <li><strong>A clear "see a doctor if" line</strong></li>
+        <!-- Shows a real symptom page on a phone. Remove `hidden` once assets/map-sample-page.jpg exists. -->
+        <figure class="sample" hidden>
+          <img src="assets/map-sample-page.jpg" alt="A symptom page from the Gut-Emotion Map shown on a phone" width="640" height="1280" loading="lazy" decoding="async" />
+        </figure>
+        <ul class="ticks get-list" style="text-align:left;">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>How it shows up, in the words you'd use</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>What Chinese medicine links it to</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Two questions that make the script yours</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Three tapping rounds: Release, Calm, Choice</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>A practical tip and a clear "see a doctor if" line</span></li>
         </ul>
-        <p>Also included: the nine tapping points and where to find them, the three-round method explained once so you only learn it once, and a progress tracker at the back.</p>
       </div>
     </section>
 
-    <!-- 9. THE BONUS -->
-    <section class="block block--tint">
-      <div class="measure">
-        <span class="section-label">Bonus</span>
-        <h2>Plus: the 10-Minute Bloat Relief Kit, free with your map</h2>
-        <p>The map tells you the pattern. The kit gives you something to do tonight.</p>
-        <ul class="ticks">
-          <li><strong>Tap along with me.</strong> Follow the 10-minute Bloat Relief Script on video, so you can see exactly where to tap.</li>
-          <li><strong>The Bloat Relief Script.</strong> The full 10-minute script, word for word. Print it or keep it on your phone.</li>
-          <li><strong>The 5 Element Emotion Chart.</strong> Find the emotion behind your symptom at a glance.</li>
-        </ul>
+    <!-- 6. HOW YOU USE IT -->
+    <section class="section">
+      <div class="wrap center">
+        <h2>Five minutes. Four steps.</h2>
+        <ol class="steps" style="text-align:left;">
+          <li>Find your symptom in the Quick Finder.</li>
+          <li>Turn to its page. Answer the two questions.</li>
+          <li>Tap through the three rounds.</li>
+          <li>Rate yourself before and after on the tracker.</li>
+        </ol>
+        <p class="steps-note">No tapping experience needed. The nine points are shown once, with pictures.</p>
+      </div>
+    </section>
 
-        <div class="cta">
-          <a class="button" data-checkout href="#price">Get the Map and the Kit for $9</a>
-          <span class="cta-note">Both are yours the moment you pay.</span>
+    <!-- 7. WHY IT WORKS -->
+    <section class="section section--sand">
+      <div class="wrap">
+        <div class="center">
+          <span class="eyebrow">Why it works</span>
+          <h2>Your gut reacts to how you feel</h2>
+        </div>
+        <div class="why-cards">
+          <div class="why-card">
+            <h3>The nerves</h3>
+            <p>Around 500 million nerve cells line your gut, talking to your brain through the vagus nerve. Under stress, digestion slows, speeds up or tightens.</p>
+          </div>
+          <div class="why-card">
+            <h3>The 2,000-year-old version</h3>
+            <div class="pills">
+              <span class="pill"><b>Spleen</b> · worry</span>
+              <span class="pill"><b>Liver</b> · frustration</span>
+              <span class="pill"><b>Large Intestine</b> · grief</span>
+              <span class="pill"><b>Heart</b> · anxiety</span>
+            </div>
+            <p>Tapping works on both at once. The nervous system settles, and the gut follows.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 10. WHO IT'S FOR -->
-    <section class="block">
-      <div class="measure">
-        <span class="section-label">Is it right for you?</span>
-        <h2>Who it's for, and who it isn't</h2>
+    <!-- 8. BONUS KIT -->
+    <section class="section">
+      <div class="wrap">
+        <div class="kit">
+          <div>
+            <span class="eyebrow">Free with your map</span>
+            <h2>The 10-Minute Bloat Relief Kit</h2>
+            <p>The map shows you the pattern. The kit gives you something to do tonight.</p>
+          </div>
+          <ul class="ticks">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E9B98A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Tap-along video with me</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E9B98A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>The Bloat Relief Script, word for word</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E9B98A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>The 5 Element Emotion Chart</span></li>
+          </ul>
+          <div class="kit-cta">
+            <a class="btn" data-checkout data-location="kit" href="#price">Get the Map and the Kit · $9</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. FOR YOU / NOT FOR YOU -->
+    <section class="section section--sand">
+      <div class="wrap">
         <div class="fit">
-          <div class="fit-col">
-            <h3>It's for you if</h3>
+          <div>
+            <h3>For you if</h3>
             <ul class="ticks">
-              <li>Your gut gets worse when life gets stressful</li>
-              <li>You've changed what you eat and want to work on the other half</li>
-              <li>You want something practical you can do at home in five minutes</li>
-              <li>You're curious how Chinese medicine links each organ to an emotion</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Your gut gets worse when life gets stressful</span></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>You've changed what you eat and want to work on the other half</span></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>You want something you can do at home in five minutes</span></li>
             </ul>
           </div>
-          <div class="fit-col">
-            <h3>It isn't for you if</h3>
-            <ul class="ticks crosses">
-              <li>You need treatment for a medical condition. This is for stress-related digestive discomfort.</li>
-              <li>You're looking for medical advice. It isn't, and it doesn't replace your doctor.</li>
-              <li>You want a diet or an elimination plan. There's nothing to cut out.</li>
-              <li>Your symptoms haven't been checked yet. If they're undiagnosed, see your doctor first.</li>
+          <div>
+            <h3>Not for you if</h3>
+            <ul class="ticks">
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5E5348" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>You want a diet plan. There's nothing to cut out.</span></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5E5348" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Your symptoms haven't been checked yet. See your doctor first.</span></li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 11. ABOUT MICHAEL -->
-    <section class="block block--tint">
-      <div class="measure">
-        <span class="section-label">Who made it</span>
-        <div class="about">
+    <!-- 10. WHO MADE IT + ONE TESTIMONIAL -->
+    <section class="section section--sand" style="padding-top:0;">
+      <div class="wrap">
+        <div class="maker">
           <picture>
             <source srcset="assets/bio%20pic%201.webp" type="image/webp" />
-            <img class="about-photo" src="assets/bio%20pic%201.jpg" alt="Michael Hetherington" width="160" height="160" loading="lazy" decoding="async" />
+            <img src="assets/bio%20pic%201.jpg" alt="Michael Hetherington" width="110" height="110" loading="lazy" decoding="async" />
           </picture>
           <div>
-            <h2>Michael Hetherington</h2>
-            <p>I'm a Chinese medicine acupuncturist and a certified EFT Practitioner and Trainer. For over 10 years I've treated digestion with acupuncture, Chinese medicine and EFT tapping.</p>
-            <p class="muted">The Gut-Emotion Map is the pattern I kept seeing in that work, laid out so you can use it at home.</p>
+            <h2>Made by Michael Hetherington</h2>
+            <p>Chinese medicine acupuncturist and EFT trainer. 10+ years treating digestion.</p>
+          </div>
+        </div>
+        <!-- Verbatim from Aiko Shimada's review on michaelhetherington.com/reviews (about Michael's EFT sessions). -->
+        <figure class="quote">
+          <blockquote>After meeting with him several times, I felt a confidence I never felt before to be with my anxiety in a much calmer way than before, and as a result, the anxiety had diminished quite a bit!</blockquote>
+          <figcaption>Aiko Shimada <span>· EFT sessions with Michael</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 11. PRICE BOX + GUARANTEE -->
+    <section class="section" id="price">
+      <div class="wrap">
+        <div class="price-box" id="price-box">
+          <h2>$9. One payment. Yours to keep.</h2>
+          <ul class="ticks">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>The Gut-Emotion Map: 44 pages, 15 symptoms, 15 scripts</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>The Quick Finder and the progress tracker</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Bonus: the 10-Minute Bloat Relief Kit</span></li>
+          </ul>
+          <a class="btn" data-checkout data-location="price_box" href="#price">Get the Gut-Emotion Map · $9</a>
+          <div class="guarantee">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/></svg>
+            <p><strong>7-day money-back guarantee.</strong> Email me at <a href="mailto:info@michaelhetherington.com">info@michaelhetherington.com</a> within 7 days and I'll refund your $9. No need to explain why.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 12. TESTIMONIALS (verbatim from michaelhetherington.com/reviews) -->
-    <section class="block">
-      <div class="measure">
-        <span class="section-label">What people say</span>
-        <h2>What people say about working with Michael</h2>
-        <p class="source-note">From clients of Michael's EFT sessions and courses, as published on michaelhetherington.com.</p>
-
-        <blockquote class="quote">
-          <p>Michael was the first EFT teacher/practitioner that I felt made a big step towards a more calm and peaceful state. I had had at least 4 or 5 practitioners whom I got help from in the past, and although I learned new skills each time, I still struggled a lot with my anxiety.</p>
-          <p>The difference between my past experiences with other EFT practitioners and Michael was that he has a deep knowledge of Chinese medicine (including Qigong) and other methods like the Sedona Method. I also benefited from his gentleness both in his being and approach that allowed a gradual releasing of blockages.</p>
-          <p>After meeting with him several times, I felt a confidence I never felt before to be with my anxiety in a much calmer way than before, and as a result, the anxiety had diminished quite a bit!</p>
-          <p>He is an amazing listener and a very intuitive person. I highly recommend Micheal to anyone who wants to try EFT or who is dealing with deep-seated fear and anxiety.</p>
-          <cite>Aiko Shimada</cite>
-        </blockquote>
-
-        <blockquote class="quote">
-          <p>I've been fortunate enough to have a number of EFT sessions with Michael over the years. He has an uncanny ability to draw out what's at the the root of my challenges and is very effective at helping to quickly bring me back into a deeper sense of inner peace and stability.</p>
-          <p>I would highly recommend anyone who is dealing with tough emotions and traumatic experiences to work with him as he not only knows his stuff but also has a heart of gold.</p>
-          <cite>Justin Lee from the USA</cite>
-        </blockquote>
-
-        <blockquote class="quote">
-          <p>Michael is an amazing and gifted healer. I felt completely at peace in his presence. His method was highly enjoyable, effective and just what I needed to overcome my stuff. Highly recommended.</p>
-          <cite>Simon Smith from Australia</cite>
-        </blockquote>
-      </div>
-    </section>
-
-    <!-- 13. PRICE -->
-    <section class="block block--tint" id="price">
-      <div class="measure price-block">
-        <span class="section-label">The price</span>
-        <h2>$9. One payment. Yours to keep.</h2>
-        <p>Instant access. The map and the kit are both available the moment you pay.</p>
-        <ul class="ticks" style="display:inline-block; text-align:left; margin-top:0.6rem;">
-          <li>The Gut-Emotion Map: 44 pages, 15 symptoms, 15 tapping scripts</li>
-          <li>The Quick Finder and the progress tracker</li>
-          <li>Bonus: the 10-Minute Bloat Relief Kit</li>
-        </ul>
-
-        <div class="cta" style="margin-top:1rem;">
-          <a class="button" data-checkout href="#price">Get the Gut-Emotion Map for $9</a>
-          <span class="cta-note">Instant download. 7-day money-back guarantee.</span>
+    <!-- 12. FAQ -->
+    <section class="section section--sand">
+      <div class="wrap">
+        <h2 class="center">Common questions</h2>
+        <div class="faq">
+          <details><summary>How do I get it?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Straight after you pay, you're taken to a page where you can download the map and use the bonus kit. Your receipt email links to that page too, so you can come back to it any time.</p></details>
+          <details><summary>Do I need to know anything about tapping?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>No. The nine points and the three-round method are explained in the map, once.</p></details>
+          <details><summary>How long does a script take?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>About five minutes.</p></details>
+          <details><summary>Will this help if my symptoms have a medical cause?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>The map is for stress-related digestive discomfort. Every symptom page has a "see a doctor if" line, and it does not replace medical care.</p></details>
+          <details><summary>Is this a diet?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>No. There is nothing to cut out.</p></details>
+          <details><summary>What if it isn't for me?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Email <a href="mailto:info@michaelhetherington.com">info@michaelhetherington.com</a> within 7 days of buying and you'll be refunded.</p></details>
         </div>
-      </div>
-    </section>
-
-    <!-- 14. REFUND -->
-    <section class="block">
-      <div class="measure">
-        <span class="section-label">7-day money-back guarantee</span>
-        <h2>If it isn't for you</h2>
-        <p>If the map isn't what you hoped, email me at <a href="mailto:info@michaelhetherington.com">info@michaelhetherington.com</a> within 7 days of buying and I'll refund your $9. You don't need to explain why.</p>
-      </div>
-    </section>
-
-    <!-- 15. FAQ -->
-    <section class="block block--tint">
-      <div class="measure">
-        <span class="section-label">Questions</span>
-        <h2>Common questions</h2>
-        <dl class="faq">
-          <dt>How do I get it?</dt>
-          <dd>Straight after you pay, you're taken to a page where you can download the map and use the bonus kit. Your receipt email links to that page too, so you can come back to it any time.</dd>
-          <dt>Do I need to know anything about tapping?</dt>
-          <dd>No. The nine points and the three-round method are explained in the map, once.</dd>
-          <dt>How long does a script take?</dt>
-          <dd>About five minutes.</dd>
-          <dt>Will this help if my symptoms have a medical cause?</dt>
-          <dd>The map is for stress-related digestive discomfort. Every symptom page has a "see a doctor if" line, and it does not replace medical care.</dd>
-          <dt>Is this a diet?</dt>
-          <dd>No. There is nothing to cut out.</dd>
-          <dt>What if it isn't for me?</dt>
-          <dd>Email <a href="mailto:info@michaelhetherington.com">info@michaelhetherington.com</a> within 7 days of buying and you'll be refunded.</dd>
-        </dl>
-      </div>
-    </section>
-
-    <!-- MEDICAL DISCLAIMER -->
-    <section class="block">
-      <div class="measure">
-        <p class="disclaimer"><strong>Medical disclaimer.</strong> For stress-related digestive discomfort. Not medical advice. If your symptoms are severe, new or getting worse, please see your doctor first. EFT works best alongside good medical care.</p>
       </div>
     </section>
 
   </main>
 
-  <!-- 16. FOOTER -->
+  <!-- 13. FOOTER -->
   <footer>
-    <div class="measure">
-      <p>Heal Your Digestion with EFT · healyourdigestioneft.com</p>
+    <div class="wrap">
+      <p><strong>Medical disclaimer.</strong> For stress-related digestive discomfort. Not medical advice. If your symptoms are severe, new or getting worse, please see your doctor first. EFT works best alongside good medical care.</p>
       <p><a href="mailto:info@michaelhetherington.com">info@michaelhetherington.com</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
-      <p>© 2026 · All rights reserved</p>
+      <p>Heal Your Digestion with EFT · © 2026 · All rights reserved</p>
       <p>This program is complementary to medical treatment and does not replace advice from your doctor.</p>
     </div>
   </footer>
 
+  <!-- 14. STICKY BUY BAR (phones) -->
+  <div class="sticky-buy" id="sticky-buy" aria-hidden="true">
+    <div>
+      <strong>Gut-Emotion Map · $9</strong>
+      <span>Instant download · 7-day guarantee</span>
+    </div>
+    <a class="btn" data-checkout data-location="sticky" href="#price" tabindex="-1">Get it</a>
+  </div>
+
   <script>
-    /* Every CTA reads window.CHECKOUT_URL, so the checkout link lives in one place.
+    /* Every buy button reads window.CHECKOUT_URL, so the checkout link lives in one place.
        The href is set on load (so long-press and hover show the real link) and
        checked again on click, so a swapped URL is always picked up. It is only
        rewritten when the URL has changed: gtag's cross-domain linker adds _gl to
        the href just before the click, and rewriting it would drop that.
        Tracking can never stop the click from going through. */
     (function () {
-      function beginCheckout() {
+      function beginCheckout(location) {
         try {
           gtag('event', 'begin_checkout', {
             item_name: 'Gut-Emotion Map',
             value: 9,
             currency: 'USD',
-            page_source: 'gut_emotion_map_sales_page'
+            page_source: 'gut_emotion_map_sales_page',
+            button_location: location
           });
         } catch (e) {}
+        try { fbq('track', 'InitiateCheckout', { value: 9, currency: 'USD' }); } catch (e) {}
       }
       Array.prototype.forEach.call(document.querySelectorAll('[data-checkout]'), function (a) {
         var applied = window.CHECKOUT_URL;
@@ -861,9 +635,32 @@
             applied = window.CHECKOUT_URL;
             a.href = applied;
           }
-          beginCheckout();
+          beginCheckout(a.getAttribute('data-location'));
         });
       });
+    })();
+
+    /* Sticky buy bar on phones: shows once the hero buy button has scrolled away,
+       and hides while the price box is on screen. */
+    (function () {
+      var bar = document.getElementById('sticky-buy');
+      var barLink = bar && bar.querySelector('a');
+      var hero = document.getElementById('hero-buy');
+      var price = document.getElementById('price-box');
+      if (!bar || !hero || !price || !('IntersectionObserver' in window)) return;
+      var heroVisible = true, priceVisible = false;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.target === hero) { heroVisible = e.isIntersecting || e.boundingClientRect.top > 0; }
+          if (e.target === price) { priceVisible = e.isIntersecting; }
+        });
+        var show = !heroVisible && !priceVisible;
+        bar.classList.toggle('show', show);
+        bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+        if (barLink) { barLink.tabIndex = show ? 0 : -1; }
+      });
+      io.observe(hero);
+      io.observe(price);
     })();
   </script>
 </body>
