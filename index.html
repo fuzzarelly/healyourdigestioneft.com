@@ -78,3089 +78,708 @@
   <link rel="apple-touch-icon" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Serif+Display&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Serif+Display&display=swap" /></noscript>
-  <link rel="preload" as="image" href="assets/ChatGPT%20Image%20May%207%2C%202026%2C%2011_19_04%20AM.webp" type="image/webp" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" /></noscript>
   <style>
     :root {
+      --bg: #FAF7F2;
+      --sand: #F3ECE1;
+      --card: #FFFFFF;
+      --line: #E6DCCB;
+      --dark: #2A211A;
+      --on-dark: #FAF7F2;
+      --on-dark-2: #E4DACB;
+      --hl: #E9B98A;
+      --ink: #2A211A;
+      --body: #3B3129;
+      --muted: #5E5348;
+      --sage: #4E6B4A;
+      --btn: #A9601F;
+      --btn-hover: #8A4D18;
+      /* #A9601F is under 4.5:1 as small text on the light backgrounds, so links use the darker shade. */
+      --link: #8A4D18;
       color-scheme: light;
       font-family: 'Lora', Georgia, serif;
-      color: #2C2416;
-      background: #FAF7F2;
+      color: var(--body);
+      background: var(--bg);
       scroll-behavior: smooth;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body { margin: 0; padding: 0; background: var(--bg); }
+
+    body { font-size: 16px; line-height: 1.6; color: var(--body); }
+
+    img { max-width: 100%; display: block; }
 
     h1, h2, h3 {
-      text-align: center;
-    }
-
-    html, body {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      color: var(--ink);
       margin: 0;
-      padding: 0;
-      background: #FAF7F2;
-      min-height: 100%;
     }
 
-    body {
-      line-height: 1.7;
-      font-size: 1rem;
-    }
+    p { margin: 0; }
 
-    img {
-      max-width: 100%;
+    a { color: var(--link); }
+
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    .narrow { max-width: 720px; }
+
+    .eyebrow {
       display: block;
-    }
-
-    .page-wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px 60px;
-    }
-
-    /* --- Header --- */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: #2C2416;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 0.6rem 2rem;
-    }
-
-    .header-quiz {
-      display: inline-flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      column-gap: 0.35em;
-      background: #C17A3A;
-      color: #FAF7F2;
-      padding: 0.5rem 1.4rem;
-      font-family: Lora, serif;
-      font-size: 0.88rem;
-      font-weight: 500;
-      line-height: 1.35;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 999px;
-      transition: background 0.2s ease;
-    }
-
-    .header-quiz:hover {
-      background: #D98B45;
-    }
-
-    .header-quiz span {
-      white-space: nowrap;
-    }
-
-    .header-quiz-go {
+      font-size: 0.75rem;
       font-weight: 700;
-    }
-
-    @media (max-width: 768px) {
-      .header-inner {
-        padding: 0.5rem 1rem;
-      }
-      .header-quiz {
-        font-size: 0.8rem;
-        padding: 0.45rem 1.1rem;
-      }
-    }
-
-    @media (min-width: 769px) {
-      .header-inner {
-        padding: 0.5rem 2rem;
-      }
-      .logo {
-        font-size: 0.9rem;
-      }
-    }
-
-    /* --- Sections --- */
-    section {
-      padding: 48px 0;
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* The hero is above the fold: show it straight away rather than waiting
-       for the scroll-reveal script, so it paints fast on phones. */
-    section.hero {
-      opacity: 1;
-      transform: none;
-    }
-
-    .section-rule {
-      border: none;
-      border-top: 1px solid rgba(44, 36, 22, 0.18);
-      margin: 0;
-    }
-
-    /* --- Hero --- */
-    .hero {
-      padding: 3rem 2rem 4rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .hero-headline {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2.8rem, 6vw, 4.5rem);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto 2rem auto;
-    }
-
-    .hero-body-row {
-      display: flex;
-      gap: 3rem;
-      align-items: flex-start;
-    }
-
-    .hero-left {
-      flex: 0 0 55%;
-    }
-
-    .hero-right {
-      flex: 0 0 calc(45% - 3rem);
-    }
-
-    .hero h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2.75rem, 5vw, 4.5rem);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-      margin: 0 0 26px;
-    }
-
-    .hero p {
-      margin: 0 0 28px;
-      font-size: 1.2rem;
-      color: #3D3027;
-    }
-
-    .hero .hero-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: stretch;
-    }
-
-    .hero-btn {
-      width: 100%;
-      border-radius: 8px;
-    }
-
-    .hero-guarantee {
-      font-size: 14px;
-      color: #6B5E52;
-      text-align: center;
-      margin: 0;
-      line-height: 1.5;
-    }
-
-    .hero-quiz-top {
-      text-align: center;
-      margin: 0 0 1.5rem;
-    }
-
-    .hero-quiz-pill {
-      display: inline-block;
-      font-family: Lora, serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #2C2418;
-      background: #FBF4EA;
-      border: 1.5px solid #C17B2F;
-      border-radius: 999px;
-      padding: 0.6rem 1.3rem;
-      line-height: 1.4;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-
-    .hero-quiz-pill span {
-      color: #C17B2F;
-      white-space: nowrap;
-    }
-
-    .hero-quiz-pill:hover {
-      background: #F5E6D0;
-    }
-
-    .hero-quiz-link {
-      font-size: 14px;
-      color: #C17B2F;
-      text-align: center;
-      text-decoration: none;
-      line-height: 1.5;
-    }
-
-    .hero-quiz-link:hover {
-      text-decoration: underline;
-    }
-
-    .hero-cta-subheading {
-      font-size: 13px;
-      color: #C17B2F;
-      text-align: center;
-      margin: -4px 0 0;
-      font-style: italic;
-      line-height: 1.5;
-    }
-
-    .hero-image {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      object-position: center top;
-      border-radius: 16px;
-      display: block;
-    }
-
-    @media (max-width: 768px) {
-      .hero {
-        padding: 2rem 1rem 3rem 1rem;
-      }
-      .hero-headline {
-        font-size: clamp(2rem, 8vw, 2.8rem);
-      }
-      .hero-body-row {
-        flex-direction: column;
-        gap: 2rem;
-      }
-      .hero-left,
-      .hero-right {
-        flex: 0 0 100%;
-        width: 100%;
-      }
-      .hero-image {
-        border-radius: 12px;
-      }
-    }
-
-    /* --- Hero trust badges --- */
-    .trust-row {
-      display: flex;
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .trust-badge {
-      flex: 1;
-      background: white;
-      border: 1px solid #E8E0D4;
-      border-radius: 8px;
-      padding: 16px 12px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
-
-    .trust-badge i {
-      color: #C17A3A;
-      width: 28px;
-      height: 28px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sage);
       margin-bottom: 6px;
     }
 
-    .trust-badge p {
-      margin: 0;
-      padding: 0;
-      line-height: 1.2;
-      font-weight: 700;
-      font-size: 14px;
-      color: #2C2416;
-      text-align: center;
-    }
-
-    @media (max-width: 600px) {
-      .trust-row {
-        flex-direction: column;
-      }
-    }
+    .section { padding: 30px 0; }
+    .section--sand { background: var(--sand); }
+    .section--dark { background: var(--dark); color: var(--on-dark-2); }
+    .section--dark h2, .section--dark h3 { color: var(--on-dark); }
+    .section--dark .eyebrow { color: var(--hl); }
+    .section h2 { font-size: clamp(1.4rem, 5.8vw, 2.4rem); line-height: 1.14; margin-bottom: 8px; }
+    .center { text-align: center; }
 
     /* --- Buttons --- */
-    .button, .faq-summary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
-    }
-
-    .button {
-      padding: 16px 26px;
-      background: #C17A3A;
-      color: #FAF7F2;
-    }
-
-    .button:hover {
-      background: #A36530;
-      transform: translateY(-1px);
-    }
-
-    .section-label {
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: #4A7C6F;
-      font-size: 0.82rem;
-      margin-bottom: 18px;
-      font-weight: 700;
-    }
-
-    .split-grid {
-      display: grid;
-      gap: 20px;
-    }
-
-    .card-grid {
-      display: grid;
-      gap: 20px;
-    }
-
-    .card {
-      background: #fff;
-      border: 1px solid rgba(44, 36, 22, 0.08);
-      border-radius: 24px;
-      padding: 26px;
-      box-shadow: 0 14px 38px rgba(44, 36, 22, 0.06);
-    }
-
-    .card p {
-      margin: 0;
-      color: #423724;
-    }
-
-    /* --- Social Proof Strip --- */
-    .social-proof {
-      background: #F0EBE1;
-      padding: 32px 28px;
-      border-radius: 24px;
-      margin: 40px 0;
-    }
-
-    .social-proof-grid {
-      display: grid;
-      gap: 24px;
-    }
-
-    .social-proof-quote {
-      background: #fff;
-      border-left: 3px solid #C17B2F;
-      padding: 20px;
-      border-radius: 12px;
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: #2C2416;
-    }
-
-    .social-proof-quote p {
-      margin: 0 0 12px;
-      font-style: italic;
-    }
-
-    .social-proof-quote .name {
-      margin: 0;
-      font-weight: 600;
-      color: #C17B2F;
-      font-size: 0.9rem;
-    }
-
-    /* --- Problem Deepener --- */
-    .problem-deepener {
-      background: #fff;
-      padding: 42px 28px;
-      border-radius: 24px;
-    }
-
-    .problem-deepener h2 {
-      text-align: center;
-    }
-
-    .deepener-copy {
-      max-width: 720px;
-      margin: 0 auto 36px;
-      text-align: center;
-      color: #4A4035;
-      font-size: 1rem;
-      line-height: 1.8;
-      display: grid;
-      gap: 24px;
-    }
-
-    .deepener-copy p {
-      margin: 0 0 16px;
-    }
-
-    .deepener-inner {
-      display: grid;
-      gap: 24px;
-      align-items: start;
-    }
-
-    .deepener-text {
-      text-align: left;
-    }
-
-    .deepener-image {
-      width: 100%;
-      max-width: 360px;
-      display: block;
-      border-radius: 24px;
-      justify-self: center;
-    }
-
-    .problem-list {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-top: 28px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .problem-item {
+    .btn {
       display: flex;
       align-items: center;
-      gap: 14px;
-      font-size: 0.95rem;
-      color: #2C2416;
-      line-height: 1.55;
-      background: rgba(193, 122, 58, 0.06);
-      border-radius: 18px;
-      padding: 16px 18px;
-      box-shadow: inset 0 0 0 1px rgba(193, 122, 58, 0.12);
-    }
-
-    .problem-icon,
-    .module-icon {
-      width: 36px;
-      height: 36px;
-      flex-shrink: 0;
-      object-fit: contain;
-    }
-
-    .module-icon {
-      margin-bottom: 18px;
-    }
-
-    /* --- Science Blocks --- */
-    .science-layout {
-      display: grid;
-      gap: 32px;
-      align-items: start;
-    }
-
-    .science-blocks {
-      display: grid;
-      gap: 20px;
-      grid-template-columns: 1fr;
-    }
-
-    .science-image {
+      justify-content: center;
       width: 100%;
-      max-width: 460px;
-      display: block;
-      border-radius: 24px;
-      justify-self: center;
-    }
-
-    .science-block {
-      background: #fff;
-      border: 1px solid rgba(44, 36, 22, 0.08);
-      border-radius: 20px;
-      padding: 28px;
+      min-height: 58px;
+      padding: 12px 22px;
+      background: var(--btn);
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 1.08rem;
+      font-weight: 700;
       text-align: center;
+      text-decoration: none;
+      border: 2px solid var(--btn);
+      border-radius: 14px;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     }
+    .btn:hover { background: var(--btn-hover); border-color: var(--btn-hover); }
+    .btn--outline { background: transparent; color: var(--link); border-color: var(--link); }
+    .btn--outline:hover { background: var(--btn); color: #FFFFFF; border-color: var(--btn); }
+    .text-link { color: var(--link); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+    .section--dark .text-link { color: var(--hl); }
 
-    .science-block h3 {
+    .ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+    .ticks li { line-height: 1.45; }
+    .ticks li { display: flex; gap: 10px; align-items: flex-start; }
+    .ticks svg { flex-shrink: 0; margin-top: 0.2em; }
+
+    /* --- Header --- */
+    .site-header { border-bottom: 1px solid var(--line); background: var(--bg); }
+    .header-row { display: flex; align-items: center; justify-content: space-between; min-height: 56px; }
+    .wordmark { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--ink); text-decoration: none; }
+    .wordmark em { color: var(--link); }
+    .header-link { display: none; font-weight: 600; font-size: 0.95rem; color: var(--ink); text-decoration: none; }
+    .header-link:hover { color: var(--btn); }
+
+    /* --- Hero --- */
+    .hero { padding: 18px 0 26px; }
+    .hero-grid { display: grid; gap: 16px; grid-template-areas: "intro" "card" "proof"; }
+    .hero-intro { grid-area: intro; }
+    .hero-intro .eyebrow { margin-bottom: 8px; }
+    .hero h1 { font-size: clamp(1.8rem, 7.4vw, 3.3rem); line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 10px; }
+    .hero h1 em { color: var(--btn); }
+    .hero-sub { font-size: 1.02rem; color: var(--body); }
+    .quiz-card {
+      grid-area: card;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 10px 30px rgba(42, 33, 26, 0.08);
+    }
+    .quiz-card-top { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage); }
+    .quiz-card-top span:last-child { letter-spacing: 0.04em; color: var(--muted); }
+    .bar { height: 6px; margin: 8px 0 12px; background: var(--line); border-radius: 99px; overflow: hidden; }
+    .bar span { display: block; height: 100%; width: 17%; background: var(--btn); border-radius: 99px; }
+    .quiz-card h2 { font-size: 1.3rem; line-height: 1.2; margin-bottom: 10px; }
+    .answers { display: grid; gap: 8px; }
+    .answer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      min-height: 52px;
+      padding: 8px 14px;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 1rem;
+      line-height: 1.3;
+      text-decoration: none;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .answer:hover, .answer:focus-visible { border-color: var(--btn); background: #FBF4EA; }
+    .answer svg { flex-shrink: 0; color: var(--btn); }
+    .quiz-card-note { margin-top: 10px; font-size: 0.85rem; font-style: italic; color: var(--muted); text-align: center; }
+    .hero-proof { grid-area: proof; display: grid; gap: 10px; }
+    .proof { font-size: 0.92rem; font-weight: 600; color: var(--ink); }
+    .proof span { color: var(--muted); font-weight: 400; }
+
+    /* --- Short testimonials --- */
+    .quote-row {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 86%;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 6px;
+      scrollbar-width: none;
+    }
+    .quote-row::-webkit-scrollbar { display: none; }
+    .quote-card {
+      scroll-snap-align: start;
+      margin: 0;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px 16px;
+    }
+    .stars { display: flex; gap: 2px; color: var(--btn); margin-bottom: 6px; }
+    .quote-card blockquote { margin: 0; font-style: italic; color: var(--body); }
+    .quote-card figcaption { margin-top: 8px; font-size: 0.9rem; font-weight: 700; color: var(--ink); }
+    .swipe-hint { margin-top: 4px; font-size: 0.8rem; color: var(--muted); text-align: center; }
+
+    /* --- Problem checklist --- */
+    .checklist { list-style: none; padding: 0; margin: 14px 0; display: grid; gap: 8px; }
+    .checklist li { display: flex; gap: 10px; align-items: flex-start; color: var(--ink); line-height: 1.45; }
+    .checklist svg { flex-shrink: 0; margin-top: 0.15em; }
+    .checklist-note { font-weight: 700; color: var(--ink); }
+
+    /* --- Why section --- */
+    .type-cards { display: grid; gap: 8px; margin: 14px 0 10px; }
+    .type-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 10px 14px; }
+    .type-card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+    .type-card .module { flex-shrink: 0; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage); }
+    .type-card h3 { font-size: 1.2rem; margin: 0; }
+    .type-card .organ { font-size: 0.92rem; font-style: italic; color: var(--muted); }
+    .type-card .organ, .type-card .symptoms { line-height: 1.45; }
+    .type-card .symptoms { margin-top: 2px; font-size: 0.95rem; color: var(--ink); }
+    .module-4 { margin-bottom: 14px; }
+    .video {
+      position: relative;
+      margin-top: 18px;
+      aspect-ratio: 16 / 9;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 6px 22px rgba(42, 33, 26, 0.14);
+    }
+    .video-play { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; cursor: pointer; background: #000; }
+    .video-play img { width: 100%; height: 100%; object-fit: cover; }
+    .video-play-icon { position: absolute; top: 50%; left: 50%; width: 68px; height: 48px; transform: translate(-50%, -50%); }
+    .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .video-caption { margin-top: 10px; font-size: 0.9rem; color: var(--muted); text-align: center; }
+
+    /* --- Offer --- */
+    .offer-intro { max-width: 640px; }
+    .offer-intro p { font-size: 1.05rem; }
+    .offer-card {
+      margin-top: 14px;
+      background: var(--bg);
+      color: var(--body);
+      border-radius: 18px;
+      padding: 18px 16px;
+      display: grid;
+      gap: 18px;
+      font-size: 0.97rem;
+    }
+    .offer-card h3 { color: var(--ink); font-size: 1.2rem; margin-bottom: 8px; }
+    .bonus-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage); margin: 16px 0 6px; }
+    .bonus-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+    .bonus-list li { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 4px; border-bottom: 1px dashed var(--line); }
+    .bonus-list span:last-child { color: var(--muted); white-space: nowrap; }
+    .price-box { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px; text-align: center; }
+    .price-was { font-size: 1rem; color: var(--muted); }
+    .price-was s { text-decoration-thickness: 2px; }
+    .price-now { font-family: 'DM Serif Display', serif; font-size: 2.7rem; line-height: 1; color: var(--ink); margin: 4px 0 2px; }
+    .price-now small { font-family: 'Lora', Georgia, serif; font-size: 1rem; color: var(--muted); }
+    .price-box .btn { margin-top: 14px; }
+    .plan-link { display: inline-block; margin-top: 12px; }
+    .guarantee-line { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 12px; font-size: 0.9rem; color: var(--body); }
+
+    /* --- How it works --- */
+    .steps { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 12px; counter-reset: step; }
+    .steps li > div { line-height: 1.45; }
+    .steps li { counter-increment: step; display: flex; gap: 14px; align-items: flex-start; }
+    .steps li::before {
+      content: counter(step);
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--btn);
+      color: #FFFFFF;
       font-family: 'DM Serif Display', serif;
       font-size: 1.15rem;
-      margin: 0 0 14px;
-      color: #2C2416;
-    }
-
-    .science-block p {
-      margin: 0;
-      color: #4A4035;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    /* --- Modules - Two Column --- */
-    .modules-grid {
-      display: grid;
-      gap: 20px;
-    }
-
-    .module-card-new {
-      background: #fff;
-      border: 1px solid rgba(44, 36, 22, 0.08);
-      border-left: 4px solid #C17A3A;
-      border-radius: 20px;
-      padding: 28px;
-      box-shadow: 0 8px 20px rgba(44, 36, 22, 0.05);
-    }
-
-    .module-card-new h3 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.1rem;
-      margin: 0 0 12px;
-      color: #2C2416;
-    }
-
-    .module-card-new p {
-      margin: 0;
-      color: #4A4035;
-      font-size: 0.95rem;
-    }
-
-    .module-image {
-      display: block;
-      width: 100%;
-      max-width: 220px;
-      height: auto;
-      margin: 18px auto 0;
-      border-radius: 16px;
-    }
-
-    .module-outcome {
-      margin-top: 14px;
-      font-style: italic;
-      color: #6B5E52;
-      font-size: 0.9rem;
-    }
-
-    /* --- Value Stack --- */
-    .value-stack {
-      background: #fff;
-      border: 1px solid rgba(44, 36, 22, 0.08);
-      border-radius: 20px;
-      padding: 28px;
-      margin: 28px 0;
-    }
-
-    .value-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 0;
-      border-bottom: 1px solid rgba(44, 36, 22, 0.06);
-      font-size: 0.95rem;
-      gap: 12px;
-    }
-
-    .value-row:last-child {
-      border-bottom: none;
-    }
-
-    .value-item {
-      color: #2C2416;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .faq-button {
-      width: 100%;
-      padding: 20px 26px;
-      text-align: left;
-      background: transparent;
-      border: none;
-      font-size: 1rem;
-      font-weight: 600;
-      color: #2C2416;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .faq-button:hover {
-      background: rgba(193, 122, 58, 0.08);
-    }
-
-    .faq-icon {
-      width: 26px;
-      height: 26px;
-      flex-shrink: 0;
-      object-fit: contain;
-    }
-
-    .value-summary {
-      text-align: center;
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 2px solid rgba(44, 36, 22, 0.1);
-    }
-
-    .value-summary-row {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin: 8px 0;
-      font-size: 1rem;
-    }
-
-    .value-summary-row strong {
-      color: #2C2416;
-    }
-
-    .value-summary-price {
-      color: #C17A3A;
-      font-weight: 700;
-      font-size: 1.3rem;
-    }
-
-    /* --- About Section --- */
-    .about-section {
-      background: #F0EBE1;
-      border-radius: 24px;
-      padding: 6rem 3rem;
-    }
-
-    .about-section h2 {
+      line-height: 38px;
       text-align: center;
     }
-
-    .about-content {
-      display: flex;
-      flex-direction: row;
-      gap: 4rem;
-      align-items: flex-start;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .about-text p {
-      margin-bottom: 1.2rem;
-      line-height: 1.9;
-      font-size: 1rem;
-    }
-
-    .about-text {
-      display: grid;
-      gap: 18px;
-    }
-
-    .about-text p {
-      margin: 0;
-      color: #4A4035;
-      font-size: 0.98rem;
-      line-height: 1.7;
-    }
-
-    .photo-circle {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      background: #E8E0D4;
-      border: 2px solid rgba(193, 122, 58, 0.3);
-      margin: 0 auto;
-      flex-shrink: 0;
-    }
-
-    /* --- Who It's For --- */
-    .who-for {
-      display: grid;
-      gap: 28px;
-    }
-
-    .for-column {
-      background: #fff;
-      border: 1px solid rgba(44, 36, 22, 0.08);
-      border-radius: 20px;
-      padding: 28px;
-    }
-
-    .for-column h3 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.2rem;
-      margin: 0 0 20px;
-    }
-
-    .for-column.yes h3 {
-      color: #C17A3A;
-    }
-
-    .for-column.no h3 {
-      color: #4A4A4A;
-    }
-
-    .for-list {
-      display: grid;
-      gap: 14px;
-    }
-
-    .for-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 0.95rem;
-      color: #2C2416;
-      line-height: 1.5;
-    }
-
-    .for-item::before {
-      content: '✓';
-      font-weight: bold;
-      color: #C17A3A;
-      min-width: 18px;
-    }
-
-    .for-column.no .for-item::before {
-      content: '○';
-      color: #4A7C6F;
-    }
-
-    /* --- Guarantee Section --- */
-    .guarantee {
-      background: #D4DDD0;
-      border-radius: 24px;
-      padding: 42px 28px;
-      text-align: center;
-    }
-
-    .guarantee h2 {
-      margin: 0 0 20px;
-    }
-
-    .guarantee p {
-      max-width: 720px;
-      margin: 0 auto;
-      color: #4A4035;
-      font-size: 0.98rem;
-      line-height: 1.7;
-    }
-
-    /* --- Full Width Section --- */
-    .full-testimonials {
-      margin: 48px 0;
-    }
-
-    .testimonials-full-grid {
-      display: grid;
-      gap: 20px;
-    }
-
-    .testimonial-full {
-      background: #fff;
-      border: 1px solid rgba(44, 36, 22, 0.08);
-      border-left: 4px solid #4A7C6F;
-      border-radius: 20px;
-      padding: 28px;
-      box-shadow: 0 8px 20px rgba(44, 36, 22, 0.05);
-    }
-
-    .testimonial-full h4 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.1rem;
-      margin: 0 0 6px;
-      color: #2C2416;
-    }
-
-    .testimonial-full .meta {
-      font-size: 0.9rem;
-      color: #4A7C6F;
-      margin-bottom: 12px;
-    }
-
-    .testimonial-full p {
-      margin: 0;
-      color: #4A4035;
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    /* --- Responsive --- */
-    @media (min-width: 720px) {
-      .social-proof-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .problem-list {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .deepener-inner {
-        grid-template-columns: 1fr minmax(260px, 360px);
-      }
-
-      .science-blocks {
-        grid-template-columns: 1fr;
-      }
-      .science-layout {
-        grid-template-columns: minmax(0, 1fr) auto;
-      }
-
-      .modules-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .about-content {
-        grid-template-columns: auto 1.5fr;
-        align-items: start;
-      }
-
-      .who-for {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .testimonials-full-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 600px) {
-      .value-summary-row {
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .button-full {
-        width: 100%;
-      }
-    }
-    .familiar {
-      background: #2C2416;
-      border-radius: 32px;
-      padding: 42px 28px;
-    }
-
-    .familiar .section-label {
-      color: #C17A3A;
-    }
-
-    .familiar-headline {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      color: #FAF7F2;
-      margin: 0 0 36px;
-      line-height: 1.15;
-    }
-
-    .checklist-grid {
-      display: grid;
-      gap: 28px;
-    }
-
-    .checklist-item {
-      display: grid;
-      grid-template-columns: 28px 1fr;
-      gap: 14px;
-      align-items: start;
-    }
-
-    .checklist-check {
-      color: #C17A3A;
-      font-size: 1.4rem;
-      line-height: 1.2;
-      font-weight: 700;
-    }
-
-    .checklist-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.05rem;
-      color: #FAF7F2;
-      margin: 0 0 6px;
-      font-weight: 600;
-    }
-
-    .checklist-desc {
-      font-size: 0.9rem;
-      color: #B8A99A;
-      margin: 0;
-      line-height: 1.65;
-    }
-
-    .familiar-footer {
-      text-align: center;
-      margin-top: 44px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .familiar-tagline {
-      font-style: italic;
-      color: #FAF7F2;
-      margin: 0;
-      font-size: 1.05rem;
-    }
-
-    .reframe {
-      background: #F0EBE1;
-      border-radius: 32px;
-      padding: 42px 28px;
-    }
-
-    .reframe h2,
-    .section-headline {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin: 0 0 22px;
-      line-height: 1.05;
-    }
-
-    .reframe p,
-    .content-block p,
-    .inline-quote p,
-    .testimonial-card p {
-      margin: 0 0 18px;
-    }
-
-    .inline-quote {
-      display: grid;
-      gap: 20px;
-      background: #fff;
-      border-radius: 32px;
-      padding: 36px;
-      border: 1px solid rgba(44, 36, 22, 0.08);
-      box-shadow: 0 20px 45px rgba(44, 36, 22, 0.08);
-    }
-
-    .quote-header {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      align-items: center;
-    }
-
-    .quote-stars {
-      display: flex;
-      gap: 4px;
-      color: #C17A3A;
-      font-size: 1rem;
-    }
-
-    .quote-profile {
-      display: grid;
-      gap: 14px;
-    }
-
-    .profile-meta {
-      display: grid;
-      gap: 10px;
-    }
-
-    .profile-name {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.2rem;
-      margin: 0;
-    }
-
-    .profile-title {
-      color: #4A7C6F;
-      font-size: 0.95rem;
-      margin: 0;
-    }
-
-    .photo-placeholder {
-      width: 110px;
-      min-height: 110px;
-      border-radius: 50%;
-      background: #E8E0D4;
-      border: 1px solid rgba(44, 36, 22, 0.08);
-    }
-
-    .reframe-layout {
-      display: grid;
-      gap: 36px;
-    }
-
-    .reframe-image {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 20px;
-      margin: 0 auto;
-      display: block;
-    }
-
-    /* --- How It Works section --- */
-    .hiw-subheadline {
-      text-align: center;
-      color: #6B5E52;
-      font-style: italic;
-      font-size: 1.05rem;
-      margin: 0 auto 48px;
-      max-width: 620px;
-    }
-
-    .how-it-works-layout {
-      display: grid;
-      gap: 40px;
-    }
-
-    .hiw-intro {
-      color: #4A4035;
-      margin: 0 0 32px;
-    }
-
-    .hiw-blocks {
-      display: grid;
-      gap: 28px;
-      margin-bottom: 32px;
-    }
-
-    .hiw-block {
-      display: grid;
-      grid-template-columns: 28px 1fr;
-      gap: 14px;
-      align-items: start;
-    }
-
-    .hiw-block [data-lucide],
-    .hiw-block svg {
-      color: #C17A3A;
-      width: 24px;
-      height: 24px;
-      margin-top: 3px;
-    }
-
-    .hiw-block-text h3 {
-      text-align: left;
-      color: #2C2416;
-      margin: 0 0 8px;
-      font-size: 1.1rem;
-    }
-
-    .hiw-block-text p {
-      color: #4A4035;
-      margin: 0;
-      font-size: 0.96rem;
-    }
-
-    .hiw-stats {
-      display: flex;
-      align-items: stretch;
-      background: white;
-      border: 1px solid #E8E0D4;
-      border-radius: 8px;
-      padding: 20px;
-    }
-
-    .hiw-stat {
-      flex: 1;
-      text-align: center;
-      padding: 0 16px;
-    }
-
-    .hiw-stat + .hiw-stat {
-      border-left: 1px solid #E8E0D4;
-    }
-
-    .hiw-stat-num {
-      font-weight: 700;
-      color: #2C2416;
-      font-size: 0.95rem;
-      display: block;
-      margin: 0 0 2px;
-    }
-
-    .hiw-stat-desc {
-      color: #6B5E52;
-      font-size: 0.8rem;
-      margin: 0;
-    }
-
-    @keyframes hiw-glow {
-      0%, 100% { box-shadow: 0 0 20px rgba(74, 124, 111, 0.3); }
-      50%       { box-shadow: 0 0 60px rgba(74, 124, 111, 0.6); }
-    }
-
-    .hiw-image-placeholder {
-      height: 480px;
-      background: linear-gradient(135deg, #1a1a2e 0%, #2C2416 40%, #4A7C6F 100%);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 24px;
-      color: #FAF7F2;
-      font-size: 14px;
-      line-height: 1.6;
-      animation: hiw-glow 3s ease-in-out infinite;
-    }
-
-    .hiw-cta {
-      text-align: center;
-      margin-top: 48px;
-    }
-
-    /* --- Module cards: 2x2 grid with numbered indicators --- */
-    .modules {
-      display: grid;
-      gap: 20px;
-    }
-
-    .module-card {
-      background: #fff;
-      border: 1px solid rgba(44, 36, 22, 0.08);
-      border-left: 3px solid #C17A3A;
-      border-radius: 26px;
-      padding: 28px;
-      box-shadow: 0 12px 30px rgba(44, 36, 22, 0.05);
-    }
-
-    .module-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      background: #4A7C6F;
-      color: #FAF7F2;
-      border-radius: 8px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      margin-bottom: 14px;
-    }
-
-    .module-card h3 {
-      margin: 0 0 14px;
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.2rem;
-    }
-
-    .module-card p {
-      margin: 0;
-    }
-
-    .included-list {
-      display: grid;
-      gap: 16px;
-      margin-top: 30px;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .included-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 0.96rem;
-      color: #423724;
-    }
-
-    .included-item::before {
-      content: '•';
-      color: #C17A3A;
-      font-size: 1.3rem;
-      line-height: 1;
-      margin-top: 3px;
-    }
-
-    /* --- About / headshot --- */
-    .about {
-      background: #F0EBE1;
-      border-radius: 32px;
-      padding: 42px 28px;
-      display: grid;
-      gap: 26px;
-    }
-
-    .about-grid {
-      display: grid;
-      gap: 28px;
-    }
-
-    .about-copy {
-      display: grid;
-      gap: 20px;
-    }
-
-    .headshot-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-    }
-
-    .headshot-placeholder {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      background: #E8E0D4;
-      border: 1px solid rgba(44, 36, 22, 0.08);
-      box-shadow:
-        0 8px 32px rgba(193, 122, 58, 0.22),
-        0 2px 8px rgba(44, 36, 22, 0.10);
-      flex-shrink: 0;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-    }
-
-    .logo-strip {
-      display: grid;
-      gap: 14px;
-      align-items: center;
-      padding: 22px 18px;
-      border-radius: 24px;
-      background: rgba(44, 36, 22, 0.04);
-      border: 1px solid rgba(44, 36, 22, 0.06);
-      text-align: center;
-    }
-
-    .logo-strip span {
-      color: #2C2416;
-      font-size: 0.96rem;
-      letter-spacing: 0.08em;
-      display: block;
-      text-align: center;
-    }
-
-    .logo-blocks {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px 32px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .logo-badge {
-      height: 44px;
-      max-height: 45px;
-      width: auto;
-      object-fit: contain;
-      mix-blend-mode: multiply;
-      opacity: 0.78;
-      transition: opacity 0.2s ease;
-    }
-
-    img.logo-badge[alt="Meditation Association of Australia"] {
-      max-height: 40px;
-      height: 40px;
-    }
-
-    .logo-badge:hover {
-      opacity: 1;
-    }
-
-    /* --- Testimonials with sage green left border --- */
-    .testimonials-grid {
-      display: grid;
-      gap: 20px;
-    }
-
-    .testimonial-card {
-      background: #fff;
-      border-radius: 28px;
-      padding: 26px;
-      border: 1px solid rgba(44, 36, 22, 0.08);
-      border-left: 3px solid #4A7C6F;
-      box-shadow: 0 14px 32px rgba(44, 36, 22, 0.05);
-    }
-
-    .testimonial-card h4 {
-      margin: 0 0 6px;
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.05rem;
-    }
-
-    .testimonial-card .meta {
-      color: #4A7C6F;
-      font-size: 0.93rem;
-      margin-bottom: 14px;
-    }
-
-    /* --- Pricing --- */
-    .pricing {
-      background: #2C2416;
-      color: #FAF7F2;
-      border-radius: 32px;
-      padding: 42px 30px;
-    }
-
-    .pricing-grid {
-      display: grid;
-      gap: 20px;
-    }
-
-    .value-stack {
-      background: #2F2F2F;
-      color: #FAF7F2;
-      border-radius: 28px;
-      padding: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-      display: grid;
-      gap: 18px;
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    .value-image {
-      width: 100%;
-      max-width: 520px;
-      display: block;
-      border-radius: 24px;
-      margin: 0 auto 28px;
-    }
-
-    .final-price-box {
-      background: #E8E5E0;
-      border-radius: 22px;
-      padding: 20px 24px;
-      text-align: center;
-      color: #2C2416;
-      margin-top: 10px;
-    }
-
-    .final-price-box .final-price {
-      font-size: 2.25rem;
-      font-weight: 700;
-      display: block;
-      color: #C17A3A;
-      letter-spacing: -0.03em;
-    }
-
-    .value-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 0.98rem;
-      color: #F8F8F8;
-      line-height: 1.5;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 18px;
-      padding: 16px 18px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .value-summary {
-      background: rgba(255, 255, 255, 0.07);
-      border-radius: 22px;
-      padding: 20px;
-    }
-
-    .value-summary-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      margin: 0 0 12px;
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-
-    .value-summary-row:last-child {
-      margin-bottom: 0;
-    }
-
-    .value-highlight,
-    .value-summary-price {
-      color: #F29B30;
-      font-weight: 700;
-    }
-
-    .pricing-button {
-      justify-self: center;
-      width: fit-content;
-      padding: 16px 30px;
-      background: #C17A3A;
-      color: #FAF7F2;
-      border-radius: 999px;
-      border: none;
-    }
-
-    .pricing-button:hover {
-      background: #A36530;
-    }
-
-    .value-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 0.98rem;
-      color: #F8F8F8;
-      line-height: 1.5;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 18px;
-      padding: 16px 18px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .value-item,
-    .value-price,
-    .value-summary-row strong,
-    .value-summary-row span {
-      color: #FAF7F2;
-    }
-
-    .value-summary {
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 22px;
-      padding: 20px;
-    }
-
-    .value-summary-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      margin: 0 0 12px;
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-
-    .value-summary-row:last-child {
-      margin-bottom: 0;
-    }
-
-    .value-summary-price {
-      color: #FAF7F2;
-    }
-
-    .pricing-card h3 {
-      margin: 0;
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.4rem;
-    }
-
-    .price {
-      font-size: 2rem;
-      margin: 0;
-      letter-spacing: -0.04em;
-    }
-
-    .pricing-card p {
-      margin: 0;
-      color: #E9E2D9;
-    }
-
-    .pricing-card .button {
-      width: fit-content;
-      margin-top: auto;
-    }
-
-    .pricing-card.outline .button {
-      background: transparent;
-      color: #FAF7F2;
-      border: 1px solid #FAF7F2;
-    }
-
-    .pricing-card.outline .button:hover {
-      background: #C17A3A;
-      color: #FAF7F2;
-    }
-
-    .badge-panel {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      margin-top: 24px;
-      color: #F0E8DB;
-      text-align: center;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #C17A3A;
-      color: #FAF7F2;
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
+    .steps strong { display: block; color: var(--ink); }
+
+    /* --- Longer testimonials --- */
+    .long-quotes { display: grid; grid-auto-flow: column; grid-auto-columns: 86%; gap: 12px; margin-top: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; scrollbar-width: none; }
+    .long-quotes::-webkit-scrollbar { display: none; }
+    .long-quote { scroll-snap-align: start; margin: 0; background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--btn); border-radius: 14px; padding: 14px 16px; }
+    .long-quote blockquote { margin: 0; color: var(--body); }
+    .long-quote figcaption { margin-top: 8px; font-size: 0.9rem; font-weight: 700; color: var(--ink); }
+    .long-quote figcaption span { font-weight: 400; color: var(--muted); }
+    .carousel-label { margin: 14px 0 6px; font-size: 0.92rem; font-style: italic; color: var(--muted); text-align: center; }
+
+    /* --- Teacher --- */
+    .teacher { display: flex; gap: 16px; align-items: center; }
+    .teacher img { flex: 0 0 84px; width: 84px; height: 84px; border-radius: 50%; object-fit: cover; object-position: top center; }
+    .teacher h2 { font-size: 1.3rem; margin-bottom: 4px; }
+
+    /* --- For / not for --- */
+    .fit { display: grid; gap: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; }
+    .fit h3 { font-size: 1.2rem; margin-bottom: 6px; }
+
+    /* --- Guarantee + final CTA --- */
+    .final { text-align: center; }
+    .final .shield { margin: 0 auto 12px; color: var(--hl); }
+    .final p { max-width: 520px; margin: 0 auto; }
+    .final .btn { margin: 20px auto 0; max-width: 420px; }
+    .final .plan-link { margin-top: 12px; }
 
     /* --- FAQ --- */
-    .faq {
-      display: grid;
-      gap: 20px;
-    }
-
-    .faq-item {
-      background: #fff;
-      border-radius: 24px;
-      border: 1px solid rgba(44, 36, 22, 0.08);
-      overflow: hidden;
-    }
-
-    .faq-button {
-      width: 100%;
-      padding: 20px 26px;
-      text-align: left;
-      background: transparent;
-      border: none;
-      font-size: 1rem;
-      font-weight: 600;
-      color: #2C2416;
+    .faq { display: grid; gap: 6px; margin-top: 12px; }
+    .faq details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+    .faq summary {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      min-height: 48px;
+      padding: 8px 16px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--ink);
       cursor: pointer;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary svg { flex-shrink: 0; color: var(--btn); transition: transform 0.2s ease; }
+    .faq details[open] summary svg { transform: rotate(45deg); }
+    .faq details p { padding: 0 16px 16px; }
+
+    /* --- Footer --- */
+    footer { background: var(--dark); color: var(--on-dark-2); padding: 22px 0; font-size: 0.88rem; line-height: 1.5; text-align: center; }
+    footer p { margin-bottom: 6px; }
+    footer a { color: var(--on-dark-2); }
+
+    /* --- Sticky buy bar (phones) --- */
+    .sticky-buy {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 50;
+      height: 96px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 12px;
+      padding: 0 16px;
+      background: var(--card);
+      border-top: 1px solid var(--line);
+      box-shadow: 0 -6px 20px rgba(42, 33, 26, 0.1);
+      transform: translateY(110%);
+      visibility: hidden;
+      transition: transform 0.25s ease, visibility 0.25s;
+    }
+    .sticky-buy.show { transform: none; visibility: visible; }
+    .sticky-buy strong { display: block; font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 1.15rem; color: var(--ink); }
+    .sticky-buy span { font-size: 0.85rem; color: var(--muted); }
+    .sticky-buy .btn { width: auto; flex-shrink: 0; padding: 12px 26px; }
+
+    @media (max-width: 767px) {
+      body { padding-bottom: 96px; }
     }
 
-    .faq-button:hover {
-      background: rgba(193, 122, 58, 0.08);
-    }
-
-    .faq-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.35s ease;
-      padding: 0 26px;
-      color: #4A7C6F;
-      font-size: 0.96rem;
-    }
-
-    .faq-content p {
-      margin: 0 0 18px;
-      padding-top: 0;
-    }
-
-    .faq-item.open .faq-content {
-      max-height: 400px;
-      padding: 18px 26px 22px;
-    }
-
-    .faq-item.open .faq-button::after {
-      transform: rotate(45deg);
-    }
-
-    .faq-button::after {
-      content: '+';
-      font-size: 1.2rem;
-      line-height: 1;
-      transition: transform 0.25s ease;
-      color: #4A7C6F;
-    }
-
-    .final-cta {
-      display: grid;
-      gap: 24px;
-      justify-items: start;
-    }
-
-    .final-cta p {
-      margin: 0;
-      color: #4A7C6F;
-      font-size: 0.98rem;
-    }
-
-    /* --- Footer: dark charcoal --- */
-    footer {
-      background: #2C2416;
-      color: #FAF7F2;
-      padding: 28px 0 14px;
-      font-size: 0.92rem;
-      text-align: center;
-      line-height: 1.7;
-    }
-
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    footer p {
-      color: rgba(250, 247, 242, 0.8);
-      margin: 0 0 6px;
-    }
-
-    footer a {
-      color: rgba(250, 247, 242, 0.8);
-    }
-
-    /* --- Tablet (720px+) --- */
-    @media (min-width: 720px) {
-      .hero {
-        padding-top: 80px;
-      }
-
-      .card-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .reframe {
-        padding: 54px 42px;
-      }
-
-      .inline-quote {
-        grid-template-columns: 1fr auto;
-        align-items: center;
-      }
-
-      .about-grid {
-        grid-template-columns: 1.5fr auto;
+    @media (min-width: 768px) {
+      body { font-size: 17px; line-height: 1.65; }
+      .sticky-buy { display: none; }
+      .header-link { display: inline-block; }
+      .section { padding: 72px 0; }
+      .hero { padding: 48px 0 64px; }
+      .hero-grid {
+        grid-template-columns: 1.1fr 1fr;
+        grid-template-areas: "intro card" "proof card";
+        grid-template-rows: auto 1fr;
+        column-gap: 48px;
+        row-gap: 22px;
         align-items: start;
       }
-
-      .modules {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .checklist-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .benefits {
-        padding: 54px 42px;
-      }
-
-      .benefits-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .familiar {
-        padding: 54px 42px;
-      }
-
-      .how-it-works-layout {
-        grid-template-columns: 1fr 1fr;
-        align-items: start;
-      }
-
-      .reframe-layout {
-        grid-template-columns: 1fr auto;
-        align-items: center;
-      }
-
-      .reframe-image {
-        max-width: 280px;
-        margin: 0;
-      }
-
-      .pricing-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-
-      .testimonials-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .faq {
-        gap: 24px;
-      }
-    }
-
-    /* --- Desktop (1020px+) --- */
-    @media (min-width: 1020px) {
-      .page-wrap {
-        padding: 0 30px 80px;
-      }
-
-      section {
-        padding: 80px 0;
-      }
-
-      .hero {
-        padding: 3rem 2rem 4rem 2rem;
-      }
-
-      .about-grid {
-        grid-template-columns: 1.7fr auto;
-      }
-
-      .included-list {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .testimonial-card {
-        min-height: 260px;
-      }
-    }
-    /* === TARGETED IMPROVEMENTS === */
-
-    /* Fix 2: Program descriptor */
-    .program-descriptor {
-      font-family: 'DM Serif Display', serif;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 1.1rem;
-      color: #2C2418;
-      text-align: center;
-      margin: 1rem auto;
-      display: block;
-    }
-
-    /* Fix 4: Trust strip */
-    .trust-strip {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      background: #EDE8DF;
-      padding: 1.5rem 2rem;
-      border-radius: 12px;
-      margin-top: 16px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .trust-stat {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0 2rem;
-      border-right: 1px solid rgba(193, 123, 47, 0.35);
-      flex: 1;
-    }
-
-    .trust-stat:last-child {
-      border-right: none;
-    }
-
-    .trust-stat-icon {
-      display: block;
-      margin: 0 auto 0.5rem auto;
-    }
-
-    .trust-stat-number {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.15rem;
-      color: #2C2418;
-      font-weight: bold;
-      text-align: center;
-      margin-bottom: 0.2rem;
-      display: block;
-    }
-
-    .trust-stat-label {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 0.82rem;
-      color: #6B5E4E;
-      text-align: center;
-      line-height: 1.4;
-      display: block;
-    }
-
-    /* Fix 3: Science section layout */
-    .science-section-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .science-top-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      align-items: stretch;
-    }
-
-    .science-image-hero {
-      width: 100%;
-      max-height: 280px;
-      object-fit: cover;
-      border-radius: 12px;
-      display: block;
-    }
-
-    .science-block-wide {
-      max-width: 600px;
-      width: 100%;
-      margin: 0 auto;
-    }
-
-    /* Module card image at top via flexbox ordering */
-    .module-card-new {
-      display: flex;
-      flex-direction: column;
-      padding: 1.5rem !important;
-    }
-
-    .module-card-new .module-image {
-      order: -1;
-      max-height: 180px;
-      width: 100%;
-      max-width: 100%;
-      object-fit: cover;
-      margin: 0 0 1rem 0 !important;
-      border-radius: 12px;
-    }
-
-    .module-outcome {
-      font-family: 'Lora', Georgia, serif;
-      font-style: italic;
-      color: #6B5E4E !important;
-      font-size: 0.9rem !important;
-      margin-top: 0.75rem !important;
-    }
-
-    /* Value section subheading */
-    .value-section-subheading {
-      font-family: 'Lora', Georgia, serif;
-      font-style: italic;
-      color: #6B5E4E;
-      text-align: center;
-      margin: 0 0 1.5rem;
-      font-size: 1.05rem;
-    }
-
-    /* Payment plan line */
-    .payment-plan-line {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 1rem;
-      color: #6B5E4E;
-      text-align: center;
-      background: #EDE8DF;
-      border-radius: 6px;
-      padding: 0.6rem 1.2rem;
-      display: inline-block;
-    }
-
-    /* Fix 5: About Michael photo */
-    .about-content {
-      display: flex !important;
-      flex-direction: row !important;
-      align-items: flex-start !important;
-      gap: 4rem !important;
-      grid-template-columns: unset !important;
-    }
-
-    .about-photo {
-      width: 300px;
-      height: 360px;
-      border-radius: 16px;
-      object-fit: cover;
-      object-position: top center;
-      display: block;
-      flex-shrink: 0;
-      box-shadow:
-        0 8px 32px rgba(193, 122, 58, 0.22),
-        0 2px 8px rgba(44, 36, 22, 0.10);
-      flex-shrink: 0;
-    }
-
-    /* Testimonials single column */
-    .testimonials-full-grid {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center;
-      gap: 0;
-    }
-
-    .testimonial-full {
-      width: 100%;
-      max-width: 780px;
-      background: #FDFAF6 !important;
-      border-left: 4px solid #C17B2F !important;
-      border-right: 1px solid rgba(44,36,22,0.08);
-      border-top: 1px solid rgba(44,36,22,0.08);
-      border-bottom: 1px solid rgba(44,36,22,0.08);
-      padding: 2rem !important;
-      margin-bottom: 1.5rem;
-    }
-
-    .testimonial-full h4 {
-      font-family: 'DM Serif Display', serif;
-      font-weight: bold;
-      color: #2C2416;
-      margin: 0 0 4px;
-      font-size: 1.1rem;
-    }
-
-    .testimonial-full .meta {
-      color: #C17B2F !important;
-      font-size: 0.9rem;
-      margin-bottom: 14px;
-    }
-
-    .testimonial-full p {
-      color: #3D3027 !important;
-      font-size: 1rem;
-      line-height: 1.7;
-      margin: 0;
-    }
-
-    /* Fix 6: Guarantee section */
-    .guarantee h2 {
-      font-size: 2rem;
-      margin: 0 0 20px;
-      color: #2C2418;
-    }
-
-    .guarantee p {
-      color: #2C2418;
-    }
-
-    .guarantee a {
-      color: #C17B2F;
-    }
-
-    .guarantee-shield {
-      display: block;
-      margin: 0 auto 1rem;
-    }
-
-    /* Fix 7: Final CTA */
-    .final-cta-section {
-      padding-top: 5rem !important;
-    }
-
-    .scarcity-line {
-      font-family: 'Lora', Georgia, serif;
-      font-style: italic;
-      font-size: 0.95rem;
-      color: #6B5E4E;
-      text-align: center;
-      margin-top: 1rem;
-      display: block;
-    }
-
-    /* Mobile responsive */
-    @media (max-width: 768px) {
-      .trust-strip {
-        flex-direction: column;
-        padding: 1.5rem 1rem;
-      }
-
-      .trust-stat {
-        border-right: none;
-        border-bottom: 1px solid rgba(193, 123, 47, 0.35);
-        padding: 1.2rem 0;
-        width: 100%;
-        justify-content: center;
-      }
-
-      .trust-stat:last-child {
-        border-bottom: none;
-      }
-
-      .science-top-row {
-        grid-template-columns: 1fr;
-      }
-
-      .about-content {
-        flex-direction: column !important;
-        gap: 2rem !important;
-      }
-
-      .about-section {
-        padding: 3rem 1.5rem !important;
-      }
-
-      .about-photo {
-        width: 100% !important;
-        height: 280px !important;
-      }
-
-      .guarantee h2 {
-        font-size: 1.5rem;
-      }
-
-      .testimonials-full-grid {
-        grid-template-columns: 1fr !important;
-      }
-    }
-
-    /* Fix 3: Science cards row */
-    .science-cards-row {
-      display: flex;
-      flex-direction: row;
-      gap: 1.5rem;
-      margin-top: 2.5rem;
-    }
-
-    .science-card {
-      background: #FFFFFF;
-      border-radius: 16px;
-      padding: 2rem 1.5rem;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-      text-align: center;
-      flex: 1;
-    }
-
-    .science-card svg {
-      display: block;
-      margin: 0 auto;
-    }
-
-    .science-card h3 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.2rem;
-      color: #2C2418;
-      margin: 1rem 0 0.6rem 0;
-      text-align: center;
-    }
-
-    .science-card p {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 0.95rem;
-      color: #6B5E4E;
-      line-height: 1.7;
-      margin: 0;
-      text-align: center;
-    }
-
-    @media (max-width: 768px) {
-      .science-cards-row {
-        flex-direction: column;
-      }
-    }
-
-    /* Fix 4: Value stack pricing colours */
-    .payment-plan-line {
-      background: transparent !important;
-      color: #C17B2F !important;
-      font-style: italic !important;
-      font-size: 0.95rem !important;
-      border-radius: 0 !important;
-      padding: 0 !important;
-      display: block !important;
-      margin-top: 0.8rem;
-    }
-
-    .final-price-box {
-      background: transparent !important;
-      padding: 0.5rem 0 0 !important;
-      border-radius: 0 !important;
-      margin-top: 0.5rem;
-    }
-
-    .final-price {
-      font-family: 'DM Serif Display', serif !important;
-      font-size: 2.5rem !important;
-      color: #C17B2F !important;
-    }
-
-    .pricing-button {
-      padding: 1rem 2.5rem !important;
-      font-size: 1rem !important;
-      margin-top: 1rem !important;
-      border-radius: 50px !important;
-      background: #C17B2F !important;
-      color: #FFFFFF !important;
-    }
-
-    /* Fix 3: Section breathing room */
-    .section-rule {
-      margin: 0;
-      border: none;
-      border-top: 1px solid rgba(44, 36, 22, 0.18);
-    }
-
-    .problem-deepener,
-    .reframe,
-    .full-testimonials {
-      padding-bottom: 5rem;
-    }
-
-    section.reveal {
-      padding-bottom: 5rem;
-    }
-
-    /* Bonuses section */
-    .bonuses-section {
-      padding: 4rem 2rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .bonuses-label {
-      font-family: 'Lora', Georgia, serif;
-      font-style: italic;
-      font-size: 0.95rem;
-      color: #6B7B5E;
-      text-align: center;
-      margin-bottom: 0.5rem;
-    }
-    .bonuses-heading {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2rem;
-      color: #2C2418;
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    .bonus-cards {
-      display: flex;
-      flex-direction: row;
-      gap: 1.5rem;
-      align-items: stretch;
-    }
-    .bonus-card {
-      flex: 1;
-      background: #FFFFFF;
-      border-radius: 16px;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-      border-top: 4px solid #C17B2F;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .bonus-icon {
-      margin-bottom: 1rem;
-    }
-    .bonus-number {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 0.75rem;
-      color: #C17B2F;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-    .bonus-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.1rem;
-      color: #2C2418;
-      margin-bottom: 0.8rem;
-      line-height: 1.4;
-    }
-    .bonus-description {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 0.9rem;
-      color: #6B5E4E;
-      line-height: 1.7;
-      flex-grow: 1;
-    }
-    .bonus-value {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 0.85rem;
-      color: #C17B2F;
-      margin-top: 1rem;
-      font-style: italic;
-    }
-    .bonus-total {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 0.95rem;
-      color: #6B5E4E;
-      text-align: center;
-      margin-top: 2rem;
-    }
-    .bonus-total span {
-      color: #2C2418;
-      font-weight: bold;
-    }
-    @media (max-width: 768px) {
-      .bonus-cards {
-        flex-direction: column;
-      }
-    }
-
-    .river-image {
-      height: auto;
-    }
-
-    @media (min-width: 769px) {
-      .river-image {
-        max-height: 320px;
-        object-fit: cover;
-      }
-    }
-
-    /* Problem deepener two-column layout */
-    .deepener-main {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 36px;
-    }
-
-    .deepener-left-col {
-      order: 1;
-    }
-
-    .deepener-picture {
-      order: 2;
-      display: block;
-    }
-
-    .deepener-heading {
-      text-align: center;
-      font-family: 'DM Serif Display', serif;
-      margin: 0 0 1.5rem;
-    }
-
-    .deepener-text {
-      color: #4A4035;
-      line-height: 1.8;
-    }
-
-    .deepener-text p {
-      margin: 0 0 1rem;
-    }
-
-    .deepener-image {
-      width: 100% !important;
-      max-width: unset !important;
-      height: 260px;
-      object-fit: cover;
-      object-position: center top;
-      border-radius: 12px !important;
-      display: block;
-      margin-bottom: 0;
-    }
-
-    @media (min-width: 769px) {
-      .deepener-main {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 3rem;
-      }
-
-      .deepener-left-col {
-        flex: 0 0 52%;
-        order: unset;
-      }
-
-      .deepener-picture {
-        flex: 1;
-        min-width: 0;
-        order: unset;
-      }
-
-      .deepener-heading {
-        text-align: left;
-        margin-bottom: 1rem;
-      }
-
-      .deepener-image {
-        width: 100% !important;
-        height: 420px !important;
-        margin-bottom: 0;
-        order: unset;
-      }
-
-      /* Fix 3: Desktop section width constraints */
-      .faq {
-        max-width: 780px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .problem-list {
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .final-cta-section > div {
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-      }
+      .hero-sub { font-size: 1.15rem; }
+      .quiz-card { padding: 22px; }
+      .quote-row { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); grid-auto-columns: auto; overflow: visible; }
+      .swipe-hint { display: none; }
+      .checklist { grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+      .section { padding: 72px 0; }
+      .type-cards { grid-template-columns: repeat(3, 1fr); }
+      .btn--outline { width: auto; display: inline-flex; }
+      .offer-card { grid-template-columns: 1.25fr 1fr; padding: 28px; gap: 32px; align-items: start; }
+      .steps { grid-template-columns: repeat(3, 1fr); }
+      .long-quotes { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); grid-auto-columns: auto; overflow: visible; }
+      .fit { grid-template-columns: 1fr 1fr; padding: 22px 24px; gap: 28px; }
+      .teacher img { flex-basis: 120px; width: 120px; height: 120px; }
     }
   </style>
-
 </head>
 <body>
-  <header>
-    <div class="header-inner">
-      <a class="header-quiz" href="/quiz.html" onclick="gtag('event', 'quiz_link_click', {'button_location': 'header'});"><span>What is your gut holding?</span> <span class="header-quiz-go">Take the free quiz →</span></a>
+
+  <!-- 1. HEADER -->
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="wordmark" href="#top">Heal Your Digestion <em>with EFT</em></a>
+      <a class="header-link" href="#program">The 30-Day Program</a>
     </div>
   </header>
-  <main class="page-wrap">
-    <!-- SECTION 1: HERO -->
-    <section class="hero reveal">
-      <div class="hero-quiz-top">
-        <a class="hero-quiz-pill" href="/quiz.html" onclick="gtag('event', 'quiz_link_click', {'button_location': 'hero_top'});">What is your gut holding? <span>Take the free quiz →</span></a>
-      </div>
-      <h2 class="hero-headline">You've Changed Your Diet. Tried the Elimination Plans. Your Gut Still Isn't Right.</h2>
-      <div class="hero-body-row">
-        <div class="hero-left">
-          <p>What most gut health advice misses is the emotional root cause. This 30-day program uses EFT Tapping, backed by Chinese medicine and nervous system science, to address what diet alone never could.</p>
-          <p class="program-descriptor">The 30-Day EFT Tapping Program for Gut and Digestive Health</p>
-          <div class="hero-actions">
-            <a class="button hero-btn" href="https://mindbodymedicineacademy.onlinecoursehost.com/courses/digestion-eft-sept25" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'enroll_click', {'button_location': 'hero'});">Enrol Now</a>
-            <p class="hero-cta-subheading">Self-paced · Start today</p>
-            <p class="hero-guarantee">✓ 14-day money-back guarantee, no questions asked</p>
-            <a class="hero-quiz-link" href="/quiz.html" onclick="gtag('event', 'quiz_link_click', {'button_location': 'hero'});">Not sure yet? Find your Gut-Emotion Type (free 60-second quiz) →</a>
-          </div>
-          <div class="trust-strip">
-            <div class="trust-stat">
-              <svg class="trust-stat-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="10" cy="9" r="4" stroke="#C17B2F" stroke-width="1.8" fill="none"/>
-                <circle cx="20" cy="9" r="4" stroke="#C17B2F" stroke-width="1.8" fill="none"/>
-                <path d="M2 24C2 20 5.5 17 10 17" stroke="#C17B2F" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-                <path d="M12 24C12 20 15.5 17 20 17C24.5 17 28 20 28 24" stroke="#C17B2F" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-              </svg>
-              <span class="trust-stat-number">1,000+ Students</span>
-              <span class="trust-stat-label">from around the world</span>
-            </div>
-            <div class="trust-stat">
-              <svg class="trust-stat-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="2" y="6" width="24" height="17" rx="4" stroke="#C17B2F" stroke-width="1.8" fill="none"/>
-                <path d="M11 10.5L19 14.5L11 18.5V10.5Z" fill="#C17B2F"/>
-              </svg>
-              <span class="trust-stat-number">40,000 Subscribers</span>
-              <span class="trust-stat-label">on YouTube</span>
-            </div>
-            <div class="trust-stat">
-              <svg class="trust-stat-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="14" cy="12" r="7" stroke="#C17B2F" stroke-width="1.8" fill="none"/>
-                <path d="M10 12L13 15L18 9" stroke="#C17B2F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M10 20L8 27L14 24L20 27L18 20" stroke="#C17B2F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              </svg>
-              <span class="trust-stat-number">IICT Accredited</span>
-              <span class="trust-stat-label">Certified Practitioner</span>
-            </div>
-          </div>
+
+  <main>
+
+    <!-- 2. HERO WITH THE QUIZ BUILT IN -->
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div class="hero-intro">
+          <span class="eyebrow">For bloating, IBS, reflux and a gut that won't settle</span>
+          <h1>You've changed your diet. Tried the elimination plans. <em>Your gut still isn't right.</em></h1>
+          <p class="hero-sub">Most gut advice skips the emotional root cause. Find out what your gut is holding in 60 seconds.</p>
         </div>
-        <div class="hero-right">
-          <picture>
-            <source srcset="assets/ChatGPT%20Image%20May%207%2C%202026%2C%2011_19_04%20AM.webp" type="image/webp" />
-            <img src="assets/ChatGPT%20Image%20May%207%2C%202026%2C%2011_19_04%20AM.png" alt="Woman holding her stomach warmly, with a glowing illustration of the digestive system" class="hero-image" fetchpriority="high" loading="eager" decoding="sync" width="600" height="600" />
-          </picture>
+
+        <div class="quiz-card">
+          <div class="quiz-card-top"><span>Free 60-second quiz</span><span>1 of 6</span></div>
+          <div class="bar" aria-hidden="true"><span></span></div>
+          <h2>Which gut symptom bothers you most?</h2>
+          <div class="answers">
+            <a class="answer" href="quiz.html?a1=W" data-answer="W">Bloating, heaviness or tiredness after eating<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+            <a class="answer" href="quiz.html?a1=P" data-answer="P">Cramping, reflux or food reactions that flare up<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+            <a class="answer" href="quiz.html?a1=H" data-answer="H">Constipation, or feeling like things are stuck<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+            <a class="answer" href="quiz.html?a1=M" data-answer="M">A mix. It changes from day to day<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+          </div>
+          <p class="quiz-card-note">Free · 6 questions · Includes a 30-second tapping tip for your type</p>
+        </div>
+
+        <div class="hero-proof">
+          <p class="proof">1,000+ students <span>·</span> 40,000 YouTube subscribers <span>·</span> IICT accredited</p>
+          <a class="text-link" href="#program">Already know you want in? See the 30-Day Program</a>
         </div>
       </div>
     </section>
 
-    <hr class="section-rule" />
+    <!-- 3. SHORT TESTIMONIALS -->
+    <section class="section section--sand" style="padding-top:22px;padding-bottom:22px;" aria-label="What students say">
+      <div class="wrap">
+        <div class="quote-row">
+          <figure class="quote-card">
+            <div class="stars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg></div>
+            <blockquote>Week 3 changed everything. I used to dread going out to dinner. Now I actually enjoy it.</blockquote>
+            <figcaption>Grace, 47, Canada</figcaption>
+          </figure>
+          <figure class="quote-card">
+            <div class="stars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg></div>
+            <blockquote>My digestive problems have lessened. Thank you Michael for helping my quality of life.</blockquote>
+            <figcaption>Paula West M.D.</figcaption>
+          </figure>
+          <figure class="quote-card">
+            <div class="stars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg></div>
+            <blockquote>I am an EFT practitioner myself and this is the most helpful sequence to date.</blockquote>
+            <figcaption>Catherine Westburg</figcaption>
+          </figure>
+        </div>
+        <p class="swipe-hint">Swipe for more</p>
+      </div>
+    </section>
 
-    <!-- SECTION 2: SOCIAL PROOF STRIP -->
-    <section class="social-proof reveal">
-      <div class="social-proof-grid">
-        <div class="social-proof-quote">
-          <p>Week 3 changed everything. I used to dread going out to dinner. Now I actually enjoy it.</p>
-          <p class="name">Grace, 47, Canada</p>
+    <!-- 4. PROBLEM CHECKLIST -->
+    <section class="section section--sand" style="padding-top:8px;">
+      <div class="wrap narrow">
+        <h2>You're not imagining it. And it's not just your diet.</h2>
+        <ul class="checklist">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Bloating that builds through the day</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>An IBS, SIBO or GERD diagnosis, and no real plan</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Worrying about what the next meal will do</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Elimination diets that helped for a while, then stopped working</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Tired and foggy after you eat</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Saying no to dinners out because of your gut</li>
+        </ul>
+        <p class="checklist-note">If you ticked two or more, your gut is probably carrying more than food.</p>
+      </div>
+    </section>
+
+    <!-- 5. WHY NOTHING HAS FULLY WORKED -->
+    <section class="section">
+      <div class="wrap">
+        <div class="narrow">
+          <span class="eyebrow">Why nothing has fully worked</span>
+          <h2>In Chinese medicine, your gut digests your feelings too</h2>
+          <p>The same organ systems that run digestion also carry emotion. When stress and feeling get stuck, digestion gets stuck too. Diet can't reach that. Tapping can.</p>
         </div>
-        <div class="social-proof-quote">
-          <p>My digestive problems have lessened. Thank you Michael for helping my quality of life.</p>
-          <p class="name">Paula West M.D.</p>
+        <div class="type-cards">
+          <div class="type-card">
+            <div class="type-card-head"><h3>The Worrier</h3><span class="module">Module 1</span></div>
+            <p class="organ">Spleen and Stomach · worry, overthinking</p>
+            <p class="symptoms">Bloating, heaviness, tired after meals</p>
+          </div>
+          <div class="type-card">
+            <div class="type-card-head"><h3>The Pressure Cooker</h3><span class="module">Module 2</span></div>
+            <p class="organ">Liver · frustration, held-in stress</p>
+            <p class="symptoms">Cramping, reflux, food reactions</p>
+          </div>
+          <div class="type-card">
+            <div class="type-card-head"><h3>The Holder</h3><span class="module">Module 3</span></div>
+            <p class="organ">Lung and Large Intestine · grief, holding on</p>
+            <p class="symptoms">Constipation, feeling stuck</p>
+          </div>
         </div>
-        <div class="social-proof-quote">
-          <p>I am an EFT practitioner myself and this is the most helpful sequence to date.</p>
-          <p class="name">Catherine Westburg</p>
+        <p class="module-4">Module 4 brings the whole system back into flow.</p>
+        <a class="btn btn--outline" href="quiz.html" data-quiz-link="why_section">Which one is yours? Take the quiz</a>
+
+        <div class="video narrow" style="margin-left:auto;margin-right:auto;">
+          <button class="video-play" id="video-play" type="button" data-src="https://www.youtube.com/embed/gmY9W6duWM8" aria-label="Play video: Is This Program Right for You?">
+            <img src="https://i.ytimg.com/vi/gmY9W6duWM8/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360" />
+            <svg class="video-play-icon" viewBox="0 0 68 48" aria-hidden="true"><path d="M66.5 7.7c-.8-2.9-2.5-5.4-5.4-6.2C55.8.1 34 0 34 0S12.2.1 6.9 1.6C4 2.4 2.3 4.8 1.5 7.7.1 13 0 24 0 24s.1 11 1.5 16.3c.8 2.9 2.5 5.4 5.4 6.2C12.2 47.9 34 48 34 48s21.8-.1 27.1-1.6c2.9-.8 4.6-3.2 5.4-6.2C67.9 35 68 24 68 24s-.1-11-1.5-16.3z" fill="#A9601F"/><path d="M45 24 27 14v20" fill="#fff"/></svg>
+          </button>
         </div>
       </div>
     </section>
 
-    <hr class="section-rule" />
-
-    <!-- SALES VIDEO -->
-    <section class="reveal" style="padding: 24px 0;">
-      <h2 style="font-family:'DM Serif Display',serif; font-size:clamp(1.4rem,3vw,1.8rem); color:#2C2418; text-align:center; margin-bottom:1.2rem;">Watch: Is This Program Right for You?</h2>
-      <div style="max-width:620px; margin:0 auto; border-radius:12px; overflow:hidden; box-shadow:0 4px 20px rgba(44,36,22,0.1);">
-        <div id="yt-facade" style="position:relative; padding-bottom:56.25%; height:0; cursor:pointer; background:#000;" onclick="this.innerHTML='<iframe src=\'https://www.youtube.com/embed/gmY9W6duWM8?autoplay=1\' title=\'Is This Program Right for You?\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen style=\'position:absolute;top:0;left:0;width:100%;height:100%;\'></iframe>'; this.style.cursor='default';">
-          <img src="https://i.ytimg.com/vi/gmY9W6duWM8/hqdefault.jpg" alt="Watch: Is This Program Right for You?" loading="lazy" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" width="480" height="360" />
-          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:48px;background:#FF0000;border-radius:12px;display:flex;align-items:center;justify-content:center;" aria-label="Play video">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    <!-- 6. THE OFFER -->
+    <section class="section section--dark" id="program">
+      <div class="wrap">
+        <div class="offer-intro">
+          <span class="eyebrow">The 30-Day Program</span>
+          <h2>Heal Your Digestion with EFT</h2>
+          <p>15 minutes of tapping a day, for 30 days. One module for each gut-emotion pattern.</p>
+        </div>
+        <div class="offer-card" id="program-card">
+          <div>
+            <h3>Everything included</h3>
+            <ul class="ticks">
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>4 modules: Stomach, Liver, Lungs and Large Intestine, the whole system</span></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>4 x 90-minute recorded tapping sessions with Michael</span></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>12 digestion tapping scripts, plus a write-your-own worksheet</span></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Audio meditations, Qi Gong, movement and nutrition tips</span></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Lifetime access to all recordings and materials</span></li>
+            </ul>
+            <p class="bonus-label">3 free bonuses</p>
+            <ul class="bonus-list">
+              <li><span>20-Minute Taoist Yoga Flow</span><span>$47</span></li>
+              <li><span>Daily Tapping Tips Poster</span><span>$19</span></li>
+              <li><span>Gut-Calming Bedtime Audio</span><span>$37</span></li>
+            </ul>
+          </div>
+          <div class="price-box">
+            <p class="price-was">Total value <s>$1,473</s></p>
+            <p class="price-now">$197 <small>USD</small></p>
+            <a class="btn" href="https://mindbodymedicineacademy.onlinecoursehost.com/courses/digestion-eft-sept25" target="_blank" rel="noopener noreferrer" data-enrol="offer" data-plan="full" data-legacy="pricing">Start the 30-Day Program</a>
+            <a class="text-link plan-link" href="https://buy.stripe.com/8x2aEX3RR0DPctS5O84wM1q" target="_blank" rel="noopener noreferrer" data-enrol="offer" data-plan="payment_plan" data-legacy="payment_plan">Or 3 monthly payments of $90</a>
+            <p class="guarantee-line"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/></svg>14-day money-back guarantee · Start today</p>
           </div>
         </div>
       </div>
     </section>
 
-    <hr class="section-rule" />
-
-    <!-- SECTION 3: PROBLEM DEEPENER -->
-    <section class="problem-deepener reveal">
-      <div class="deepener-main">
-        <div class="deepener-left-col">
-          <h2 class="deepener-heading">You're Not Imagining It. And It's Not Just Your Diet.</h2>
-          <div class="deepener-text">
-            <p>You've been told it's stress. Or gluten. Or IBS. Maybe all three. You've cut foods out, added supplements, tried the elimination plans. And yet your gut still doesn't feel right.</p>
-            <p>The constant bloating. The cramping after meals. The anxiety around food. The exhaustion of never knowing what your body will do next.</p>
-            <p>What nobody has told you is this: stress, anxiety, and unprocessed emotion physically change how your digestive system functions. Your gut has its own nervous system. And when your nervous system is stuck in stress mode, no diet in the world will fully fix what's happening.</p>
-          </div>
-        </div>
-        <picture class="deepener-picture">
-          <source srcset="assets/digestive%20pain.webp" type="image/webp" />
-          <img class="deepener-image" src="assets/digestive%20pain.png" alt="Woman experiencing digestive discomfort" style="width:100%;height:420px;object-fit:cover;object-position:center top;border-radius:12px;" loading="lazy" decoding="async" width="800" height="420" />
-        </picture>
-      </div>
-      <div class="problem-list">
-        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.webp" alt="" loading="lazy" decoding="async" width="20" height="20" />Regular bloating and cramping after eating</div>
-        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.webp" alt="" loading="lazy" decoding="async" width="20" height="20" />Diagnosed with IBS, SIBO, or GERD</div>
-        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.webp" alt="" loading="lazy" decoding="async" width="20" height="20" />Constant fear of eating the wrong food</div>
-        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.webp" alt="" loading="lazy" decoding="async" width="20" height="20" />Tried every elimination diet with no lasting relief</div>
-        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.webp" alt="" loading="lazy" decoding="async" width="20" height="20" />Fatigue and brain fog after meals</div>
-        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.webp" alt="" loading="lazy" decoding="async" width="20" height="20" />Feeling like your body is working against you</div>
-        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.webp" alt="" loading="lazy" decoding="async" width="20" height="20" />Dependent on supplements just to feel normal</div>
-        <div class="problem-item"><img class="problem-icon" src="assets/dot%20points%20icons.webp" alt="" loading="lazy" decoding="async" width="20" height="20" />Avoiding social situations because of your gut</div>
+    <!-- 8. HOW IT WORKS -->
+    <section class="section section--sand">
+      <div class="wrap">
+        <h2 class="center">How it works</h2>
+        <ol class="steps">
+          <li><div><strong>Enrol</strong>Instant access. Self-paced.</div></li>
+          <li><div><strong>Open today's lesson</strong>On your phone, tablet or computer.</div></li>
+          <li><div><strong>Tap for 15 minutes a day</strong>Follow along. No experience needed.</div></li>
+        </ol>
       </div>
     </section>
 
-    <hr class="section-rule" />
-
-    <section class="reveal" style="padding:5rem 2rem;
-max-width:800px;margin:0 auto;">
-
-<h2 style="font-family:'DM Serif Display',
-serif;font-size:clamp(1.8rem,4vw,2.4rem);
-color:#2C2418;text-align:center;
-margin-bottom:3rem;line-height:1.3;">
-You're Exhausted From Thinking About
-Your Gut Every Single Day
-</h2>
-
-<p style="font-family:Lora,serif;
-font-size:1.05rem;color:#3D3027;
-line-height:1.9;margin-bottom:1.5rem;">
-<strong>You wake up and the first thing you do
-is check in with your stomach. How does
-it feel today? Is it going to be a good
-day or a bad day?</strong>
-</p>
-
-<p style="font-family:Lora,serif;
-font-size:1.05rem;color:#3D3027;
-line-height:1.9;margin-bottom:1.5rem;">
-You scan the menu before you even agree
-to go to the restaurant. You calculate
-the risk of every meal. You know which
-foods are safe and which ones will cost
-you the rest of the day. You have a
-mental list you carry everywhere.
-</p>
-
-<p style="font-family:Lora,serif;
-font-size:1.05rem;color:#3D3027;
-line-height:1.9;margin-bottom:1.5rem;">
-You have cancelled plans. Not once.
-Regularly. Because you could not trust
-your body to cooperate. Because the
-thought of being somewhere unfamiliar
-when it hits is too much.
-</p>
-
-<p style="font-family:Lora,serif;
-font-size:1.05rem;color:#3D3027;
-line-height:1.9;margin-bottom:1.5rem;">
-You have sat at tables pretending to
-enjoy a meal while quietly monitoring
-every sensation in your gut. Smiling.
-Nodding. Hoping nobody notices you have
-barely touched your food.
-</p>
-
-<p style="font-family:Lora,serif;
-font-size:1.05rem;color:#3D3027;
-line-height:1.9;margin-bottom:1.5rem;">
-You have spent hundreds. Possibly
-thousands. On supplements, tests,
-consultations, elimination diets,
-special foods, probiotics, enzymes.
-Some of them helped a little.
-None of them fixed it.
-</p>
-
-<p style="font-family:Lora,serif;
-font-size:1.05rem;color:#3D3027;
-line-height:1.9;margin-bottom:1.5rem;">
-You have had the tests. Maybe they found
-something. Maybe they found nothing.
-"Everything looks normal" is somehow
-worse, because you know it is not.
-</p>
-
-<p style="font-family:Lora,serif;
-font-size:1.05rem;color:#3D3027;
-line-height:1.9;margin-bottom:1.5rem;">
-You are tired of planning your life
-around your gut. Tired of the brain fog
-that follows a bad meal. Tired of waking
-up already inflamed before the day has
-even started. Tired of explaining to
-people why you cannot just eat normally.
-</p>
-
-<p style="font-family:Lora,serif;
-font-size:1.05rem;color:#3D3027;
-line-height:1.9;margin-bottom:1.5rem;">
-And underneath all of it is a quiet,
-exhausting fear that this is just how
-it is going to be. That you have tried
-enough things to know that nothing fully
-works. That your body is somehow broken
-in a way nobody can fix.
-</p>
-
-<p style="font-family:Lora,serif;
-font-size:1.1rem;color:#2C2418;
-line-height:1.9;margin-bottom:0;
-font-weight:bold;">
-You are not broken. But the approaches
-you have been given have been
-incomplete. And there is a very specific
-reason why.
-</p>
-
-</section>
-
-    <!-- SECTION 4: THE REFRAME -->
-    <section class="reframe reveal">
-      <h2>Why Nothing Has Fully Worked</h2>
-      <div class="content-block" style="max-width: 700px; margin: 0 auto;">
-        <p>Most gut health approaches treat the digestive system as a purely physical problem. Change the diet, add the probiotic, manage the symptoms.</p>
-        <p>But in Chinese medicine, the digestive system and the emotional system are the same system. The Stomach and Spleen organs govern overthinking and worry. The Liver governs stress and frustration. When these emotions build up without being processed, they create physical stagnation in the gut.</p>
-        <p>Over a lifetime, most people suppress far more emotion than they release. That unprocessed emotional material sits in the nervous system and the body, driving physical symptoms that no diet can reach.</p>
-        <p>This is what we address in this 30-day program. We focus on clearing out the backlog within the system so the organs and energy can be open and flow again. EFT Tapping is the tool that makes this possible: not managing the backlog, but clearing it.</p>
+    <!-- 9. LONGER TESTIMONIALS -->
+    <section class="section">
+      <div class="wrap">
+        <h2 class="center">What happens when you address the root cause</h2>
+        <div class="long-quotes">
+          <figure class="long-quote">
+            <div class="stars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg></div>
+            <blockquote>I love this tapping program and sequence for digestion, and I am an EFT practitioner myself. Very powerful. Thank you so much.</blockquote>
+            <figcaption>Julie Ballinger <span>· EFT Practitioner</span></figcaption>
+          </figure>
+          <figure class="long-quote">
+            <div class="stars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg></div>
+            <blockquote>I was suffering from acidity and pain for more than 5 days. I did a session with Michael and after 12 hours I'm feeling so relaxed.</blockquote>
+            <figcaption>Amit Singh <span>· Student</span></figcaption>
+          </figure>
+          <figure class="long-quote">
+            <div class="stars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg></div>
+            <blockquote>My digestive problems have lessened. And in times when I feel deeply triggered, I can get myself out of it and be back to the present.</blockquote>
+            <figcaption>Paula West M.D. <span>· Medical Professional</span></figcaption>
+          </figure>
+        </div>
+        <p class="carousel-label">More results from students around the world</p>
+        <iframe id="socialjuice-carousel-michaelhetherington-5037" src="https://embed.socialjuice.io/carousel/6981?s=michaelhetherington&id=5037&custom=true" allowfullscreen allowtransparency="true" frameBorder="0" scrolling="no" width="100%" height="380px" style="border: none; border-radius: 12px; display: block;" loading="lazy" title="Student reviews"></iframe>
       </div>
-      <div style="margin: 2.5rem auto 0 auto; max-width:660px;">
+    </section>
+
+    <!-- 10. YOUR TEACHER -->
+    <section class="section section--sand" style="padding-top:36px;padding-bottom:36px;">
+      <div class="wrap narrow teacher">
         <picture>
-          <source srcset="assets/open%20and%20flow.webp" type="image/webp" />
-          <img class="river-image" src="assets/open%20and%20flow.png" alt="Emotional Backlog to Open and Flow" style="width:100%; border-radius:14px; box-shadow:0 6px 28px rgba(44,36,22,0.12); display:block;" loading="lazy" decoding="async" width="900" height="600" />
+          <source srcset="assets/bio%20pic%201.webp" type="image/webp" />
+          <img src="assets/bio%20pic%201.jpg" alt="Michael Hetherington" width="120" height="120" loading="lazy" decoding="async" />
         </picture>
-      </div>
-    </section>
-
-    <hr class="section-rule" />
-
-    <!-- SECTION 5: THE SCIENCE -->
-    <section class="reveal">
-      <h2 class="section-headline">This Is Not Just Tapping. It's Backed by Research.</h2>
-      <div class="science-cards-row">
-        <div class="science-card">
-          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="28" cy="28" r="26" stroke="#C17B2F" stroke-width="2" fill="#FBF4EA"/>
-            <circle cx="20" cy="22" r="3" fill="#C17B2F"/>
-            <circle cx="28" cy="18" r="3" fill="#C17B2F"/>
-            <circle cx="36" cy="22" r="3" fill="#C17B2F"/>
-            <circle cx="22" cy="32" r="3" fill="#C17B2F"/>
-            <circle cx="34" cy="32" r="3" fill="#C17B2F"/>
-            <circle cx="28" cy="38" r="3" fill="#C17B2F"/>
-          </svg>
-          <h3>Acupressure Meets Neuroscience</h3>
-          <p>EFT combines tapping on acupressure points with cognitive processing. Research shows it lowers cortisol levels measurably within a single session.</p>
-        </div>
-        <div class="science-card">
-          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="28" cy="28" r="26" stroke="#C17B2F" stroke-width="2" fill="#FBF4EA"/>
-            <rect x="18" y="16" width="20" height="26" rx="3" stroke="#C17B2F" stroke-width="2"/>
-            <path d="M23 28L26.5 31.5L33 25" stroke="#C17B2F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <rect x="23" y="14" width="10" height="5" rx="2" fill="#C17B2F" opacity="0.3" stroke="#C17B2F" stroke-width="1.5"/>
-          </svg>
-          <h3>Clinically Researched</h3>
-          <p>Multiple peer-reviewed studies show EFT outperforms CBT for anxiety in certain conditions. It is recognized by the American Psychological Association as an evidence-based practice.</p>
-        </div>
-        <div class="science-card">
-          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="28" cy="28" r="26" stroke="#C17B2F" stroke-width="2" fill="#FBF4EA"/>
-            <path d="M28 20C24 20 20 23 20 27C20 29 21 31 23 32C23 35 25 37 28 37C31 37 33 35 33 32C35 31 36 29 36 27C36 23 32 20 28 20Z" stroke="#C17B2F" stroke-width="2" fill="none"/>
-            <line x1="28" y1="37" x2="28" y2="42" stroke="#C17B2F" stroke-width="2" stroke-linecap="round"/>
-            <line x1="24" y1="40" x2="32" y2="40" stroke="#C17B2F" stroke-width="2" stroke-linecap="round"/>
-            <line x1="25" y1="27" x2="31" y2="27" stroke="#C17B2F" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="28" y1="24" x2="28" y2="30" stroke="#C17B2F" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          <h3>The Gut-Brain Connection</h3>
-          <p>Your gut contains over 100 million nerve cells. When your nervous system is dysregulated, your digestion suffers. EFT directly targets nervous system regulation at the source.</p>
+        <div>
+          <h2>Your teacher: Michael Hetherington</h2>
+          <p>Chinese medicine practitioner and IICT-accredited EFT trainer. 1,000+ students and 40,000 YouTube subscribers.</p>
         </div>
       </div>
     </section>
 
-    <hr class="section-rule" />
-
-    <!-- SECTION 6: CURRICULUM -->
-    <section class="reveal">
-      <h2 class="section-headline">What You Will Work Through in 30 Days</h2>
-      <div class="modules-grid">
-        <div class="module-card-new">
-          <h3>Module 1: Healing the Stomach and Solar Plexus</h3>
-          <p>EFT sequences and acupressure protocols targeting bloating, cramping, and digestive tension directly.</p>
-          <picture><source srcset="assets/solar plexus.webp" type="image/webp" /><img class="module-image" src="assets/solar plexus.png" alt="Stomach and solar plexus illustration" loading="lazy" decoding="async" width="400" height="300" /></picture>
-          <p class="module-outcome">After this module: less physical tension in your gut, faster relief after meals.</p>
-        </div>
-        <div class="module-card-new">
-          <h3>Module 2: Healing the Liver and Reducing Food Sensitivities</h3>
-          <p>Targeting the stress-digestion connection through the liver meridian. Calms reactivity and improves how your body responds to food.</p>
-          <picture><source srcset="assets/liver image.webp" type="image/webp" /><img class="module-image" src="assets/liver image.png" alt="Liver illustration" loading="lazy" decoding="async" width="400" height="300" /></picture>
-          <p class="module-outcome">After this module: fewer food reactions, more ease around eating.</p>
-        </div>
-        <div class="module-card-new">
-          <h3>Module 3: Opening the Lungs and Large Intestine</h3>
-          <p>Working with the organs responsible for elimination, both physical and emotional. Addresses constipation, heaviness, and held grief or stress.</p>
-          <picture><source srcset="assets/lungs image.webp" type="image/webp" /><img class="module-image" src="assets/lungs image.png" alt="Lungs illustration" loading="lazy" decoding="async" width="400" height="300" /></picture>
-          <p class="module-outcome">After this module: improved regularity, lighter in body and mind.</p>
-        </div>
-        <div class="module-card-new">
-          <h3>Module 4: Healing and Optimizing the Whole System</h3>
-          <p>Integration of everything learned. Full-body reset using EFT and mind-body medicine to lock in the changes.</p>
-          <picture><source srcset="assets/whole body image.webp" type="image/webp" /><img class="module-image" src="assets/whole body image.png" alt="Whole body illustration" loading="lazy" decoding="async" width="400" height="300" /></picture>
-          <p class="module-outcome">After this module: a personal practice you can use for life.</p>
-        </div>
-      </div>
-    </section>
-
-    <hr class="section-rule" />
-
-    <!-- SECTION 7: VALUE STACK -->
-    <section id="pricing" class="reveal">
-      <h2 class="section-headline">Everything Included in the Program</h2>
-      <p class="value-section-subheading">Everything you need to heal your digestion, in one program.</p>
-      <div style="text-align:center; margin: 0 auto 1.8rem;">
-        <picture>
-          <source srcset="assets/product%20image.webp" type="image/webp" />
-          <img src="assets/product%20image.png" alt="Heal Your Digestion with EFT: Program Materials" style="width:200px; height:200px; object-fit:cover; border-radius:16px; box-shadow:0 8px 28px rgba(44,36,22,0.15); display:inline-block;" loading="lazy" decoding="async" width="200" height="200" />
-        </picture>
-      </div>
-      <div class="value-stack">
-        <div class="value-row">
-          <span class="value-item">4 x 90-minute Recorded EFT Tapping Call Sessions with Michael</span>
-          <span class="value-price">$700</span>
-        </div>
-        <div class="value-row">
-          <span class="value-item">12 x Targeted EFT Digestion Tapping Scripts</span>
-          <span class="value-price">$300</span>
-        </div>
-        <div class="value-row">
-          <span class="value-item">How to Write Your Own EFT Scripts Worksheet</span>
-          <span class="value-price">$59</span>
-        </div>
-        <div class="value-row">
-          <span class="value-item">5-Minute Post-Meal Movement Practice</span>
-          <span class="value-price">$49</span>
-        </div>
-        <div class="value-row">
-          <span class="value-item">5 Element Emotional Chart (Chinese Medicine)</span>
-          <span class="value-price">$19</span>
-        </div>
-        <div class="value-row">
-          <span class="value-item">Nutrition and Cooking Tips for Gut Health</span>
-          <span class="value-price">$49</span>
-        </div>
-        <div class="value-row">
-          <span class="value-item">Introduction to Digestive Qi Gong</span>
-          <span class="value-price">$97</span>
-        </div>
-        <div class="value-row">
-          <span class="value-item">4 x EFT Audio Meditations for Digestion</span>
-          <span class="value-price">$97</span>
-        </div>
-        <div class="value-row">
-          <span class="value-item">Lifetime Access to All Recordings and Materials</span>
-          <span class="value-price">Priceless</span>
-        </div>
-        <div class="value-summary">
-          <div class="value-summary-row">
-            <strong>Total value:</strong>
-            <span class="value-highlight">$1,370</span>
+    <!-- 11. FOR YOU / NOT FOR YOU -->
+    <section class="section section--sand" style="padding-top:0;">
+      <div class="wrap">
+        <div class="fit">
+          <div>
+            <h3>For you if</h3>
+            <ul class="ticks">
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Your gut gets worse when life gets stressful</span></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>You've done the diet side and you're still stuck</span></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>You're open to a mind-body approach</span></li>
+            </ul>
           </div>
-        </div>
-        <div style="text-align:center; padding: 0.8rem 0 0.2rem;">
-          <span style="font-family:'DM Serif Display',serif; font-size:2.8rem; color:#C17B2F; display:block; margin:0.2rem 0; line-height:1;">Only $197 USD</span>
-          <span class="payment-plan-line" style="display:block; margin-top:0.4rem;">Payment plan option available below</span>
-        </div>
-        <a class="button pricing-button" href="https://mindbodymedicineacademy.onlinecoursehost.com/courses/digestion-eft-sept25" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'enroll_click', {'button_location': 'pricing'});">Enrol Now</a>
-        <p style="margin-top: 0.6rem; color: #C17B2F; font-size: 0.85rem; text-align: center; font-style: italic;">Enrolment open now</p>
-        <p style="margin-top: 0.4rem; color: rgba(245,240,232,0.7); font-size: 0.85rem; text-align: center; font-style: italic; margin-bottom:0;">14-day money back guarantee</p>
-      </div>
-    </section>
-
-    <hr class="section-rule" />
-
-    <!-- BONUSES SECTION -->
-    <div class="bonuses-section">
-      <p class="bonuses-label">When you enrol today you also receive</p>
-      <h2 class="bonuses-heading">Three Free Bonuses</h2>
-      <div class="bonus-cards">
-        <div class="bonus-card">
-          <div class="bonus-icon">
-            <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="26" cy="26" r="24" stroke="#C17B2F" stroke-width="1.8" fill="#FBF4EA"/>
-              <path d="M26 14 C26 14 20 18 20 26 C20 30 22 33 26 35 C30 33 32 30 32 26 C32 18 26 14 26 14Z" stroke="#C17B2F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              <path d="M20 26 C23 24 26 26 29 28 C32 26 32 26 32 26" stroke="#C17B2F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              <line x1="26" y1="35" x2="26" y2="40" stroke="#C17B2F" stroke-width="1.8" stroke-linecap="round"/>
-              <line x1="22" y1="40" x2="30" y2="40" stroke="#C17B2F" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <p class="bonus-number">Bonus 1</p>
-          <h3 class="bonus-title">20-Minute Taoist Yoga Flow for Digestion</h3>
-          <p class="bonus-description">A gentle Taoist yoga class designed to stimulate digestive organs, release gut tension, and support the body's natural elimination process. Download and practice anytime.</p>
-          <p class="bonus-value">Value: $47</p>
-        </div>
-        <div class="bonus-card">
-          <div class="bonus-icon">
-            <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="26" cy="26" r="24" stroke="#C17B2F" stroke-width="1.8" fill="#FBF4EA"/>
-              <rect x="16" y="14" width="20" height="26" rx="3" stroke="#C17B2F" stroke-width="1.8" fill="none"/>
-              <line x1="20" y1="20" x2="32" y2="20" stroke="#C17B2F" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="20" y1="25" x2="32" y2="25" stroke="#C17B2F" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="20" y1="30" x2="28" y2="30" stroke="#C17B2F" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <p class="bonus-number">Bonus 2</p>
-          <h3 class="bonus-title">EFT Daily Tapping Tips Poster</h3>
-          <p class="bonus-description">A printable reference poster with the six most important EFT tapping tips to keep your practice consistent and easy to fit into daily life. Stick it on your wall and never lose momentum.</p>
-          <p class="bonus-value">Value: $19</p>
-        </div>
-        <div class="bonus-card">
-          <div class="bonus-icon">
-            <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="26" cy="26" r="24" stroke="#C17B2F" stroke-width="1.8" fill="#FBF4EA"/>
-              <path d="M18 30 Q22 22 26 22 Q30 22 34 30" stroke="#C17B2F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              <circle cx="26" cy="19" r="4" stroke="#C17B2F" stroke-width="1.8" fill="none"/>
-              <path d="M20 36 Q23 33 26 33 Q29 33 32 36" stroke="#C17B2F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <p class="bonus-number">Bonus 3</p>
-          <h3 class="bonus-title">Gut-Calming Bedtime Tapping Audio</h3>
-          <p class="bonus-description">A guided 15-minute EFT audio session for nighttime use. Calms the nervous system, releases digestive tension held from the day, and prepares your body for deep rest and overnight repair.</p>
-          <p class="bonus-value">Value: $37</p>
-        </div>
-      </div>
-      <p class="bonus-total">Total bonus value: <span>$103</span>, yours free when you enrol.</p>
-    </div>
-
-    <hr class="section-rule" />
-
-    <!-- HOW IT WORKS SECTION -->
-    <div style="background: #EDE8DF; padding: 2.5rem 3rem; margin-top: 2rem;">
-      <div style="max-width: 900px; margin: 0 auto;">
-        <p style="font-family: Lora, serif; font-style: italic; font-size: 0.9rem; color: #6B7B5E; text-align: center; margin-bottom: 0.3rem;">Simple to follow</p>
-        <h2 style="font-family: 'DM Serif Display', serif; font-size: clamp(1.5rem, 3.5vw, 1.9rem); color: #2C2418; text-align: center; margin-bottom: 1.8rem;">How It Works</h2>
-        <div style="display: flex; flex-direction: row; gap: 1.5rem; align-items: flex-start;" id="how-it-works-steps">
-          <!-- Step 1 -->
-          <div style="flex: 1; text-align: center; padding: 0.5rem; max-width: 280px; margin: 0 auto;">
-            <div style="width: 52px; height: 52px; border-radius: 50%; background: #C17B2F; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.8rem auto;">
-              <span style="font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: #FFFFFF;">1</span>
-            </div>
-            <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.05rem; color: #2C2418; margin-bottom: 0.4rem;">Enrol Now</h3>
-            <p style="font-family: Lora, serif; font-size: 0.88rem; color: #6B5E4E; line-height: 1.6; margin: 0;">Enrol today and get instant access to your member area. Self-paced and 100% online, open now.</p>
-          </div>
-          <!-- Connector -->
-          <div style="flex-shrink: 0; margin-top: 26px;">
-            <svg width="32" height="14" viewBox="0 0 40 16" fill="none">
-              <line x1="0" y1="8" x2="32" y2="8" stroke="#C17B2F" stroke-width="2" stroke-dasharray="4 3" stroke-linecap="round"/>
-              <polygon points="30,3 40,8 30,13" fill="#C17B2F"/>
-            </svg>
-          </div>
-          <!-- Step 2 -->
-          <div style="flex: 1; text-align: center; padding: 0.5rem; max-width: 280px; margin: 0 auto;">
-            <div style="width: 52px; height: 52px; border-radius: 50%; background: #C17B2F; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.8rem auto;">
-              <span style="font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: #FFFFFF;">2</span>
-            </div>
-            <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.05rem; color: #2C2418; margin-bottom: 0.4rem;">Access Your Materials</h3>
-            <p style="font-family: Lora, serif; font-size: 0.88rem; color: #6B5E4E; line-height: 1.6; margin: 0;">The moment you enrol you receive instant access to all tapping scripts, guides, audio meditations, and bonus materials in the members area.</p>
-          </div>
-          <!-- Connector -->
-          <div style="flex-shrink: 0; margin-top: 26px;">
-            <svg width="32" height="14" viewBox="0 0 40 16" fill="none">
-              <line x1="0" y1="8" x2="32" y2="8" stroke="#C17B2F" stroke-width="2" stroke-dasharray="4 3" stroke-linecap="round"/>
-              <polygon points="30,3 40,8 30,13" fill="#C17B2F"/>
-            </svg>
-          </div>
-          <!-- Step 3 -->
-          <div style="flex: 1; text-align: center; padding: 0.5rem; max-width: 280px; margin: 0 auto;">
-            <div style="width: 52px; height: 52px; border-radius: 50%; background: #C17B2F; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.8rem auto;">
-              <span style="font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: #FFFFFF;">3</span>
-            </div>
-            <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.05rem; color: #2C2418; margin-bottom: 0.4rem;">Tap for 15 Minutes Daily</h3>
-            <p style="font-family: Lora, serif; font-size: 0.88rem; color: #6B5E4E; line-height: 1.6; margin: 0;">Follow the program for 30 days at your own pace. Just 15 minutes most days is enough to watch your digestion shift from the inside out.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <style>
-      @media (max-width: 768px) {
-        #how-it-works-steps {
-          flex-direction: column !important;
-          align-items: center !important;
-        }
-        #how-it-works-steps > div[style*="flex-shrink"] {
-          display: none !important;
-        }
-      }
-    </style>
-
-    <hr class="section-rule" />
-
-    <!-- SECTION 8: ABOUT MIKE -->
-    <section class="about-section reveal">
-      <div style="width:60px;height:3px;background:#C17B2F;margin:0 auto 1.5rem auto;border-radius:2px;"></div>
-      <h2 class="section-headline" style="font-size:clamp(1.8rem, 4vw, 2.4rem); margin-bottom:3rem;">Who Is This Program With?</h2>
-      <div class="about-content">
-        <picture>
-          <source srcset="assets/bio pic 1.webp" type="image/webp" />
-          <img class="about-photo" src="assets/bio pic 1.jpg" alt="Michael Hetherington" loading="lazy" decoding="async" width="400" height="400" />
-        </picture>
-        <div class="about-text" style="padding-top:0.5rem;">
-          <p>Michael Hetherington is a Chinese medicine acupuncturist, certified EFT Practitioner and Trainer, and online educator with over a decade of clinical experience.</p>
-          <p>He has worked with more than 1,000 private clients across Australia, Thailand, Bali, the USA, and Europe, and teaches a YouTube audience of 40,000 people worldwide.</p>
-          <p>His approach is the only program that fuses traditional Chinese medicine organ theory with EFT Tapping for digestive health specifically. Nobody else is doing this.</p>
-          <p>He's not teaching theory. He developed this method from pattern recognition across hundreds of clients whose gut issues did not resolve until the emotional root cause was addressed.</p>
-          <div style="margin-top:1.4rem; padding-top:1.2rem; border-top:1px solid rgba(193,122,58,0.2);">
-            <p style="font-family:'DM Serif Display',serif; font-size:0.85rem; color:#C17B2F; letter-spacing:0.08em; text-transform:uppercase; margin:0 0 0.8rem;">Qualifications</p>
-            <ul style="list-style:none; padding:0; margin:0; font-family:Lora,serif; font-size:0.9rem; color:#4A4035; line-height:1;">
-              <li style="display:flex; align-items:flex-start; gap:0.6rem; margin-bottom:0.55rem;"><span style="color:#C17B2F; flex-shrink:0; margin-top:0.1rem;">•</span>BA of Health Science (Traditional Chinese Medicine)</li>
-              <li style="display:flex; align-items:flex-start; gap:0.6rem; margin-bottom:0.55rem;"><span style="color:#C17B2F; flex-shrink:0; margin-top:0.1rem;">•</span>Post Graduate Certificate of Counselling</li>
-              <li style="display:flex; align-items:flex-start; gap:0.6rem; margin-bottom:0.55rem;"><span style="color:#C17B2F; flex-shrink:0; margin-top:0.1rem;">•</span>MA of Education <span style="font-style:italic;">(currently studying)</span></li>
-              <li style="display:flex; align-items:flex-start; gap:0.6rem;"><span style="color:#C17B2F; flex-shrink:0; margin-top:0.1rem;">•</span>Taekwondo Black Belt</li>
+          <div>
+            <h3>Not for you if</h3>
+            <ul class="ticks">
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5E5348" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>You want a quick fix with no daily practice</span></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5E5348" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Your symptoms are new or severe and haven't been checked by a doctor</span></li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <hr class="section-rule" />
-
-    <!-- SECTION 9: FULL TESTIMONIALS -->
-    <section class="full-testimonials reveal">
-      <h2 class="section-headline">What Happens When You Address the Root Cause</h2>
-      <div class="testimonials-full-grid">
-        <div class="testimonial-full">
-          <div style="margin-bottom: 0.6rem;"><span style="color: #C17B2F; font-size: 1rem;">★★★★★</span></div>
-          <h4>Grace, 47, Canada</h4>
-          <p class="meta">Student</p>
-          <p>I had intense bloating and IBS for 15 years, basically since having my kids. I tried everything. Week 3 changed everything. Michael took us through a protocol for food sensitivities and the fear around eating. I did it every day for a week and noticed a massive difference, not just physically but emotionally. I used to dread going out to dinner in case food triggered a reaction. Now I actually enjoy it. I'm more social, more relaxed, and I've even started losing weight without dieting. My body just isn't as stressed anymore.</p>
-        </div>
-        <div class="testimonial-full">
-          <div style="margin-bottom: 0.6rem;"><span style="color: #C17B2F; font-size: 1rem;">★★★★★</span></div>
-          <h4>Paula West M.D.</h4>
-          <p class="meta">Medical Professional</p>
-          <p>My digestive problems have lessened. And in times when I feel deeply triggered, I can get myself out of it and be back to the present. Thank you Michael for helping my quality of life.</p>
-        </div>
-        <div class="testimonial-full">
-          <div style="margin-bottom: 0.6rem;"><span style="color: #C17B2F; font-size: 1rem;">★★★★★</span></div>
-          <h4>Julie Ballinger</h4>
-          <p class="meta">EFT Practitioner</p>
-          <p>I love this tapping program and sequence for digestion, and I am an EFT practitioner myself. Very powerful. Thank you so much.</p>
-        </div>
-        <div class="testimonial-full">
-          <div style="margin-bottom: 0.6rem;"><span style="color: #C17B2F; font-size: 1rem;">★★★★★</span></div>
-          <h4>Amit Singh</h4>
-          <p class="meta">Student</p>
-          <p>I was suffering from acidity and pain for more than 5 days. I did a session with Michael and after 12 hours I'm feeling so relaxed. I couldn't resist sharing this.</p>
-        </div>
-      </div>
-
-      <!-- SocialJuice carousel -->
-      <div style="margin-top: 3rem;">
-        <p style="font-family: Lora, serif; font-style: italic; font-size: 0.95rem; color: #6B5E4E; text-align: center; margin-bottom: 1.5rem;">More results from students around the world</p>
-        <iframe id="socialjuice-carousel-michaelhetherington-5037" src="https://embed.socialjuice.io/carousel/6981?s=michaelhetherington&id=5037&custom=true" allowfullscreen allowtransparency="true" frameBorder="0" scrolling="no" width="100%" height="380px" style="border: none; border-radius: 12px; display: block;" loading="lazy"></iframe>
-      </div>
-
-    </section>
-
-    <hr class="section-rule" />
-
-    <!-- SECTION 10: WHO IT'S FOR -->
-    <section class="reveal">
-      <h2 class="section-headline">Is This For You?</h2>
-      <div class="who-for">
-        <div class="for-column yes">
-          <h3>This Program Is For You If...</h3>
-          <div class="for-list">
-            <div class="for-item">You have regular bloating, cramping, or digestive discomfort</div>
-            <div class="for-item">You have been diagnosed with IBS, SIBO, GERD, or similar</div>
-            <div class="for-item">You have tried diets and they have not given lasting relief</div>
-            <div class="for-item">You are looking for a root cause solution, not symptom management</div>
-            <div class="for-item">You are willing to commit 15 minutes most days for 30 days</div>
-            <div class="for-item">You are open to the mind-body connection in physical health</div>
-            <div class="for-item">You want a tool you can use for life, not another supplement</div>
-          </div>
-        </div>
-        <div class="for-column no">
-          <h3>This Program Is Not For You If...</h3>
-          <div class="for-list">
-            <div class="for-item">You are not willing to practice the techniques regularly</div>
-            <div class="for-item">You are looking for a magic pill or supplement solution</div>
-            <div class="for-item">You have experienced no response at all to EFT in the past</div>
-            <div class="for-item">You have complex degenerative disease requiring specialist one-on-one support</div>
-          </div>
-        </div>
+    <!-- 12. GUARANTEE + FINAL CALL TO ACTION -->
+    <section class="section section--dark final" id="final-cta">
+      <div class="wrap narrow">
+        <svg class="shield" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/></svg>
+        <h2>Try it for 14 days. If you don't feel a difference, you pay nothing.</h2>
+        <p><a class="text-link" href="mailto:info@michaelhetherington.com">Email us</a> within 14 days for a full refund. No questions asked.</p>
+        <a class="btn" href="https://mindbodymedicineacademy.onlinecoursehost.com/courses/digestion-eft-sept25" target="_blank" rel="noopener noreferrer" data-enrol="final" data-plan="full" data-legacy="final_cta">Start the 30-Day Program · $197</a>
+        <a class="text-link plan-link" href="https://buy.stripe.com/8x2aEX3RR0DPctS5O84wM1q" target="_blank" rel="noopener noreferrer" data-enrol="final" data-plan="payment_plan" data-legacy="payment_plan">Or 3 monthly payments of $90</a>
       </div>
     </section>
 
-    <div style="max-width:580px; margin:2.5rem auto; background:#2C2416; border-radius:18px; padding:2.2rem 2.5rem; text-align:center; box-shadow:0 8px 32px rgba(44,36,22,0.18);">
-      <div style="width:48px; height:48px; border-radius:50%; background:rgba(193,122,58,0.2); border:2px solid rgba(193,122,58,0.5); display:flex; align-items:center; justify-content:center; margin:0 auto 1.1rem;">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="10" stroke="#C17B2F" stroke-width="1.8"/>
-          <path d="M12 8.5c0-.83.67-1.5 1.5-1.5S15 7.67 15 8.5c0 1.5-1.5 2-1.5 3" stroke="#C17B2F" stroke-width="1.8" stroke-linecap="round"/>
-          <circle cx="13.5" cy="14.5" r="0.75" fill="#C17B2F"/>
-          <path d="M9 10c.5-2 2-3 3-3" stroke="#C17B2F" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="12" cy="16" r="1" fill="#C17B2F"/>
-        </svg>
-      </div>
-      <p style="font-family:'DM Serif Display',serif; font-size:1.25rem; color:#FAF7F2; margin:0 0 0.5rem; line-height:1.3;">What is your gut holding?</p>
-      <p style="font-family:Lora,serif; font-size:0.88rem; color:rgba(250,247,242,0.65); margin:0 0 1.5rem; line-height:1.6;">Find your Gut-Emotion Type in 60 seconds. Free, and you get a 30-second tapping tip for your type.</p>
-      <a href="quiz.html"
-        style="display:inline-block; font-family:Lora,serif; font-size:0.95rem; font-weight:700; color:#FAF7F2; background:#C17B2F; padding:0.8rem 2.2rem; border-radius:50px; text-decoration:none; letter-spacing:0.02em; transition:background 0.2s;"
-        onmouseover="this.style.background='#D98B45'" onmouseout="this.style.background='#C17B2F'">
-        Take the 60-Second Quiz →
-      </a>
-      <p style="font-family:Lora,serif; font-size:0.78rem; color:rgba(250,247,242,0.4); margin:0.9rem 0 0; font-style:italic;">6 quick questions · Free Bloat Relief Kit included</p>
-    </div>
-
-    <hr class="section-rule" />
-
-    <!-- PAYMENT PLAN SECTION -->
-    <section class="reveal" style="padding: 56px 0;">
-      <p style="font-family:Lora,serif; font-style:italic; font-size:0.95rem; color:#6B7B5E; text-align:center; margin-bottom:0.4rem;">Flexible enrolment</p>
-      <h2 style="font-family:'DM Serif Display',serif; font-size:clamp(1.8rem,4vw,2.2rem); color:#2C2418; text-align:center; margin-bottom:2.8rem;">Payment Plan Option</h2>
-
-      <div style="max-width:680px; margin:0 auto; background:#F5F0E8; border:1px solid rgba(193,122,58,0.25); border-radius:16px; overflow:hidden; box-shadow:0 4px 24px rgba(44,36,22,0.07);">
-
-        <div style="padding:2rem 2rem 1.6rem;">
-
-          <!-- Price display -->
-          <div style="display:flex; align-items:baseline; justify-content:center; gap:0.5rem; margin-bottom:0.5rem;">
-            <span style="font-family:'DM Serif Display',serif; font-size:3rem; color:#C17B2F; line-height:1;">$90</span>
-            <span style="font-family:Lora,serif; font-size:1rem; color:#6B5E4E;">USD / month</span>
-          </div>
-          <p style="font-family:Lora,serif; font-size:0.95rem; color:#6B5E4E; text-align:center; margin:0 0 1.6rem;">× 3 monthly payments &nbsp;=&nbsp; <strong style="color:#2C2418;">$270 USD total</strong></p>
-
-          <!-- Divider -->
-          <div style="border-top:1px solid rgba(193,122,58,0.18); margin-bottom:1.6rem;"></div>
-
-          <!-- What's included -->
-          <ul style="font-family:Lora,serif; font-size:0.9rem; color:#4A4035; line-height:1.9; padding:0; margin:0 0 1.8rem; list-style:none;">
-            <li style="display:flex; gap:0.6rem; align-items:flex-start;"><span style="color:#C17B2F; font-size:1rem; margin-top:0.1rem;">✓</span> Full access to all program materials from day one</li>
-            <li style="display:flex; gap:0.6rem; align-items:flex-start;"><span style="color:#C17B2F; font-size:1rem; margin-top:0.1rem;">✓</span> All 4 recorded EFT tapping call sessions included</li>
-            <li style="display:flex; gap:0.6rem; align-items:flex-start;"><span style="color:#C17B2F; font-size:1rem; margin-top:0.1rem;">✓</span> All bonuses included</li>
-            <li style="display:flex; gap:0.6rem; align-items:flex-start;"><span style="color:#C17B2F; font-size:1rem; margin-top:0.1rem;">✓</span> 14-day money-back guarantee applies</li>
-            <li style="display:flex; gap:0.6rem; align-items:flex-start;"><span style="color:#C17B2F; font-size:1rem; margin-top:0.1rem;">✓</span> Lifetime access to all recordings and materials</li>
-          </ul>
-
-          <!-- CTA button -->
-          <a href="https://buy.stripe.com/8x2aEX3RR0DPctS5O84wM1q" target="_blank" rel="noopener noreferrer"
-            style="display:block; width:100%; box-sizing:border-box; text-align:center; font-family:Lora,serif; font-size:1rem; font-weight:700; color:#FAF7F2; background:#C17B2F; padding:0.95rem 1.5rem; border-radius:50px; text-decoration:none; transition:background 0.2s;"
-            onmouseover="this.style.background='#A36530'" onmouseout="this.style.background='#C17B2F'" onclick="gtag('event', 'enroll_click', {'button_location': 'payment_plan'});">
-            Enrol Now
-          </a>
-          <p style="font-family:Lora,serif; font-size:0.82rem; color:#6B5E4E; text-align:center; margin:1rem 0 0; font-style:italic;">Secure checkout · Same 14-day guarantee</p>
-
-        </div>
-      </div>
-    </section>
-
-    <hr class="section-rule" />
-
-    <!-- SECTION 11: GUARANTEE -->
-    <section class="guarantee reveal">
-      <picture>
-        <source srcset="assets/badge.webp" type="image/webp" />
-        <img src="assets/badge.png" alt="14-Day Satisfaction Guarantee" style="width:120px;height:auto;display:block;margin:0 auto 1.5rem;" loading="lazy" decoding="async" width="120" height="120" />
-      </picture>
-      <h2>Try It For 14 Days. If You Don't Feel a Difference, You Pay Nothing.</h2>
-      <p>I am confident enough in this program to offer you a full 14-day money-back guarantee with no questions asked. If it is not right for you, simply email me at <a href="mailto:info@michaelhetherington.com">info@michaelhetherington.com</a> within 14 days of enrolling and I will refund your full payment within 48 hours. The risk is entirely mine.</p>
-    </section>
-
-    <hr class="section-rule" />
-
-    <!-- SECTION 12: FINAL CTA -->
-    <section class="reveal final-cta-section">
-      <div style="text-align: center;">
-        <div style="width:80px; height:2px; background:#C17B2F; opacity:0.4; margin: 0 auto 2.5rem auto;"></div>
-        <h2 class="section-headline">Your Gut Has Been Waiting Long Enough.</h2>
-        <p style="max-width: 600px; margin: 0 auto 24px; color: #4A4035; font-size: 1rem;">Self-paced and 100% online. Enrol today and start immediately.</p>
-        <a class="button button-full" href="https://mindbodymedicineacademy.onlinecoursehost.com/courses/digestion-eft-sept25" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'enroll_click', {'button_location': 'final_cta'});">Start Today</a>
-        <p class="scarcity-line">Enrolment is open now.</p>
-        <div style="margin-top: 28px; color: #6B5E52; font-size: 0.9rem; line-height: 1.6;">
-          <p style="margin: 0;">14-day money-back guarantee</p>
-          <p style="margin: 0;">Lifetime access to all materials</p>
-          <p style="margin: 0;">$197 USD, payment plan available</p>
-        </div>
-      </div>
-    </section>
-
-    <hr class="section-rule" />
-
-    <!-- SECTION 13: FAQ -->
-    <section class="reveal">
-      <h2 class="section-headline">Common Questions</h2>
-      <div class="faq">
-        <div class="faq-item">
-          <button class="faq-button" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17B2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-right:10px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Are there live calls?</button>
-          <div class="faq-content">
-            <p>No. This is a fully self-paced, 100% online program. The moment you enrol you get instant, lifetime access to all four 90-minute recorded EFT tapping call sessions, scripts, guides, and bonus materials, so you can start right away and move through it at your own pace.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-button" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17B2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-right:10px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>When can I expect to feel a difference?</button>
-          <div class="faq-content">
-            <p>Most people notice a shift after the very first tapping session. For deeper, lasting change, consistent practice over the 30 days makes the real difference. You have lifetime access, so you can return to the material anytime.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-button" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17B2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-right:10px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>How much time does this require each day?</button>
-          <div class="faq-content">
-            <p>15 minutes most days. That's it.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-button" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17B2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-right:10px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Will this help with IBS, SIBO, GERD, or chronic bloating?</button>
-          <div class="faq-content">
-            <p>Yes. EFT does not target a diagnosis, it targets the underlying nervous system dysregulation that drives digestive symptoms regardless of their label. It works alongside any other medical treatment you are receiving.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-button" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17B2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-right:10px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Does this replace my doctor's advice?</button>
-          <div class="faq-content">
-            <p>No. This is complementary to any medical treatment. Always keep your doctor informed about any changes in your health.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-button" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17B2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-right:10px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Is there a payment plan?</button>
-          <div class="faq-content">
-            <p>Yes. You can pay in 3 monthly instalments of $90 USD. The 14-day guarantee applies to payment plans as well.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-button" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17B2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-right:10px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Can I speak to Michael before I enrol?</button>
-          <div class="faq-content">
-            <p>Yes. Book a free 20-minute chat at <a href="https://tidycal.com/michaelhetherington/digestionprogram" target="_blank" rel="noopener noreferrer">tidycal.com/michaelhetherington</a></p>
-          </div>
+    <!-- 13. FAQ -->
+    <section class="section">
+      <div class="wrap narrow">
+        <h2 class="center">Common questions</h2>
+        <div class="faq">
+          <details><summary>Are there live calls?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>No. This is a fully self-paced, 100% online program. The moment you enrol you get instant, lifetime access to all four 90-minute recorded EFT tapping call sessions, scripts, guides, and bonus materials, so you can start right away and move through it at your own pace.</p></details>
+          <details><summary>When can I expect to feel a difference?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Most people notice a shift after the very first tapping session. For deeper, lasting change, consistent practice over the 30 days makes the real difference. You have lifetime access, so you can return to the material anytime.</p></details>
+          <details><summary>How much time does this require each day?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>15 minutes most days. That's it.</p></details>
+          <details><summary>Will this help with IBS, SIBO, GERD, or chronic bloating?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Yes. EFT does not target a diagnosis, it targets the underlying nervous system dysregulation that drives digestive symptoms regardless of their label. It works alongside any other medical treatment you are receiving.</p></details>
+          <details><summary>Does this replace my doctor's advice?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>No. This is complementary to any medical treatment. Always keep your doctor informed about any changes in your health.</p></details>
+          <details><summary>Is there a payment plan?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Yes. You can pay in 3 monthly instalments of $90 USD. The 14-day guarantee applies to payment plans as well.</p></details>
+          <details><summary>Can I speak to Michael before I enrol?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Yes. Book a free 20-minute chat at <a href="https://tidycal.com/michaelhetherington/digestionprogram" target="_blank" rel="noopener noreferrer">tidycal.com/michaelhetherington</a></p></details>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- 14. FOOTER -->
   <footer>
-    <div class="footer-inner">
-      <p>Heal Your Digestion with EFT · healyourdigestioneft.com</p>
-      <p><a href="mailto:info@michaelhetherington.com">info@michaelhetherington.com</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
-      <p>© 2026 · All rights reserved</p>
+    <div class="wrap">
       <p>This program is complementary to medical treatment and does not replace advice from your doctor.</p>
+      <p><a href="mailto:info@michaelhetherington.com">info@michaelhetherington.com</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
+      <p>Heal Your Digestion with EFT · © 2026 · All rights reserved</p>
     </div>
   </footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const revealElements = document.querySelectorAll('.reveal');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-      revealElements.forEach(el => observer.observe(el));
+  <!-- 15. STICKY BUY BAR (phones) -->
+  <div class="sticky-buy" id="sticky-buy" aria-hidden="true">
+    <div>
+      <strong>30-Day Program</strong>
+      <span>$197 or 3 × $90 · 14-day guarantee</span>
+    </div>
+    <a class="btn" href="https://mindbodymedicineacademy.onlinecoursehost.com/courses/digestion-eft-sept25" target="_blank" rel="noopener noreferrer" tabindex="-1" data-enrol="sticky" data-plan="full">Enrol</a>
+  </div>
 
-      const faqButtons = document.querySelectorAll('.faq-button');
-      faqButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const item = button.closest('.faq-item');
-          const isOpen = item.classList.contains('open');
-          document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-          if (!isOpen) item.classList.add('open');
+  <script>
+    (function () {
+      function track(name, params) {
+        try { if (typeof gtag === 'function') gtag('event', name, params); } catch (e) {}
+      }
+
+      /* Enrol and payment plan links. enroll_click is the older event name, kept so
+         existing reports stay continuous; enrol_click is the new one. */
+      Array.prototype.forEach.call(document.querySelectorAll('[data-enrol]'), function (a) {
+        a.addEventListener('click', function () {
+          track('enrol_click', { button_location: a.getAttribute('data-enrol'), plan: a.getAttribute('data-plan') });
+          var legacy = a.getAttribute('data-legacy');
+          if (legacy) { track('enroll_click', { button_location: legacy }); }
         });
       });
-    });
+
+      /* Hero quiz answers go straight to question 2 of the quiz. */
+      Array.prototype.forEach.call(document.querySelectorAll('[data-answer]'), function (a) {
+        a.addEventListener('click', function () {
+          track('quiz_inline_answer', { answer: a.getAttribute('data-answer') });
+        });
+      });
+
+      Array.prototype.forEach.call(document.querySelectorAll('[data-quiz-link]'), function (a) {
+        a.addEventListener('click', function () {
+          track('quiz_link_click', { button_location: a.getAttribute('data-quiz-link') });
+        });
+      });
+
+      /* Intro video: thumbnail first, the YouTube player only loads on tap. */
+      var play = document.getElementById('video-play');
+      if (play) {
+        play.addEventListener('click', function () {
+          var iframe = document.createElement('iframe');
+          iframe.src = play.getAttribute('data-src') + '?autoplay=1';
+          iframe.title = 'Is This Program Right for You?';
+          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+          iframe.allowFullscreen = true;
+          play.replaceWith(iframe);
+        });
+      }
+
+      /* Sticky buy bar on phones: shows once the hero has scrolled away, and hides
+         while the program card or the final call to action is on screen. */
+      var bar = document.getElementById('sticky-buy');
+      var barLink = bar && bar.querySelector('a');
+      if (bar && 'IntersectionObserver' in window) {
+        var state = { hero: true, program: false, final: false };
+        var targets = {
+          hero: document.getElementById('top'),
+          program: document.getElementById('program-card'),
+          final: document.getElementById('final-cta')
+        };
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            for (var k in targets) { if (targets[k] === e.target) { state[k] = e.isIntersecting; } }
+          });
+          var show = !state.hero && !state.program && !state.final;
+          bar.classList.toggle('show', show);
+          bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+          if (barLink) { barLink.tabIndex = show ? 0 : -1; }
+        });
+        for (var k in targets) { if (targets[k]) { io.observe(targets[k]); } }
+      }
+    })();
   </script>
 
   <!-- Quiz popup -->
@@ -3215,7 +834,7 @@ reason why.
       background: transparent;
       border: none;
       font-size: 1.2rem;
-      color: #6B5E4E;
+      color: #5E5348;
       cursor: pointer;
       line-height: 1;
       padding: 0;
@@ -3223,13 +842,13 @@ reason why.
     }
 
     .quiz-popup-close:hover {
-      color: #2C2418;
+      color: #2A211A;
     }
 
     .quiz-popup-btn {
       display: block;
       width: 100%;
-      background: #C17B2F;
+      background: #A9601F;
       color: #FFFFFF;
       font-family: 'Lora', Georgia, serif;
       font-size: 0.95rem;
@@ -3243,7 +862,7 @@ reason why.
     }
 
     .quiz-popup-btn:hover {
-      background: #A36530;
+      background: #8A4D18;
     }
 
     .quiz-popup-skip {
@@ -3251,7 +870,7 @@ reason why.
       text-align: center;
       font-family: 'Lora', Georgia, serif;
       font-size: 0.85rem;
-      color: #6B5E4E;
+      color: #5E5348;
       margin-top: 1rem;
       cursor: pointer;
       background: none;
@@ -3262,7 +881,7 @@ reason why.
     }
 
     .quiz-popup-skip:hover {
-      color: #2C2418;
+      color: #2A211A;
     }
   </style>
 
@@ -3272,13 +891,13 @@ reason why.
     <button class="quiz-popup-close" id="quizPopupClose" aria-label="Close">&#x2715;</button>
     <div style="text-align:center; margin-bottom:1rem;">
       <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="26" cy="26" r="24" stroke="#C17B2F" stroke-width="2" fill="#FBF4EA"/>
-        <path d="M26 16C22 16 18 19 18 23C18 26 20 28 23 29V33H29V29C32 28 34 26 34 23C34 19 30 16 26 16Z" stroke="#C17B2F" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        <line x1="26" y1="36" x2="26" y2="38" stroke="#C17B2F" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="26" cy="26" r="24" stroke="#A9601F" stroke-width="2" fill="#FBF4EA"/>
+        <path d="M26 16C22 16 18 19 18 23C18 26 20 28 23 29V33H29V29C32 28 34 26 34 23C34 19 30 16 26 16Z" stroke="#A9601F" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="26" y1="36" x2="26" y2="38" stroke="#A9601F" stroke-width="2.5" stroke-linecap="round"/>
       </svg>
     </div>
-    <h3 style="font-family:'DM Serif Display',serif; font-size:1.5rem; color:#2C2418; font-style:normal; margin-bottom:0.6rem; line-height:1.2;">Before you go. What is your gut holding?</h3>
-    <p style="font-family:'Lora',Georgia,serif; font-size:0.9rem; color:#6B5E4E; margin:0.6rem auto 1.5rem auto; max-width:260px; line-height:1.6;">Find your Gut-Emotion Type in 60 seconds, plus a 30-second tapping tip for your type.</p>
+    <h3 style="font-family:'DM Serif Display',serif; font-size:1.5rem; color:#2A211A; font-style:normal; margin-bottom:0.6rem; line-height:1.2;">Before you go. What is your gut holding?</h3>
+    <p style="font-family:'Lora',Georgia,serif; font-size:0.9rem; color:#5E5348; margin:0.6rem auto 1.5rem auto; max-width:260px; line-height:1.6;">Find your Gut-Emotion Type in 60 seconds, plus a 30-second tapping tip for your type.</p>
     <a class="quiz-popup-btn" href="quiz.html">Take the 60-Second Quiz →</a>
     <button class="quiz-popup-skip" id="quizPopupSkip">No thanks, I'll decide later</button>
   </div>
@@ -3377,3 +996,4 @@ reason why.
   <!-- End Meta Pixel Code -->
 </body>
 </html>
+
