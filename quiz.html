@@ -337,13 +337,14 @@
       border-radius: 18px;
       padding: 20px 18px;
     }
-    .offer-label { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--btn); }
-    .offer-heading { font-size: 1.45rem; line-height: 1.22; margin: 8px 0 14px; }
-    .offer-row { display: flex; align-items: center; gap: 14px; }
-    .offer-img { flex: 0 0 104px; display: block; }
-    .offer-img img { display: block; width: 104px; height: 104px; border-radius: 8px; box-shadow: 0 4px 12px rgba(42, 33, 26, 0.18); }
+    /* The top half of the card is one centred column. */
+    .offer-label { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--btn); text-align: center; }
+    .offer-heading { font-size: 1.45rem; line-height: 1.22; margin: 8px auto 16px; max-width: 520px; text-align: center; text-wrap: balance; }
+    .offer-row { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+    .offer-img { display: block; width: 200px; }
+    .offer-img img { display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 16px 36px rgba(42, 33, 26, 0.18); }
     .offer-meta { font-size: 0.92rem; line-height: 1.45; color: var(--body); }
-    .offer-price { margin-top: 6px; line-height: 1.1; }
+    .offer-price { margin-top: 4px; line-height: 1.1; }
     .price-was { font-size: 1.05rem; color: var(--muted); text-decoration: line-through; text-decoration-thickness: 2px; margin-right: 6px; }
     .price-now { font-size: 2.1rem; font-weight: 700; color: var(--ink); }
     .buy-btn {
@@ -367,12 +368,12 @@
     .offer-ticks { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; margin-top: 10px; font-size: 0.9rem; color: var(--body); }
     .offer-ticks span, .inside li { display: inline-flex; align-items: flex-start; gap: 8px; }
     .offer-ticks svg, .inside svg { flex-shrink: 0; margin-top: 0.22em; }
-    .credit-box { margin-top: 12px; padding: 10px 12px; background: var(--sand); border-radius: 12px; font-size: 0.9rem; text-align: center; }
+    .credit-box { max-width: 460px; margin: 12px auto 0; padding: 10px 12px; background: var(--sand); border-radius: 12px; font-size: 0.9rem; text-align: center; }
     .credit-box[hidden] { display: none; }
     .inside { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
-    .inside h3 { font-size: 1.15rem; margin-bottom: 4px; }
-    .inside p { font-size: 0.92rem; color: var(--muted); margin-bottom: 8px; }
-    .inside ul { list-style: none; display: grid; gap: 6px; font-size: 0.95rem; }
+    .inside h3 { font-size: 1.15rem; margin-bottom: 4px; text-align: center; }
+    .inside p { font-size: 0.92rem; color: var(--muted); margin: 0 auto 8px; max-width: 460px; }
+    .inside ul { list-style: none; display: grid; gap: 6px; font-size: 0.95rem; max-width: 460px; margin: 0 auto; text-align: left; }
 
     @media (prefers-reduced-motion: no-preference) {
       #offer-btn { animation: buy-pulse 2.4s ease-out infinite; }
@@ -390,6 +391,8 @@
     .res-quote figcaption { margin-top: 6px; font-size: 0.88rem; font-weight: 600; color: var(--ink); }
 
     .bottom-buy { margin-top: 18px; }
+    /* Buy buttons: full width inside the card, capped and centred. */
+    #offer-btn, #offer-btn-bottom { max-width: 420px; margin-left: auto; margin-right: auto; }
 
     .deeper { margin-top: 28px; text-align: center; }
     .deeper h3 { font-size: 1.35rem; margin-bottom: 6px; }
@@ -406,6 +409,8 @@
     @media (min-width: 640px) {
       body { padding-top: 28px; }
       .question-text { font-size: 2rem; }
+      .offer { max-width: 640px; margin-left: auto; margin-right: auto; }
+      .offer-img { width: 280px; }
     }
   </style>
 </head>
@@ -504,13 +509,13 @@
       </details>
 
       <div class="offer" id="offer-card">
-        <span class="offer-label">Your next step · This page only</span>
+        <span class="offer-label">Your next step · Quiz price</span>
         <h3 class="offer-heading" id="offer-pitch"></h3>
         <div class="offer-row">
           <a class="offer-img" id="offer-img-link" href="https://zylvie.com/michaelhetherington/p/gut-emotion-map">
             <picture>
-              <source type="image/webp" srcset="assets/gut-emotion-map-300.webp 300w, assets/gut-emotion-map-600.webp 600w" sizes="104px" />
-              <img src="assets/gut-emotion-map.png" width="104" height="104" alt="The Gut-Emotion Map: 15 symptoms, 15 tapping scripts" decoding="async" />
+              <source type="image/webp" srcset="assets/gut-emotion-map-300.webp 300w, assets/gut-emotion-map-600.webp 600w" sizes="(min-width: 640px) 280px, 200px" />
+              <img src="assets/gut-emotion-map.png" width="280" height="280" alt="The Gut-Emotion Map: 15 symptoms, 15 tapping scripts" decoding="async" />
             </picture>
           </a>
           <div>
