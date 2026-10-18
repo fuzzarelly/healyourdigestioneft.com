@@ -176,28 +176,32 @@
     .ticks svg { flex-shrink: 0; margin-top: 0.2em; }
 
     /* --- Header --- */
-    .site-header { border-bottom: 1px solid var(--line); background: var(--bg); }
+    /* Header and hero are one continuous dark block. */
+    .site-header { background: var(--dark); }
     .header-row { display: flex; align-items: center; justify-content: space-between; min-height: 56px; }
-    .wordmark { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--ink); text-decoration: none; }
-    .wordmark em { color: var(--link); }
-    .header-link { display: none; font-weight: 600; font-size: 0.95rem; color: var(--ink); text-decoration: none; }
-    .header-link:hover { color: var(--btn); }
+    .wordmark { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--on-dark); text-decoration: none; }
+    .wordmark em { color: var(--hl); }
+    .header-link { display: none; font-weight: 600; font-size: 0.95rem; color: var(--on-dark-2); text-decoration: none; }
+    .header-link:hover { color: #FFFFFF; }
 
     /* --- Hero --- */
-    .hero { padding: 18px 0 26px; }
-    .hero-grid { display: grid; gap: 16px; grid-template-areas: "intro" "card" "proof"; }
+    .hero {
+      padding: 32px 0 40px;
+      background: var(--dark) radial-gradient(circle at 75% 45%, rgba(169, 96, 31, 0.22), transparent 55%);
+    }
+    .hero-grid { display: grid; gap: 20px; grid-template-areas: "intro" "card" "proof"; }
     .hero-intro { grid-area: intro; }
-    .hero-intro .eyebrow { margin-bottom: 8px; }
-    .hero h1 { font-size: clamp(1.8rem, 7.4vw, 3.3rem); line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 10px; }
-    .hero h1 em { color: var(--btn); }
-    .hero-sub { font-size: 1.02rem; color: var(--body); }
+    .hero .eyebrow { font-size: 13px; letter-spacing: 0.1em; color: #A9C3A2; margin-bottom: 10px; }
+    .hero h1 { font-size: 38px; line-height: 1.05; letter-spacing: -0.01em; color: var(--on-dark); margin-bottom: 14px; }
+    .hero h1 span { display: block; }
+    .hero h1 em { display: block; color: var(--hl); }
+    .hero-sub { max-width: 480px; font-size: 17px; color: var(--on-dark-2); }
     .quiz-card {
       grid-area: card;
       background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 18px;
+      border-radius: 20px;
       padding: 16px;
-      box-shadow: 0 10px 30px rgba(42, 33, 26, 0.08);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
     }
     .quiz-card-top { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage); }
     .quiz-card-top span:last-child { letter-spacing: 0.04em; color: var(--muted); }
@@ -214,19 +218,23 @@
       padding: 8px 14px;
       border: 1.5px solid var(--line);
       border-radius: 12px;
-      background: var(--bg);
+      background: #F7F1E8;
       color: var(--ink);
       font-size: 1rem;
       line-height: 1.3;
       text-decoration: none;
       transition: border-color 0.15s ease, background 0.15s ease;
     }
-    .answer:hover, .answer:focus-visible { border-color: var(--btn); background: #FBF4EA; }
-    .answer svg { flex-shrink: 0; color: var(--btn); }
+    .answer:hover, .answer:focus-visible { border-color: var(--btn); background: #FBF3EA; }
+    .answer svg { flex-shrink: 0; color: var(--btn); transition: transform 0.15s ease; }
+    .answer:hover svg, .answer:focus-visible svg { transform: translateX(2px); }
     .quiz-card-note { margin-top: 10px; font-size: 0.85rem; font-style: italic; color: var(--muted); text-align: center; }
-    .hero-proof { grid-area: proof; display: grid; gap: 10px; }
-    .proof { font-size: 0.92rem; font-weight: 600; color: var(--ink); }
-    .proof span { color: var(--muted); font-weight: 400; }
+    .hero-proof { grid-area: proof; display: grid; gap: 14px; justify-items: start; }
+    .proof { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 0; padding: 0; list-style: none; font-size: 14px; color: var(--on-dark-2); }
+    .proof li { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+    .proof svg { flex-shrink: 0; color: var(--hl); }
+    .hero-program-link { font-size: 15px; font-weight: 600; color: var(--hl); text-decoration: none; }
+    .hero-program-link:hover { text-decoration: underline; text-underline-offset: 3px; }
 
     /* --- Short testimonials --- */
     .quote-row {
@@ -415,16 +423,18 @@
       .sticky-buy { display: none; }
       .header-link { display: inline-block; }
       .section { padding: 72px 0; }
-      .hero { padding: 48px 0 64px; }
+      .hero { padding: 64px 0 72px; }
+      /* Text on the left, vertically centred against the quiz card on the right. */
       .hero-grid {
         grid-template-columns: 1.1fr 1fr;
-        grid-template-areas: "intro card" "proof card";
-        grid-template-rows: auto 1fr;
-        column-gap: 48px;
-        row-gap: 22px;
-        align-items: start;
+        grid-template-areas: ". card" "intro card" "proof card" ". card";
+        grid-template-rows: 1fr auto auto 1fr;
+        column-gap: 56px;
+        row-gap: 24px;
       }
-      .hero-sub { font-size: 1.15rem; }
+      /* 60px on desktop; scales down on tablets so the narrow column doesn't wrap to four lines. */
+      .hero h1 { font-size: clamp(44px, 4.8vw, 60px); }
+      .hero-sub { font-size: 19px; }
       .quiz-card { padding: 22px; }
       .quote-row { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); grid-auto-columns: auto; overflow: visible; }
       .swipe-hint { display: none; }
@@ -456,9 +466,9 @@
     <section class="hero" id="top">
       <div class="wrap hero-grid">
         <div class="hero-intro">
-          <span class="eyebrow">For bloating, IBS, reflux and a gut that won't settle</span>
-          <h1>You've changed your diet. Tried the elimination plans. <em>Your gut still isn't right.</em></h1>
-          <p class="hero-sub">Most gut advice skips the emotional root cause. Find out what your gut is holding in 60 seconds.</p>
+          <span class="eyebrow">For bloating, IBS and reflux</span>
+          <h1><span>Your diet's sorted.</span> <em>Your gut still isn't.</em></h1>
+          <p class="hero-sub">It's not just what you eat. Find out what your gut is holding in 60 seconds.</p>
         </div>
 
         <div class="quiz-card">
@@ -475,8 +485,12 @@
         </div>
 
         <div class="hero-proof">
-          <p class="proof">1,000+ students <span>·</span> 40,000 YouTube subscribers <span>·</span> IICT accredited</p>
-          <a class="text-link" href="#program">Already know you want in? See the 30-Day Program</a>
+          <ul class="proof">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c0-3 2.5-5.2 5.5-5.2s5.5 2.2 5.5 5.2"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 13.9c2.8-.4 5 1.6 5 4.6"/></svg>1,000+ students</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M10.5 9.5l4 2.5-4 2.5z"/></svg>40,000 on YouTube</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="5"/><path d="M9.8 9l1.5 1.5 2.9-3"/><path d="M8.8 13.4L7.5 21l4.5-2.4 4.5 2.4-1.3-7.6"/></svg>IICT accredited</li>
+          </ul>
+          <a class="hero-program-link" href="#program">See the 30-Day Program →</a>
         </div>
       </div>
     </section>
