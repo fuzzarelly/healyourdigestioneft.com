@@ -169,6 +169,8 @@
     .btn--outline:hover { background: var(--btn); color: #FFFFFF; border-color: var(--btn); }
     .text-link { color: var(--link); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
     .section--dark .text-link { color: var(--hl); }
+    /* The price box is white, so its payment plan link needs the normal link colour. */
+    .section--dark .offer-card .text-link { color: var(--link); }
 
     .ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
     .ticks li { line-height: 1.45; }
@@ -267,6 +269,14 @@
     .checklist svg { flex-shrink: 0; margin-top: 0.15em; }
     .checklist-note { font-weight: 700; color: var(--ink); }
 
+    /* --- Section images: aspect-ratio reserves the space so nothing jumps while they load --- */
+    .problem-grid { display: grid; gap: 18px; }
+    .problem-img img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 45%; border-radius: 14px; }
+    .flow-figure { max-width: 1120px; margin: 18px auto 20px; }
+    .flow-figure img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 18px; }
+    .flow-figure figcaption { margin-top: 8px; font-size: 14px; font-style: italic; color: var(--muted); text-align: center; }
+    .offer-img img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 62%; border-radius: 14px; }
+
     /* --- Why section --- */
     .type-cards { display: grid; gap: 8px; margin: 14px 0 10px; }
     .type-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 10px 14px; }
@@ -304,7 +314,11 @@
       display: grid;
       gap: 18px;
       font-size: 0.97rem;
+      grid-template-areas: "list" "img" "price";
     }
+    .offer-list-col { grid-area: list; }
+    .offer-img { grid-area: img; }
+    .offer-card .price-box { grid-area: price; }
     .offer-card h3 { color: var(--ink); font-size: 1.2rem; margin-bottom: 8px; }
     .bonus-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage); margin: 16px 0 6px; }
     .bonus-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
@@ -439,10 +453,14 @@
       .quote-row { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); grid-auto-columns: auto; overflow: visible; }
       .swipe-hint { display: none; }
       .checklist { grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+      .problem-grid { grid-template-columns: 40% 1fr; gap: 40px; align-items: center; }
+      .problem-img img { aspect-ratio: 4 / 5; object-position: 50% 50%; border-radius: 18px; }
+      .problem-grid .checklist { grid-template-columns: 1fr; }
+      .offer-img img { aspect-ratio: auto; height: 360px; border-radius: 18px; }
       .section { padding: 72px 0; }
       .type-cards { grid-template-columns: repeat(3, 1fr); }
       .btn--outline { width: auto; display: inline-flex; }
-      .offer-card { grid-template-columns: 1.25fr 1fr; padding: 28px; gap: 32px; align-items: start; }
+      .offer-card { grid-template-columns: 1.25fr 1fr; grid-template-areas: "img price" "list price"; grid-template-rows: auto 1fr; padding: 28px; gap: 22px 32px; align-items: start; }
       .steps { grid-template-columns: repeat(3, 1fr); }
       .long-quotes { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); grid-auto-columns: auto; overflow: visible; }
       .fit { grid-template-columns: 1fr 1fr; padding: 22px 24px; gap: 28px; }
@@ -521,7 +539,14 @@
 
     <!-- 4. PROBLEM CHECKLIST -->
     <section class="section section--sand" style="padding-top:8px;">
-      <div class="wrap narrow">
+      <div class="wrap problem-grid">
+        <div class="problem-img">
+          <picture>
+            <source srcset="assets/gut-pain.webp" type="image/webp" />
+            <img src="assets/digestive%20pain.png" alt="Woman sitting on a couch holding her stomach in discomfort" width="1200" height="1200" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+        <div>
         <h2>You're not imagining it. And it's not just your diet.</h2>
         <ul class="checklist">
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Bloating that builds through the day</li>
@@ -532,6 +557,7 @@
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Saying no to dinners out because of your gut</li>
         </ul>
         <p class="checklist-note">If you ticked two or more, your gut is probably carrying more than food.</p>
+        </div>
       </div>
     </section>
 
@@ -543,6 +569,13 @@
           <h2>In Chinese medicine, your gut digests your feelings too</h2>
           <p>The same organ systems that run digestion also carry emotion. When stress and feeling get stuck, digestion gets stuck too. Diet can't reach that. Tapping can.</p>
         </div>
+        <figure class="flow-figure">
+          <picture>
+            <source srcset="assets/backlog-and-flow.webp" type="image/webp" />
+            <img src="assets/open%20and%20flow.png" alt="A dry, stony creek labelled Emotional Backlog beside a clear flowing river labelled Open and Flow" width="1200" height="675" loading="lazy" decoding="async" />
+          </picture>
+          <figcaption>Tapping clears the backlog so emotion can move through again.</figcaption>
+        </figure>
         <div class="type-cards">
           <div class="type-card">
             <div class="type-card-head"><h3>The Worrier</h3><span class="module">Module 1</span></div>
@@ -581,7 +614,11 @@
           <p>15 minutes of tapping a day, for 30 days. One module for each gut-emotion pattern.</p>
         </div>
         <div class="offer-card" id="program-card">
-          <div>
+          <picture class="offer-img">
+            <source srcset="assets/gut-calm.webp" type="image/webp" />
+            <img src="assets/ChatGPT%20Image%20May%207%2C%202026%2C%2011_19_04%20AM.png" alt="Hands resting on a calm, softly glowing belly" width="1200" height="1200" loading="lazy" decoding="async" />
+          </picture>
+          <div class="offer-list-col">
             <h3>Everything included</h3>
             <ul class="ticks">
               <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4E6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>4 modules: Stomach, Liver, Lungs and Large Intestine, the whole system</span></li>
