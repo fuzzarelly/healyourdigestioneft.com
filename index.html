@@ -974,14 +974,28 @@
       var popupTimer = null;
       var SESSION_KEY = 'quizPopupShown';
 
+      /* ---- Tracking: how often the popup opens (and why), and how often its quiz button is clicked ---- */
+      var shownBy = '';
+      function track(name, params) {
+        try { if (typeof gtag === 'function') gtag('event', name, params); } catch (e) {}
+      }
+      var popupQuizBtn = popup.querySelector('.quiz-popup-btn');
+      if (popupQuizBtn) {
+        popupQuizBtn.addEventListener('click', function () {
+          track('quiz_link_click', { button_location: 'exit_popup', trigger: shownBy });
+        });
+      }
+
       /* ---- showPopup ---- */
-      function showPopup() {
+      function showPopup(trigger) {
         if (sessionStorage.getItem(SESSION_KEY)) return;
         clearTimeout(popupTimer);
         sessionStorage.setItem(SESSION_KEY, 'true');
         overlay.classList.add('show');
         popup.classList.add('show');
         document.body.style.overflow = 'hidden';
+        shownBy = trigger;
+        track('quiz_popup_shown', { trigger: trigger });
       }
 
       /* ---- closePopup ---- */
@@ -1003,7 +1017,7 @@
       if (quizBtn) {
         quizBtn.addEventListener('click', function (e) {
           e.preventDefault();
-          showPopup();
+          showPopup('quiz_button');
         });
       }
 
@@ -1012,14 +1026,14 @@
 
       /* ---- Trigger 1: 30-second delay ---- */
       popupTimer = setTimeout(function () {
-        showPopup();
+        showPopup('timer');
       }, 30000);
 
       /* ---- Trigger 2: exit intent (desktop only) ---- */
       if (window.innerWidth > 768) {
         document.addEventListener('mouseleave', function (e) {
           if (e.clientY < 20) {
-            showPopup();
+            showPopup('exit_intent');
           }
         });
       }
@@ -1031,7 +1045,7 @@
           var total    = document.body.scrollHeight;
           var percent  = (scrolled / total) * 100;
           if (percent > 60) {
-            showPopup();
+            showPopup('scroll');
           }
         }, { passive: true });
       }
