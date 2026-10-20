@@ -26,9 +26,6 @@
 
     /* Google Ads - quiz takers are the highest-intent remarketing audience. */
     gtag('config', 'AW-1016615342');
-
-    /* Original property, kept so existing reports stay continuous. */
-    gtag('config', 'G-JX9XSHVB25');
   </script>
   <script>
     /* Capture ad click IDs so they survive to the checkout link later in the funnel. */
@@ -1085,8 +1082,9 @@
 
       function finish(ok, err) {
         if (ok) {
-          var result = resultKey();
-          track('digestion_quiz_lead', { lead_magnet: 'digestion_quiz', result: result });
+          try {
+            gtag('event', 'quiz_lead', { lead_magnet: 'gut_emotion_quiz' });
+          } catch (e) {}
           fbTrack('Lead');
         } else if (err) {
           console.error('Quiz email submit failed:', err);
