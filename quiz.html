@@ -350,6 +350,13 @@
     .tip-body { padding: 0 16px 16px; text-align: center; }
     .tip-body p + p { margin-top: 10px; }
 
+    /* Type card: their result up top, in the deep orange. White on --btn is 4.8:1. */
+    .type-card { margin-top: 12px; padding: 16px 18px; background: var(--btn); color: #FFFFFF; border-radius: 18px; text-align: center; }
+    .type-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+    .type-name { font-size: clamp(1.9rem, 7.5vw, 2.4rem); line-height: 1.1; color: #FFFFFF; margin: 4px 0 8px; }
+    .type-line { font-size: 0.92rem; line-height: 1.45; }
+    .type-below { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 0.88rem; font-weight: 700; }
+
     .offer {
       margin-top: 16px;
       background: var(--card);
@@ -361,7 +368,7 @@
     .offer-label { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--link); text-align: center; }
     .offer-heading { font-size: 1.45rem; line-height: 1.22; margin: 8px auto 16px; max-width: 520px; text-align: center; text-wrap: balance; }
     .offer-row { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
-    .offer-img { display: block; width: 200px; }
+    .offer-img { display: block; width: 170px; }
     .offer-img img { display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 16px 36px rgba(42, 33, 26, 0.18); }
     .offer-meta { font-size: 0.92rem; line-height: 1.45; color: var(--body); }
     .offer-price { margin-top: 4px; line-height: 1.1; }
@@ -543,6 +550,18 @@
         </p>
       </div>
 
+      <!-- 1b. Their type, up top. The full reading sits below the offer. -->
+      <div class="type-card">
+        <p class="type-label">Your Gut-Emotion Type</p>
+        <h2 class="type-name" id="type-name-top"></h2>
+        <p class="type-line" id="type-organ-top"></p>
+        <p class="type-line" id="type-emotion-top"></p>
+        <p class="type-below">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+          The full reading is below
+        </p>
+      </div>
+
       <!-- 2. The $9 offer -->
       <div class="offer" id="offer-card">
         <span class="offer-label">Before you go · Only on this page</span>
@@ -550,7 +569,7 @@
         <div class="offer-row">
           <a class="offer-img" id="offer-img-link" href="https://zylvie.com/michaelhetherington/p/gut-emotion-map">
             <picture>
-              <source type="image/webp" srcset="assets/gut-emotion-map-300.webp 300w, assets/gut-emotion-map-600.webp 600w" sizes="(min-width: 640px) 280px, 200px" />
+              <source type="image/webp" srcset="assets/gut-emotion-map-300.webp 300w, assets/gut-emotion-map-600.webp 600w" sizes="(min-width: 640px) 280px, 170px" />
               <img src="assets/gut-emotion-map.png" width="280" height="280" alt="The Gut-Emotion Map: 15 symptoms, 15 tapping scripts" decoding="async" />
             </picture>
           </a>
@@ -955,6 +974,9 @@
       const [organ, emotion] = r.organ.split(' · ');
       document.getElementById('pill-organ').textContent = organ;
       document.getElementById('pill-emotion').textContent = emotion;
+      document.getElementById('type-name-top').textContent = r.name;
+      document.getElementById('type-organ-top').textContent = organ;
+      document.getElementById('type-emotion-top').textContent = emotion;
 
       const reading = r.reading.slice();
       const duration = durationKey();
