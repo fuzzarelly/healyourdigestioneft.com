@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HFTYSBJ0B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6HFTYSBJ0B', {
+      linker: { domains: [
+        'michaelhetherington.com','www.michaelhetherington.com',
+        'healyourselfeft.com','healyourdigestioneft.com',
+        'eftpractitionertraining.com',
+        'mindbodymedicineacademy.onlinecoursehost.com',
+        'zylvie.com'
+      ] }
+    });
+    gtag('config', 'AW-1016615342');
+  </script>
+
+  <!-- Where Zylvie sends Map buyers after checkout (?src=zylvie-gutmap).
+       Zylvie also emails the PDF, so this page is a confirmation and a backup.
+       Keep it out of search, out of the sitemap and unlinked from the site.
+       The purchase event at the bottom only fires with src=zylvie-gutmap. -->
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Your Gut-Emotion Map is ready</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Serif+Display&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Serif+Display&display=swap" /></noscript>
+
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: 'Lora', Georgia, serif;
+      color: #2C2416;
+      background: #FAF7F2;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #FAF7F2;
+      min-height: 100%;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    /* --- Header --- */
+    header {
+      background: #2C2416;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 2rem;
+    }
+
+    .header-brand {
+      font-family: 'Lora', serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #F0C070;
+      letter-spacing: 0.04em;
+    }
+
+    /* --- Main --- */
+    .page-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 60px 20px 80px;
+      text-align: center;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #4A7C6F;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin: 0 0 16px;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin: 0 0 20px;
+      color: #2C2416;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #3D3027;
+      margin: 0 auto 40px;
+      max-width: 520px;
+    }
+
+    /* --- Download cards --- */
+    .card {
+      background: #fff;
+      border: 1px solid rgba(44, 36, 22, 0.08);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 14px 38px rgba(44, 36, 22, 0.06);
+      text-align: left;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .card--map {
+      background: #FBF4EA;
+      border: 2px solid #C17B2F;
+      box-shadow: none;
+    }
+
+    .card img {
+      flex: 0 0 160px;
+      width: 160px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 6px 18px rgba(44, 36, 22, 0.18);
+    }
+
+    .card-body { flex: 1; min-width: 0; }
+
+    .card h2 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 1.5rem;
+      line-height: 1.2;
+      margin: 0 0 6px;
+      color: #2C2416;
+    }
+
+    .card p {
+      margin: 0 0 18px;
+      color: #6B5E52;
+      font-size: 0.95rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #C17B2F;
+      color: #FFFFFF;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+
+    .btn:hover { background: #A36530; }
+
+    .btn--ghost {
+      background: transparent;
+      color: #A36530;
+      border: 2px solid #C17B2F;
+      padding: calc(0.8rem - 2px) calc(1.6rem - 2px);
+    }
+
+    .btn--ghost:hover { background: #C17B2F; color: #FFFFFF; }
+
+    /* --- Inbox note --- */
+    .note {
+      background: #F0EBE1;
+      border-radius: 24px;
+      padding: 28px;
+      text-align: left;
+      margin-top: 36px;
+      color: #3D3027;
+    }
+
+    .note h2 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      color: #2C2416;
+    }
+
+    .note p { margin: 0 0 10px; font-size: 0.98rem; }
+    .note p:last-child { margin-bottom: 0; }
+
+    .note a,
+    .help a {
+      color: #A36530;
+      overflow-wrap: anywhere;
+    }
+
+    .encourage {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      line-height: 1.3;
+      color: #2C2416;
+      max-width: 480px;
+      margin: 40px auto 0;
+    }
+
+    .help {
+      margin: 20px 0 0;
+      font-size: 0.88rem;
+      color: #6B5E52;
+    }
+
+    /* --- Footer --- */
+    footer {
+      background: #2C2416;
+      color: #FAF7F2;
+      padding: 28px 0 14px;
+      font-size: 0.92rem;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    footer p {
+      color: rgba(250, 247, 242, 0.8);
+      margin: 0 0 6px;
+    }
+
+    footer a {
+      color: rgba(250, 247, 242, 0.8);
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 520px) {
+      .page-wrap {
+        padding: 44px 16px 64px;
+      }
+      .card {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 20px;
+      }
+      .note {
+        padding: 24px 20px;
+      }
+      .btn {
+        display: block;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <span class="header-brand">Heal Your Digestion with EFT</span>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+
+    <p class="section-label">Payment received</p>
+    <h1>Your Gut-Emotion Map is ready</h1>
+    <p class="subtitle">Thank you. Your payment went through, and your map is on its way by email to the address you used at checkout. You can also download it right now.</p>
+
+    <div class="card card--map">
+      <img src="assets/gut-emotion-map-300.webp" srcset="assets/gut-emotion-map-300.webp 300w, assets/gut-emotion-map-600.webp 600w" sizes="160px" width="300" height="300" alt="The Gut-Emotion Map: 15 symptoms, 15 tapping scripts" decoding="async" />
+      <div class="card-body">
+        <h2>The Gut-Emotion Map</h2>
+        <p>44 pages, 15 symptoms, 15 tapping scripts. Save it to your phone so it's there when your gut flares up.</p>
+        <a class="btn" href="https://drive.google.com/uc?export=download&amp;id=1XBTLI6ArD_6GtJWsCnrD5xpBsgRScZnn" target="_blank" rel="noopener noreferrer">Download the map (PDF)</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h2>Your bonus: the Bloat Relief Kit</h2>
+        <p>A 10-minute tap-along video, the Bloat Relief Script and the 5 Element Emotion Chart, all on one page.</p>
+        <a class="btn btn--ghost" href="https://healyourdigestioneft.com/gut-script.html">Open your Bloat Relief Kit</a>
+      </div>
+    </div>
+
+    <div class="note">
+      <h2>Can't see the email?</h2>
+      <p>Check your spam and promotions folders. To make sure future emails land in your inbox, add <a href="mailto:info@michaelhetherington.com">info@michaelhetherington.com</a> to your contacts.</p>
+      <p>Any problems, reply to the email or write to <a href="mailto:info@michaelhetherington.com">info@michaelhetherington.com</a> and I'll sort it out.</p>
+    </div>
+
+    <p class="encourage">Pick one symptom tonight and tap through it once. That's all it takes to start.</p>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p>Heal Your Digestion with EFT · healyourdigestioneft.com</p>
+      <p><a href="mailto:info@michaelhetherington.com">info@michaelhetherington.com</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
+      <p>© 2026 · All rights reserved</p>
+      <p>This program is complementary to medical treatment and does not replace advice from your doctor.</p>
+    </div>
+  </footer>
+
+<script>
+(function () {
+  try {
+    var q = new URLSearchParams(window.location.search);
+    if (q.get('src') !== 'zylvie-gutmap') return;
+
+    // Drop src from the address bar, so a bookmark of this page can't record another sale
+    try { q.delete('src'); history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q.toString() : '') + location.hash); } catch (e) {}
+
+    var KEY = 'gutmap_purchase_fired';
+    var already = false;
+    try { already = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
+    if (already) return;
+
+    var txn = 'gm-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8);
+
+    if (typeof gtag === 'function') {
+      gtag('event', 'purchase', {
+        transaction_id: txn,
+        value: 9,
+        currency: 'USD',
+        items: [{ item_name: 'Gut-Emotion Map', price: 9, quantity: 1 }]
+      });
+    }
+
+    try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>
