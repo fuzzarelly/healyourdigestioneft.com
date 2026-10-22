@@ -1,0 +1,429 @@
+/* Shared styles for the Gut-Emotion quiz: quiz.html and gut-quiz.html. */
+
+:root {
+  --bg: #FAF7F2;
+  --sand: #F3ECE1;
+  --card: #FFFFFF;
+  --line: #E6DCCB;
+  --dark: #2A211A;
+  --on-dark: #FAF7F2;
+  --on-dark-2: #E4DACB;
+  --hl: #E9B98A;
+  --ink: #2A211A;
+  --body: #3B3129;
+  --muted: #5E5348;
+  --sage: #4E6B4A;
+  --btn: #A9601F;
+  --btn-hover: #8A4D18;
+  /* #A9601F is under 4.5:1 as small text on the light backgrounds, so links use the darker shade. */
+  --link: #8A4D18;
+  font-family: 'Lora', Georgia, serif;
+  color: var(--body);
+  background: var(--bg);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--body);
+  font-size: 17px;
+  line-height: 1.65;
+  min-height: 100vh;
+  padding: 12px 16px 40px;
+}
+
+h1, h2, h3 {
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+a { color: var(--link); }
+
+.quiz-wrap { max-width: 640px; margin: 0 auto; }
+
+.eyebrow {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+
+/* --- Intro (question 1 from the quiz page only) --- */
+/* Everything on question 1 is sized so all four answers fit on a 375x812 screen. */
+.quiz-intro { text-align: center; padding: 0 0 10px; }
+.quiz-hero { display: block; width: auto; height: 110px; margin: 0 auto 6px; border-radius: 16px; object-fit: cover; }
+.quiz-intro h1 { font-size: clamp(2rem, 7vw, 2.6rem); line-height: 1.05; margin: 4px 0 6px; }
+.quiz-intro p { font-size: 1rem; line-height: 1.4; max-width: 480px; margin: 0 auto; }
+.quiz-intro .quiz-meta { font-size: 0.82rem; line-height: 1.35; color: var(--muted); margin-top: 6px; }
+.quiz-intro .nowrap { white-space: nowrap; }
+.quiz-intro .quiz-bonus { font-size: 0.85rem; line-height: 1.35; font-weight: 600; color: var(--sage); margin-top: 4px; }
+body.compact .quiz-intro { display: none; }
+/* While the intro shows there's no Back button, so the top row can be short. */
+body:not(.compact) .quiz-top { margin-bottom: 12px; }
+body:not(.compact) .quiz-top-row { min-height: 24px; }
+body:not(.compact) .back-btn.is-hidden { height: 24px; }
+body:not(.compact) .question-text { font-size: 1.65rem; margin-bottom: 12px; }
+
+/* --- Top bar --- */
+.quiz-top { margin: 0 0 18px; }
+.quiz-top-row {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  min-height: 44px;
+}
+.back-btn {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.back-btn:hover { border-color: var(--btn); }
+.back-btn.is-hidden { visibility: hidden; }
+.quiz-count { text-align: center; font-size: 0.92rem; font-weight: 600; color: var(--ink); }
+.quiz-time { text-align: right; font-size: 0.85rem; color: var(--muted); white-space: nowrap; }
+.quiz-done {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 700;
+  color: var(--sage);
+}
+.progress-track {
+  height: 6px;
+  margin-top: 10px;
+  background: var(--line);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 20%;
+  background: var(--btn);
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+.progress-fill.is-done { width: 100%; background: var(--sage); }
+
+/* --- Question --- */
+.question { transition: opacity 0.25s ease; }
+.question.fade-out { opacity: 0; }
+.question-text {
+  font-size: 1.85rem;
+  line-height: 1.16;
+  margin: 0 0 18px;
+}
+.options-list { display: flex; flex-direction: column; gap: 8px; }
+.option-btn {
+  width: 100%;
+  min-height: 60px;
+  padding: 10px 16px;
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 17px;
+  line-height: 1.35;
+  color: var(--ink);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.option-btn:hover, .option-btn:focus-visible { border-color: var(--btn); }
+.option-btn.selected { border-color: var(--btn); background: #FBF4EA; }
+.option-label { flex: 1; }
+.option-icon { flex-shrink: 0; color: var(--sage); }
+.option-check { flex-shrink: 0; opacity: 0; }
+.option-btn.selected .option-check { opacity: 1; }
+.private-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* --- Encouragement, after question 3. Not a question, so it doesn't count. --- */
+.encourage { text-align: center; padding: 18px 18px 22px; background: var(--card); border: 1.5px solid var(--line); border-radius: 18px; transition: opacity 0.25s ease; }
+.encourage[hidden] { display: none; }
+.encourage.fade-out { opacity: 0; }
+.encourage-icon { display: block; margin: 0 auto 8px; color: var(--sage); }
+.encourage-heading { font-size: 1.85rem; line-height: 1.16; margin-bottom: 8px; }
+.encourage-text { max-width: 440px; margin: 0 auto; }
+.encourage-btn { max-width: 320px; margin: 18px auto 0; border: 0; font-family: inherit; cursor: pointer; }
+
+/* --- Matching, between the last question and the email gate --- */
+.matching { text-align: center; padding-top: 18px; }
+.matching-heading { font-size: 1.6rem; line-height: 1.2; max-width: 420px; margin: 14px auto 18px; text-wrap: balance; }
+.matching-spinner { display: block; width: 40px; height: 40px; margin: 0 auto; border: 3px solid var(--line); border-top-color: var(--btn); border-radius: 50%; }
+.matching-list { list-style: none; display: grid; gap: 10px; max-width: 320px; margin: 0 auto; text-align: left; }
+.matching-list li { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: var(--card); border: 1.5px solid var(--line); border-radius: 14px; color: var(--ink); opacity: 0.35; transition: opacity 0.3s ease, border-color 0.3s ease; }
+.matching-list li svg { flex-shrink: 0; color: var(--line); transition: color 0.3s ease; }
+.matching-list li.is-on { opacity: 1; border-color: var(--sage); }
+.matching-list li.is-on svg { color: var(--sage); }
+#matching-fill { transition: width 2.5s linear; }
+@media (prefers-reduced-motion: no-preference) {
+  .matching-spinner { animation: spin 0.9s linear infinite; }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* --- Screens that fade in --- */
+.screen { display: none; opacity: 0; transition: opacity 0.3s ease; }
+.screen.visible { display: block; }
+.screen.fade-in { opacity: 1; }
+
+/* --- Email gate --- */
+.teaser {
+  background: var(--dark);
+  color: var(--on-dark);
+  border-radius: 18px;
+  padding: 22px 20px 20px;
+  text-align: center;
+  margin-bottom: 22px;
+}
+.teaser .eyebrow { color: var(--hl); }
+.teaser-name { font-family: 'DM Serif Display', serif; font-size: 2rem; line-height: 1.1; color: var(--on-dark); margin: 8px 0 6px; }
+.teaser-organ { font-size: 0.9rem; font-style: italic; color: var(--on-dark-2); }
+.teaser-bars { display: grid; gap: 8px; max-width: 320px; margin: 16px auto 14px; }
+.teaser-bars span { display: block; height: 10px; border-radius: 99px; background: rgba(228, 218, 203, 0.16); }
+.teaser-bars span:nth-child(2) { width: 88%; }
+.teaser-bars span:nth-child(3) { width: 64%; }
+.teaser-lock { display: inline-flex; align-items: center; gap: 6px; font-size: 0.88rem; color: var(--on-dark-2); }
+.gate-heading { font-size: 1.75rem; line-height: 1.2; text-align: center; margin-bottom: 8px; }
+.gate-text { text-align: center; max-width: 460px; margin: 0 auto 18px; }
+
+/* style SendFox's own markup, left structurally untouched */
+.mh-cap form.sendfox-form p { margin: 0 0 12px; }
+.mh-cap form.sendfox-form label { display: block; font-size: 0.88rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.mh-cap form.sendfox-form input[type=text],
+.mh-cap form.sendfox-form input[type=email] {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 14px;
+  font-size: 16px;
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+}
+.mh-cap input:focus { outline: 2px solid var(--btn); outline-offset: 1px; }
+.mh-cap__btn {
+  width: 100%;
+  min-height: 58px;
+  padding: 14px 18px;
+  font-family: inherit;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  background: var(--btn);
+  border: 0;
+  border-radius: 14px;
+  cursor: pointer;
+}
+.mh-cap__btn:hover { background: var(--btn-hover); }
+.mh-cap__btn:disabled { opacity: 0.6; cursor: wait; }
+.mh-cap__note { margin: 4px 0 0; font-size: 0.82rem; color: var(--muted); text-align: center; }
+.mh-cap__note a { color: var(--muted); }
+.mh-cap .sendfox-message { display: none; }
+/* The reCAPTCHA notice is shown under the button, so the floating badge can go. */
+.grecaptcha-badge { visibility: hidden; }
+
+/* --- Result --- */
+.res-head {
+  background: var(--dark);
+  color: var(--on-dark);
+  border-radius: 18px;
+  padding: 24px 20px;
+  text-align: center;
+}
+/* Inbox notice: kept short so the $9 offer sits high on mobile. */
+.inbox { padding: 16px 16px 14px; }
+.inbox-tick { display: block; margin: 0 auto; }
+.inbox-heading { font-size: 1.35rem; line-height: 1.15; color: var(--on-dark); margin: 8px auto 4px; max-width: 460px; text-wrap: balance; }
+/* One sentence per line. */
+.inbox-text { max-width: 460px; margin: 6px auto 0; font-size: 0.92rem; line-height: 1.45; color: var(--on-dark-2); }
+.inbox-text strong { color: var(--on-dark); font-weight: 700; }
+.inbox-note {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  max-width: 460px;
+  margin: 10px auto 0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(228, 218, 203, 0.16);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--on-dark-2);
+  text-align: left;
+}
+.inbox-note svg { flex-shrink: 0; margin-top: 0.1em; }
+.pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.pill {
+  padding: 5px 12px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  font-size: 0.82rem;
+  line-height: 1.3;
+  color: var(--body);
+}
+.reading { padding: 20px 2px 4px; text-align: center; }
+.reading p + p { margin-top: 12px; }
+.reading strong { color: var(--ink); font-weight: 700; }
+
+/* Deep orange so the tip stands out. White on --btn is 4.8:1. */
+.tip { background: var(--btn); color: #FFFFFF; border-radius: 14px; margin: 14px 0 20px; }
+.tip-body strong { color: #FFFFFF; font-weight: 700; }
+.tip summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 56px;
+  padding: 12px 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+.tip summary::-webkit-details-marker { display: none; }
+.tip summary svg { flex-shrink: 0; transition: transform 0.2s ease; }
+.tip[open] summary svg { transform: rotate(180deg); }
+.tip-body { padding: 0 16px 16px; text-align: center; }
+.tip-body p + p { margin-top: 10px; }
+
+/* Type card: their result up top, in the deep orange. White on --btn is 4.8:1. */
+.type-card { margin-top: 12px; padding: 16px 18px; background: var(--btn); color: #FFFFFF; border-radius: 18px; text-align: center; }
+.type-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.type-name { font-size: clamp(1.9rem, 7.5vw, 2.4rem); line-height: 1.1; color: #FFFFFF; margin: 4px 0 8px; }
+.type-line { font-size: 0.92rem; line-height: 1.45; }
+.type-below { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 0.88rem; font-weight: 700; }
+
+.offer {
+  margin-top: 16px;
+  background: var(--card);
+  border: 2px solid var(--btn);
+  border-radius: 18px;
+  padding: 20px 18px;
+}
+/* The top half of the card is one centred column. --link, as --btn is under 4.5:1 as small text. */
+.offer-label { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--link); text-align: center; }
+.offer-heading { font-size: 1.45rem; line-height: 1.22; margin: 8px auto 16px; max-width: 520px; text-align: center; text-wrap: balance; }
+.offer-row { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+.offer-img { display: block; width: 170px; }
+.offer-img img { display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 16px 36px rgba(42, 33, 26, 0.18); }
+.offer-meta { font-size: 0.92rem; line-height: 1.45; color: var(--body); }
+.offer-price { margin-top: 4px; line-height: 1.1; }
+.price-now { font-size: 2.1rem; font-weight: 700; color: var(--ink); }
+.price-note { font-size: 0.92rem; color: var(--muted); margin-left: 4px; }
+.buy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 58px;
+  margin-top: 16px;
+  padding: 12px 18px;
+  background: var(--btn);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 1.08rem;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 14px;
+  transition: background 0.2s ease;
+}
+.buy-btn:hover { background: var(--btn-hover); }
+.secure-note { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 8px; font-size: 0.85rem; color: var(--muted); }
+.offer-ticks { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; margin-top: 10px; font-size: 0.9rem; color: var(--body); }
+.offer-ticks span, .inside li { display: inline-flex; align-items: flex-start; gap: 8px; }
+.offer-ticks svg, .inside svg { flex-shrink: 0; margin-top: 0.22em; }
+.credit-box { max-width: 460px; margin: 12px auto 0; padding: 10px 12px; background: var(--sand); border-radius: 12px; font-size: 0.9rem; text-align: center; }
+.credit-box[hidden] { display: none; }
+.inside { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
+.inside h3 { font-size: 1.15rem; margin-bottom: 4px; text-align: center; }
+.inside p { font-size: 0.92rem; color: var(--muted); margin: 0 auto 8px; max-width: 460px; }
+.inside ul { list-style: none; display: grid; gap: 6px; font-size: 0.95rem; max-width: 460px; margin: 0 auto; text-align: left; }
+
+@media (prefers-reduced-motion: no-preference) {
+  #offer-btn { animation: buy-pulse 2.4s ease-out infinite; }
+  #offer-btn:hover { animation-play-state: paused; }
+}
+@keyframes buy-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(169, 96, 31, 0.45); }
+  70% { box-shadow: 0 0 0 12px rgba(169, 96, 31, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(169, 96, 31, 0); }
+}
+
+.res-quote { margin-top: 20px; padding: 16px 18px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+.res-quote[hidden] { display: none; }
+.res-quote blockquote { font-style: italic; color: var(--body); }
+.res-quote figcaption { margin-top: 6px; font-size: 0.88rem; font-weight: 600; color: var(--ink); }
+
+.bottom-buy { margin-top: 18px; }
+/* Buy buttons: full width inside the card, capped and centred. */
+#offer-btn, #offer-btn-bottom { max-width: 420px; margin-left: auto; margin-right: auto; }
+
+.skip-line { margin-top: 18px; font-size: 0.95rem; color: var(--muted); text-align: center; }
+.skip-line a { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+.full-results { margin-top: 28px; scroll-margin-top: 12px; }
+.reading-card {
+  background: var(--dark);
+  color: var(--on-dark-2);
+  border: 2px solid var(--hl);
+  border-radius: 18px;
+  padding: 24px 18px 18px;
+}
+.full-heading { font-size: 1.15rem; line-height: 1.25; text-align: center; color: var(--hl); }
+.full-type { margin: 14px 0 10px; text-align: center; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--on-dark-2); }
+.full-type strong { display: block; margin-top: 4px; font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 8vw, 2.5rem); font-weight: 400; line-height: 1.1; letter-spacing: 0; text-transform: none; color: var(--on-dark); }
+.reading-card .pill { background: transparent; border-color: rgba(233, 185, 138, 0.55); color: var(--hl); }
+.reading-card .reading { padding-top: 16px; font-size: 1.02rem; }
+.reading-card .reading strong { color: var(--on-dark); }
+.reading-card .tip { margin: 18px 0 0; }
+
+.deeper { margin-top: 24px; text-align: center; }
+.deeper .buy-btn { max-width: 420px; margin: 0 auto; line-height: 1.3; }
+
+.disclaimer { margin-top: 24px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 0.82rem; line-height: 1.5; color: var(--muted); text-align: center; }
+
+/* --- About (gut-quiz.html): real page content under the quiz. Hidden once the result shows. --- */
+.quiz-about { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 0.95rem; }
+.quiz-about h2 { font-size: 1.3rem; line-height: 1.25; margin-bottom: 4px; }
+.quiz-about p + h2 { margin-top: 16px; }
+.quiz-about .disclaimer { margin-top: 18px; }
+body.has-result .quiz-about { display: none; }
+
+/* --- Footer --- */
+.quiz-footer { text-align: center; margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 0.82rem; color: var(--muted); }
+.quiz-footer p { margin-bottom: 6px; }
+.quiz-footer a { color: var(--muted); }
+
+@media (min-width: 640px) {
+  body { padding-top: 28px; }
+  .quiz-hero { height: 280px; margin-bottom: 14px; }
+  .question-text { font-size: 2rem; }
+  .offer { max-width: 640px; margin-left: auto; margin-right: auto; }
+  .offer-img { width: 280px; }
+}
