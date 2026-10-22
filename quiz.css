@@ -60,7 +60,7 @@ a { color: var(--link); }
 .quiz-intro p { font-size: 1rem; line-height: 1.4; max-width: 480px; margin: 0 auto; }
 .quiz-intro .quiz-meta { font-size: 0.82rem; line-height: 1.35; color: var(--muted); margin-top: 6px; }
 .quiz-intro .nowrap { white-space: nowrap; }
-.quiz-intro .quiz-bonus { font-size: 0.85rem; line-height: 1.35; font-weight: 600; color: var(--sage); margin-top: 4px; }
+.quiz-intro .quiz-bonus { font-size: 0.85rem; line-height: 1.35; font-weight: 600; color: var(--link); margin-top: 4px; }
 body.compact .quiz-intro { display: none; }
 /* While the intro shows there's no Back button, so the top row can be short. */
 body:not(.compact) .quiz-top { margin-bottom: 12px; }
@@ -264,9 +264,9 @@ body:not(.compact) .question-text { font-size: 1.65rem; margin-bottom: 12px; }
 .inbox-text strong { color: var(--on-dark); font-weight: 700; }
 .inbox-note {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 8px;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
   max-width: 460px;
   margin: 10px auto 0;
   padding-top: 10px;
@@ -274,9 +274,9 @@ body:not(.compact) .question-text { font-size: 1.65rem; margin-bottom: 12px; }
   font-size: 0.78rem;
   line-height: 1.45;
   color: var(--on-dark-2);
-  text-align: left;
+  text-align: center;
 }
-.inbox-note svg { flex-shrink: 0; margin-top: 0.1em; }
+.inbox-note svg { flex-shrink: 0; }
 .pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .pill {
   padding: 5px 12px;
@@ -298,8 +298,8 @@ body:not(.compact) .question-text { font-size: 1.65rem; margin-bottom: 12px; }
   list-style: none;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: center;
+  gap: 8px;
   min-height: 56px;
   padding: 12px 16px;
   font-weight: 700;
@@ -409,11 +409,14 @@ body:not(.compact) .question-text { font-size: 1.65rem; margin-bottom: 12px; }
 .disclaimer { margin-top: 24px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 0.82rem; line-height: 1.5; color: var(--muted); text-align: center; }
 
 /* --- About (gut-quiz.html): real page content under the quiz. Hidden once the result shows. --- */
-.quiz-about { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 0.95rem; }
+.quiz-about { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 0.95rem; text-align: center; }
+.quiz-about p { max-width: 520px; margin: 0 auto; }
 .quiz-about h2 { font-size: 1.3rem; line-height: 1.25; margin-bottom: 4px; }
 .quiz-about p + h2 { margin-top: 16px; }
+.about-photo { display: block; width: 80px; height: 80px; margin: 20px auto 8px; border-radius: 50%; object-fit: cover; }
 .quiz-about .disclaimer { margin-top: 18px; }
-body.has-result .quiz-about { display: none; }
+/* Only with question 1. Compact is on from question 2 through to the result. */
+body.compact .quiz-about { display: none; }
 
 /* --- Footer --- */
 .quiz-footer { text-align: center; margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 0.82rem; color: var(--muted); }

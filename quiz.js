@@ -174,7 +174,7 @@
         <p class="inbox-text"><strong>I've also sent you a free 5-minute gut-calming EFT tapping session you can practise right now.</strong></p>
         <p class="inbox-note">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-          <span>Can't see it?<br />Check your Promotions or spam folder and move it to your Primary inbox, so you don't miss the next one.</span>
+          <span>Can't see it?<br />Check your Promotions or spam folder and move it to your Primary inbox.</span>
         </p>
       </div>
 

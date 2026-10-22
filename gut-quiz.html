@@ -80,7 +80,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,700&family=DM+Serif+Display&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,700&family=DM+Serif+Display&display=swap" /></noscript>
-  <link rel="stylesheet" href="quiz.css?v=20261022" />
+  <link rel="stylesheet" href="quiz.css?v=20261022b" />
 </head>
 <body>
   <div class="quiz-wrap">
@@ -100,13 +100,17 @@
 
     <!-- The questions, email gate and result come from quiz.js (shared with quiz.html). -->
     <div id="quiz-app"></div>
-    <script src="quiz.js?v=20261022"></script>
+    <script src="quiz.js?v=20261022b"></script>
 
-    <!-- ABOUT: page content for visitors from Google Ads. Hidden once the result shows. -->
+    <!-- ABOUT: page content for visitors from Google Ads. Only shown with question 1. -->
     <section class="quiz-about" aria-labelledby="about-quiz-heading">
       <h2 id="about-quiz-heading">About this quiz</h2>
       <p>This free 6-question quiz matches your symptoms and stress patterns to one of four Gut-Emotion Types from Chinese medicine. It's for anyone whose bloating, reflux or sluggish digestion gets worse with stress, worry or feelings they hold in.</p>
-      <h2>About Michael</h2>
+      <picture>
+        <source type="image/webp" srcset="assets/michael-bio-192.webp" />
+        <img class="about-photo" src="assets/michael-bio-192.jpg" width="80" height="80" alt="Michael Hetherington" loading="lazy" decoding="async" />
+      </picture>
+      <h2>About the founder</h2>
       <p>Michael Hetherington (BHlthSci) has over 10 years of experience in Chinese medicine and EFT tapping. His YouTube channel has more than 40,000 subscribers.</p>
       <p class="disclaimer">For stress-related digestive discomfort. Not medical advice. See your doctor about severe, new or worsening symptoms.</p>
     </section>
