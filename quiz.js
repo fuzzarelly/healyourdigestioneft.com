@@ -190,6 +190,21 @@
         </p>
       </div>
 
+      <!-- Welcome video (muted autoplay). data-src becomes src in showResult(),
+           so it never plays while the result is still hidden. -->
+      <div class="welcome-video" style="max-width:720px;margin:24px auto 32px;padding:0 16px;">
+        <p style="text-align:center;font-weight:600;margin:0 0 12px;">Watch this first (90 seconds)</p>
+        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;box-shadow:0 4px 18px rgba(0,0,0,0.12);">
+          <iframe
+            data-src="https://www.youtube-nocookie.com/embed/u3T7a4jGspo?autoplay=1&mute=1&playsinline=1&rel=0"
+            title="Welcome from Michael"
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+            allow="autoplay; accelerometer; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+        <p style="text-align:center;font-size:14px;opacity:0.75;margin:10px 0 0;">Playing on mute. Tap the video for sound.</p>
+      </div>
+
       <!-- 2. The $9 offer -->
       <div class="offer" id="offer-card">
         <span class="offer-label">Before you go · Only on this page</span>
@@ -679,6 +694,9 @@
     setCompact(true);
     document.body.classList.add('has-result');
     fadeIn(resultCard);
+    // Start the welcome video now that the result is on screen (once only).
+    const welcomeVideo = resultCard.querySelector('.welcome-video iframe[data-src]');
+    if (welcomeVideo && !welcomeVideo.getAttribute('src')) welcomeVideo.src = welcomeVideo.dataset.src;
     // Land on the very top, instantly. Swapping screens can leave the page far
     // down, and a smooth scroll back up gets cut short while the keyboard
     // closes, so set it now and again once the layout has settled.
