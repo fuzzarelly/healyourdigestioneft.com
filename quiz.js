@@ -2,10 +2,11 @@
    Each page has its own intro and footer, then <div id="quiz-app"></div> followed
    straight away by this script, which fills in the questions, the email gate and
    the result. A page can set before this script:
-     window.QUIZ_PAGE          - added as `page` to the quiz events (gut-quiz.html only)
-     window.QUIZ_AW_CONVERSION - Google Ads send_to, fired once on a confirmed email signup */
+     window.QUIZ_PAGE - added as `page` to the quiz events (gut-quiz.html only) */
 (function () {
   var PAGE = window.QUIZ_PAGE || '';
+  // Google Ads "quiz lead" conversion, fired once per browser on a confirmed email signup.
+  var AW_CONVERSION = 'AW-1016615342/SE7KCKOk1qgdEK6j4eQD';
   // The Google Ads landing page: no links away from the quiz, and the ad click
   // IDs and UTMs ride along to the $9 checkout.
   var AD_PAGE = PAGE === 'gut-quiz';
@@ -755,7 +756,6 @@
     var firstName = '';
     var settled = false;
     var timer = null;
-    var adConversionSent = false;
 
     /* SendFox's form.js pulls in about 1MB of reCAPTCHA as soon as it runs,
        which made the quiz slow on phones. It is only needed for this form,
@@ -814,11 +814,14 @@
         try {
           gtag('event', 'quiz_lead', withPage({ lead_magnet: 'gut_emotion_quiz' }));
         } catch (e) {}
-        // Google Ads conversion, once per page load.
-        if (window.QUIZ_AW_CONVERSION && !adConversionSent) {
-          adConversionSent = true;
-          try { gtag('event', 'conversion', { send_to: window.QUIZ_AW_CONVERSION }); } catch (e) {}
-        }
+        // Google Ads conversion, once per browser so retakes don't count twice.
+        (function () {
+          var key = 'gutquiz_lead_tracked';
+          try { if (localStorage.getItem(key)) return; localStorage.setItem(key, '1'); } catch (e) {}
+          try {
+            gtag('event', 'conversion', { send_to: AW_CONVERSION, value: 1.0, currency: 'AUD' });
+          } catch (e) {}
+        })();
         fbTrack('Lead');
       } else if (err) {
         console.error('Quiz email submit failed:', err);
