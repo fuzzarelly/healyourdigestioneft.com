@@ -169,7 +169,7 @@
     <div class="screen" id="result">
       <!-- 1. Inbox notice. No "open email" button, so they stay for the offer. -->
       <div class="res-head inbox">
-        <img class="inbox-tick" src="assets/email-icon.png" width="40" height="40" alt="" />
+        <img class="inbox-tick" src="assets/email-icon.png" width="64" height="64" alt="" />
         <h2 class="inbox-heading" id="result-intro">Your full results are on their way to your inbox</h2>
         <p class="inbox-text">It will take 1 minute to arrive.</p>
         <p class="inbox-text"><strong>I've also sent you a free 5-minute gut-calming EFT tapping session you can practise right now.</strong></p>
