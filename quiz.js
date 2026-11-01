@@ -169,7 +169,7 @@
     <div class="screen" id="result">
       <!-- 1. Inbox notice. No "open email" button, so they stay for the offer. -->
       <div class="res-head inbox">
-        <svg class="inbox-tick" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#4E6B4A"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <img class="inbox-tick" src="assets/email-icon.png" width="40" height="40" alt="" />
         <h2 class="inbox-heading" id="result-intro">Your full results are on their way to your inbox</h2>
         <p class="inbox-text">It will take 1 minute to arrive.</p>
         <p class="inbox-text"><strong>I've also sent you a free 5-minute gut-calming EFT tapping session you can practise right now.</strong></p>
