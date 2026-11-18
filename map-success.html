@@ -21,6 +21,20 @@
     });
     gtag('config', 'AW-1016615342');
   </script>
+  <script>
+    (function () {
+      var PRICE = 9; // this page's price in USD
+      var params = new URLSearchParams(window.location.search);
+      var value = parseFloat(params.get('v')) || PRICE;
+      var key = 'purchase_tracked_' + window.location.pathname;
+      try { if (localStorage.getItem(key)) return; localStorage.setItem(key, '1'); } catch (e) {}
+      gtag('event', 'conversion', {
+        send_to: 'AW-1016615342/ALsDCIH2k6UdEK6j4eQD',
+        value: value,
+        currency: 'USD'
+      });
+    })();
+  </script>
 
   <!-- Where Zylvie sends Map buyers after checkout (?src=zylvie-gutmap).
        Zylvie also emails the PDF, so this page is a confirmation and a backup.
