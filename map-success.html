@@ -25,6 +25,7 @@
     (function () {
       var PRICE = 9; // this page's price in USD
       var params = new URLSearchParams(window.location.search);
+      if (params.get('src') !== 'zylvie-gutmap') return; // same check as the GA4 purchase below
       var value = parseFloat(params.get('v')) || PRICE;
       var key = 'purchase_tracked_' + window.location.pathname;
       try { if (localStorage.getItem(key)) return; localStorage.setItem(key, '1'); } catch (e) {}
