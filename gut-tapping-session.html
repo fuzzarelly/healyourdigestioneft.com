@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HFTYSBJ0B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    /* Main property - one property across every domain, with cross-domain linking. */
+    gtag('config', 'G-6HFTYSBJ0B', {
+      linker: { domains: [
+        'michaelhetherington.com',
+        'www.michaelhetherington.com',
+        'healyourselfeft.com',
+        'healyourdigestioneft.com',
+        'eftpractitionertraining.com',
+        'mindbodymedicineacademy.onlinecoursehost.com',
+        'zylvie.com'
+      ] }
+    });
+
+    /* Google Ads - for remarketing only. No conversion fires on this page. */
+    gtag('config', 'AW-1016615342');
+  </script>
+
+  <meta name="robots" content="noindex, follow" />
+  <meta name="description" content="A free 5-minute EFT tapping session to calm your gut." />
+  <title>Your 5-Minute Gut Tapping Session | Heal Your Digestion with EFT</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://www.youtube-nocookie.com" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=DM+Serif+Display&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=DM+Serif+Display&display=swap" /></noscript>
+
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #FAF7F2;
+      --dark: #2A211A;
+      --ink: #2A211A;
+      --muted: #5C5048;
+      --btn: #A9601F;
+      --btn-hover: #8A4D18;
+      font-family: 'Lora', Georgia, serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      min-height: 100%;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    body { display: flex; flex-direction: column; min-height: 100vh; }
+
+    /* --- Header --- */
+    header {
+      background: #2C2416;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 2rem;
+    }
+
+    .header-brand {
+      font-family: 'Lora', serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #F0C070;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+
+    /* --- Main --- */
+    .page-wrap {
+      flex: 1;
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 36px 16px 56px;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 6vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 0 auto 12px;
+      max-width: 620px;
+      color: var(--ink);
+      text-wrap: balance;
+    }
+
+    .lede {
+      margin: 0 auto 24px;
+      max-width: 520px;
+      font-size: 1.08rem;
+      color: var(--muted);
+      text-wrap: balance;
+    }
+
+    /* --- Video --- */
+    .video-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--dark);
+      box-shadow: 0 14px 38px rgba(44, 36, 22, 0.12);
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* --- After the video --- */
+    .after {
+      max-width: 560px;
+      margin: 32px auto 0;
+    }
+
+    .after p {
+      margin: 0 0 14px;
+      font-size: 1.08rem;
+      text-wrap: pretty;
+    }
+
+    .after .feel {
+      font-weight: 600;
+    }
+
+    /* --- Button (same as the main site's .btn) --- */
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 420px;
+      min-height: 58px;
+      margin: 28px auto 0;
+      padding: 12px 22px;
+      background: var(--btn);
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 1.08rem;
+      font-weight: 700;
+      line-height: 1.3;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 14px;
+      transition: background 0.2s ease;
+    }
+
+    .btn:hover { background: var(--btn-hover); }
+
+    .text-link {
+      display: inline-block;
+      margin: 22px auto 0;
+      max-width: 560px;
+      text-wrap: balance;
+      padding: 6px 0;
+      font-size: 0.98rem;
+      color: var(--muted);
+      text-underline-offset: 3px;
+    }
+
+    .text-link strong { color: var(--btn); font-weight: 600; }
+
+    .text-link:hover strong { color: var(--btn-hover); }
+
+    /* --- Footer --- */
+    footer {
+      background: #2C2416;
+      color: #FAF7F2;
+      padding: 28px 0 14px;
+      font-size: 0.92rem;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    footer p {
+      color: rgba(250, 247, 242, 0.8);
+      margin: 0 0 6px;
+    }
+
+    footer a {
+      color: rgba(250, 247, 242, 0.8);
+    }
+
+    @media (min-width: 640px) {
+      .page-wrap { padding-top: 56px; }
+      .lede { margin-bottom: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <span class="header-brand">Heal Your Digestion with EFT</span>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+    <h1>Your 5-minute gut tapping session</h1>
+    <p class="lede">Find a quiet spot, take a breath, and tap along with me.</p>
+
+    <div class="video-frame">
+      <iframe id="tapping-video"
+        src="https://www.youtube-nocookie.com/embed/Ow1pC7PL9sw?rel=0&amp;enablejsapi=1&amp;playsinline=1"
+        title="Your 5-minute gut tapping session"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+    </div>
+
+    <div class="after">
+      <p class="feel">How did that feel? Even a few rounds can take the edge off.</p>
+      <p>If your gut tends to flare when life gets stressful, the next step is finding out which emotion sits behind each symptom.</p>
+    </div>
+
+    <a class="btn" id="map-link" data-cta="gut_emotion_map" href="https://zylvie.com/michaelhetherington/p/gut-emotion-map">Get the Gut-Emotion Map ($9)</a>
+
+    <a class="text-link" id="program-link" data-cta="program" href="/#program">Ready for the full 30-day program? <strong>Heal Your Digestion with EFT</strong></a>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p>Heal Your Digestion with EFT · healyourdigestioneft.com</p>
+      <p><a href="mailto:info@michaelhetherington.com">info@michaelhetherington.com</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
+      <p>© 2026 · All rights reserved</p>
+      <p>This program is complementary to medical treatment and does not replace advice from your doctor.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* The page URL keeps its UTMs; they are copied onto the Zylvie link now, at load,
+       so gtag can still add its _gl cross-domain parameter when the link is clicked. */
+    (function () {
+      var a = document.getElementById('map-link');
+      try {
+        var q = new URLSearchParams(location.search);
+        var u = new URL(a.href);
+        q.forEach(function (v, k) {
+          if (/^utm_[a-z0-9_]+$/.test(k) && v) u.searchParams.set(k, v.slice(0, 200));
+        });
+        a.href = u.toString();
+      } catch (e) {}
+    })();
+
+    /* GA4 cta_click, with a label for each link. */
+    Array.prototype.forEach.call(document.querySelectorAll('[data-cta]'), function (a) {
+      a.addEventListener('click', function () {
+        try {
+          gtag('event', 'cta_click', { cta_label: a.getAttribute('data-cta'), link_url: a.href });
+        } catch (e) {}
+      });
+    });
+
+    /* GA4 video_start, once per page view, from the YouTube iframe API. */
+    (function () {
+      var sent = false;
+      window.onYouTubeIframeAPIReady = function () {
+        new YT.Player('tapping-video', {
+          events: {
+            onStateChange: function (e) {
+              if (sent || e.data !== YT.PlayerState.PLAYING) return;
+              sent = true;
+              try {
+                gtag('event', 'video_start', {
+                  video_id: 'Ow1pC7PL9sw',
+                  video_title: 'Your 5-minute gut tapping session'
+                });
+              } catch (err) {}
+            }
+          }
+        });
+      };
+      var s = document.createElement('script');
+      s.src = 'https://www.youtube.com/iframe_api';
+      s.async = true;
+      document.body.appendChild(s);
+    })();
+  </script>
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window,document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1017196089549728');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1017196089549728&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+</body>
+</html>
