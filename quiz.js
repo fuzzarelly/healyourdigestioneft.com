@@ -2,9 +2,14 @@
    Each page has its own intro and footer, then <div id="quiz-app"></div> followed
    straight away by this script, which fills in the questions, the email gate and
    the result. A page can set before this script:
-     window.QUIZ_PAGE - added as `page` to the quiz events (gut-quiz.html only) */
+     window.QUIZ_PAGE - added as `page` to the quiz events (gut-quiz.html only)
+     window.QUIZ_SENDFOX_FORM - the SendFox form ID (default 3ekowl; quiz-yt.html has its own)
+     window.QUIZ_AW_EACH_SIGNUP - true fires the Ads conversion once per confirmed signup
+       made on this page, instead of once per browser (quiz-yt.html only) */
 (function () {
   var PAGE = window.QUIZ_PAGE || '';
+  var SENDFOX_FORM = window.QUIZ_SENDFOX_FORM || '3ekowl';
+  var AW_EACH_SIGNUP = window.QUIZ_AW_EACH_SIGNUP === true;
   // Google Ads "quiz lead" conversion, fired once per browser on a confirmed email signup.
   var AW_CONVERSION = 'AW-1016615342/SE7KCKOk1qgdEK6j4eQD';
   // The Google Ads landing page: no links away from the quiz, and the ad click
@@ -153,7 +158,7 @@
       <p class="gate-text">Your Gut-Emotion Type, why it shows up in your gut, plus a free 5-minute tapping session to calm your belly.</p>
 
       <div class="mh-cap">
-        <form method="post" action="https://sendfox.com/form/m44x5n/3ekowl" class="sendfox-form" id="3ekowl" data-async="true" data-recaptcha="true" data-quiz="digestion" data-branch="mixed">
+        <form method="post" action="https://sendfox.com/form/m44x5n/${SENDFOX_FORM}" class="sendfox-form" id="${SENDFOX_FORM}" data-async="true" data-recaptcha="true" data-quiz="digestion" data-branch="mixed">
           <p><label for="sendfox_form_name">First name</label><input type="text" id="sendfox_form_name" placeholder="First name" name="first_name" autocomplete="given-name" required /></p>
           <p><label for="sendfox_form_email">Email</label><input type="email" id="sendfox_form_email" placeholder="Email" name="email" autocomplete="email" required /></p>
           <!-- no botz please -->
@@ -631,7 +636,7 @@
 
   function showEmailGate() {
     const key = resultKey();
-    const form = document.getElementById('3ekowl');
+    const form = document.getElementById(SENDFOX_FORM);
     if (form) form.setAttribute('data-branch', key);
     if (window.mhLoadSendFox) window.mhLoadSendFox();
     document.getElementById('teaser-name').textContent = results[key].name;
@@ -751,11 +756,13 @@
      to reveal the result. Whatever happens, the result is always shown, so nobody
      gets stuck behind the form. */
   (function () {
-    var form = document.getElementById('3ekowl');
+    var form = document.getElementById(SENDFOX_FORM);
     if (!form) { return; }
     var firstName = '';
     var settled = false;
     var timer = null;
+    // Set on each submit and used up by the first confirmed success (QUIZ_AW_EACH_SIGNUP).
+    var signupPending = false;
 
     /* SendFox's form.js pulls in about 1MB of reCAPTCHA as soon as it runs,
        which made the quiz slow on phones. It is only needed for this form,
@@ -815,9 +822,16 @@
           gtag('event', 'quiz_lead', withPage({ lead_magnet: 'gut_emotion_quiz' }));
         } catch (e) {}
         // Google Ads conversion, once per browser so retakes don't count twice.
+        // With QUIZ_AW_EACH_SIGNUP: once per confirmed signup made on this page.
         (function () {
           var key = 'gutquiz_lead_tracked';
-          try { if (localStorage.getItem(key)) return; localStorage.setItem(key, '1'); } catch (e) {}
+          if (AW_EACH_SIGNUP) {
+            if (!signupPending) return;
+            signupPending = false;
+            try { localStorage.setItem(key, '1'); } catch (e) {}
+          } else {
+            try { if (localStorage.getItem(key)) return; localStorage.setItem(key, '1'); } catch (e) {}
+          }
           try {
             gtag('event', 'conversion', { send_to: AW_CONVERSION, value: 1.0, currency: 'AUD' });
           } catch (e) {}
@@ -874,6 +888,7 @@
         });
         return;
       }
+      signupPending = true;
       // Network errors and reCAPTCHA hangs only log inside form.js, so fall back on a timeout.
       clearTimeout(timer);
       timer = setTimeout(function () {
